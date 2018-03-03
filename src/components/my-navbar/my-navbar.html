@@ -1,0 +1,16 @@
+<ion-navbar class="my-navbar" hideBackButton="true">
+
+    <ion-title class="logo" *ngIf="logo_url">
+        <img [src]="logo_url" />
+    </ion-title>
+
+    <ion-title *ngIf="title">
+        {{title}}
+    </ion-title>
+
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+
+    
+</ion-navbar>
