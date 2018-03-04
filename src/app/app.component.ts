@@ -15,7 +15,14 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen
+  ) {
+    platform.ready().then(() => {
+      statusBar.show();
+    });
     this.initializeApp();
 
   }

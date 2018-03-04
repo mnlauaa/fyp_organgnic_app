@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform} from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -7,7 +7,10 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   title = 'Home';
-  constructor(public navCtrl: NavController) {
+  constructor(
+    protected platform: Platform,
+    protected navCtrl: NavController
+  ) {
 
   }
 

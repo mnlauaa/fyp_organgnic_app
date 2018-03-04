@@ -13,6 +13,7 @@ export class MyNavbar {
     protected platform: Platform,
     protected nav: NavController
   ) {
+    
   }
 
 }
