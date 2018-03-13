@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+// Custom dependencies
 import { MyApp } from './app.component';
+import { ApiService } from '../providers/api-service/api-service';
 
 // components
 import { MyNavbar } from '../components/my-navbar/my-navbar';
@@ -33,7 +35,12 @@ export const myComponets = [
 
 	// components
   MyNavbar
-]
+];
+
+export const myProviders = [
+	ApiService
+];
+
 
 @NgModule({
   declarations: [
@@ -50,9 +57,10 @@ export const myComponets = [
     ...myComponets
   ],
   providers: [
+    ...myProviders,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}
