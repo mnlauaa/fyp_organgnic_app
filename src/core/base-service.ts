@@ -13,15 +13,16 @@ export class BaseService {
         this.headers.set('Content-Type', 'application/json');
     }
 
-    public startQueue(promises: Promise<any>[]){
+    public startQueue(promises: Promise<any>[]): Promise<any> {
         return Promise.all(promises).then(data => {
             return data;
         }).catch(err => {
-            return err;
+            console.log(err.status)
+            return Promise.reject(err);
         });
     }
 
-    protected get(url) {
+    protected get(url): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.get(url)
