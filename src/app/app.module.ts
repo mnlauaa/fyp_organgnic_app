@@ -19,6 +19,7 @@ import { BuyerOrderPage } from '../pages/buyer-order/buyer-order';
 import { MessagePage } from '../pages/message/message';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnersPage } from '../pages/partners/partners';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,6 +34,7 @@ export const myComponets = [
   MessagePage,
   AboutUsPage,
   PartnersPage,
+  LoginPage,
 
 	// components
   MyNavbar
