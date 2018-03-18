@@ -2,6 +2,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 // Custom dependencies
 import { MyApp } from './app.component';
@@ -41,7 +42,12 @@ export const myComponets = [
 ];
 
 export const myProviders = [
-	ApiService
+  ApiService,
+];
+
+export const myImports = [
+  HttpClientModule,
+  IonicStorageModule.forRoot()
 ];
 
 
@@ -53,7 +59,7 @@ export const myProviders = [
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    ...myImports
   ],
   bootstrap: [IonicApp],
   entryComponents: [
