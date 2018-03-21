@@ -20,7 +20,7 @@ import { MessagePage } from '../pages/message/message';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnersPage } from '../pages/partners/partners';
 import { LoginPage } from '../pages/login/login';
-
+import { SignupPage } from '../pages/signup/signup';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -35,6 +35,7 @@ export const myComponets = [
   AboutUsPage,
   PartnersPage,
   LoginPage,
+  SignupPage,
 
 	// components
   MyNavbar
