@@ -9,9 +9,6 @@ export class MyNavbar {
 
   @Input() title: string;
   @Input() logo_url: string;
-  @Input() enable_shopping_button: boolean = true;
-  @Input() enable_back: boolean = false;
-  
   constructor(
     protected platform: Platform,
     protected nav: NavController

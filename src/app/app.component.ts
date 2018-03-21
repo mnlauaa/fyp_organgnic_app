@@ -12,7 +12,6 @@ import { BuyerOrderPage } from '../pages/buyer-order/buyer-order';
 import { MessagePage } from '../pages/message/message';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnersPage } from '../pages/partners/partners';
-import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +22,6 @@ export class MyApp {
   rootPage: any = HomePage;
 	buyer_pages: any;
 	user_bottom_pages: any;
-	login: any;
 
   constructor(
 		protected menu: MenuController,
@@ -31,9 +29,9 @@ export class MyApp {
 		protected statusBar: StatusBar, 
 		protected splashScreen: SplashScreen
   ) {
-	// platform.ready().then(() => {
-	//   statusBar.show();
-	// });
+	platform.ready().then(() => {
+	  statusBar.show();
+	});
 	this.initializeApp();
 
 	this.buyer_pages = [
@@ -51,17 +49,15 @@ export class MyApp {
 		{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
 	]
 
-	this.login = { title: 'Login', component: LoginPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'}
-
   }
 
   initializeApp() {
 	this.platform.ready().then(() => {
 	  // Okay, so the platform is ready and our plugins are available.
 	  // Here you can do any higher level native things you might need.
-	  // this.statusBar.overlaysWebView(false);
-	  // this.statusBar.backgroundColorByHexString('#00a69c');
-	  // this.splashScreen.hide();
+	  this.statusBar.overlaysWebView(false);
+	  this.statusBar.backgroundColorByHexString('#00a69c');
+	  this.splashScreen.hide();
 	});
   }
 
@@ -70,14 +66,5 @@ export class MyApp {
 		// we wouldn't want the back button to show in this scenario
 		this.nav.setRoot(page.component);
 		this.menu.close();
-	}
-
-	pushPage(page) {
-		this.nav.push(page.component);
-		this.menu.close();
-	}
-	
-
+  }
 }
-
-

@@ -7,23 +7,12 @@
         {{title}}
     </ion-title>
 
-    <!-- Menu button -->
-    <ion-buttons left menuToggle>
-        <button ion-button>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-    </ion-buttons>
-
-    <!-- Back button -->
-    <ion-buttons *ngIf="enable_back" left>
-        <button ion-button navPop>
-            <ion-icon class="icon" name="md-arrow-back" ></ion-icon>
-        </button>
-    </ion-buttons>
-
-    <!-- Shopping Cart button -->
+    <button ion-button menuToggle="main-menu">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    
     <ion-buttons end>
-        <button *ngIf="enable_shopping_button" ion-button (click)="openPage()" tappable>
+        <button ion-button icon-end tappable (click)="openPage()">
             <ion-icon class="icon" name="md-cart" ></ion-icon>
         </button>
     </ion-buttons>
