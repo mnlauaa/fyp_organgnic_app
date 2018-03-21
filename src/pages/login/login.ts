@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
+import {ContactusPage} from '../contactus/contactus';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -15,8 +16,12 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  openPage() {
-    this.navCtrl.push(SignupPage);
-    }
+  SignUpOpenPage() {
+      this.navCtrl.push(SignupPage);
+  }
+
+  ContactOpenPage() {
+    this.navCtrl.push(ContactusPage);
+  }
 
 }
