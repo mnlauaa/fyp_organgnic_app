@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../core/base-service';
 
@@ -17,6 +17,13 @@ export class ApiService extends BaseService{
 
   public getMe(){
     return this.get('/me')
+  }
+
+  public postMeLogin(data){
+    const body = new HttpParams()
+                      .set('username', data.username)
+                      .set('password', data.password);
+    return this.post_normal('/me/login', body)
   }
 
 }

@@ -1,16 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 // import { LoadingController } from 'ionic-angular';
 
 
 export class BaseService {
     protected api_prefix: string = '';
-    protected headers: HttpHeaders = new HttpHeaders();
+
 
     constructor(
         protected http: HttpClient,
         // private loadingCtrl: LoadingController
     ) {
-        this.headers.set('Content-Type', 'application/json');
     }
 
     public startQueue(promises: Promise<any>[]): Promise<any> {
@@ -22,6 +21,7 @@ export class BaseService {
         });
     }
 
+    // GET request
     protected get(url): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
@@ -29,6 +29,19 @@ export class BaseService {
                 .subscribe(data => {
                     resolve(data);
                 }, err => reject(err));
+        });
+    }
+
+    // POST request, x-www-form-urlencoded
+    protected post_normal(url, body: HttpParams = null, params: HttpParams = null): Promise<any> {
+        url = this.api_prefix + url;
+        return new Promise((resolve, reject) => {
+            this.http.post(url, body.toString(), {
+                headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+            })
+            .subscribe(data => {
+                resolve(data);
+            }, err => reject(err));
         });
     }
 }
