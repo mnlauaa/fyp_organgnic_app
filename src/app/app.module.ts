@@ -2,6 +2,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 // Custom dependencies
 import { MyApp } from './app.component';
@@ -21,9 +22,12 @@ import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnersPage } from '../pages/partners/partners';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import {ContactusPage} from '../pages/contactus/contactus';
+import { ContactusPage } from '../pages/contactus/contactus';
+import { ListingPage } from '../pages/listing/listing';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 export const myComponets = [
 	// pages
@@ -38,13 +42,19 @@ export const myComponets = [
   LoginPage,
   SignupPage,
   ContactusPage,
+  ListingPage,
 
 	// components
   MyNavbar
 ];
 
 export const myProviders = [
-	ApiService
+  ApiService,
+];
+
+export const myImports = [
+  HttpClientModule,
+  IonicStorageModule.forRoot()
 ];
 
 
@@ -56,7 +66,7 @@ export const myProviders = [
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    ...myImports
   ],
   bootstrap: [IonicApp],
   entryComponents: [

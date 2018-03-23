@@ -10,14 +10,21 @@
 
   <ion-content>
     <div class="menu_content">
-      <div *ngFor="let p of buyer_pages" class="page" tappable (click)="openPage(p)">
+      <div *ngIf="guest" class="guest-block">
+        <i class="fa fa-user-circle fa-3x"></i> 
+        <div class="login-button" (click)="pushPage(login)" tappable>
+            <div class="button-text">Login</div>
+        </div>
+      </div>
+
+      <div *ngFor="let p of upper_page" class="page" tappable (click)="openPage(p)">
         <i [class]="p.icon"></i> 
         <a>{{p.title}}</a> 
       </div>
 
       <div class="line-padding"><i id="line"></i></div>
 
-      <div *ngFor="let p of user_bottom_pages" class="page" tappable (click)="openPage(p)">
+      <div *ngFor="let p of bottom_pages" class="page" tappable (click)="openPage(p)">
         <i [class]="p.icon"></i> 
         <a>{{p.title}}</a> 
       </div>
