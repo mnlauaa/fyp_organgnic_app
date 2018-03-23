@@ -22,9 +22,12 @@ import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnersPage } from '../pages/partners/partners';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import {ContactusPage} from '../pages/contactus/contactus';
+import { ContactusPage } from '../pages/contactus/contactus';
+import { ListingPage } from '../pages/listing/listing';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 export const myComponets = [
 	// pages
@@ -39,6 +42,7 @@ export const myComponets = [
   LoginPage,
   SignupPage,
   ContactusPage,
+  ListingPage,
 
 	// components
   MyNavbar

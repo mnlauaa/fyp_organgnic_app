@@ -39,28 +39,53 @@ ion-menu{
 		background-color: #FFFFFF;
 		height: 100%;
 		padding: 10px 25px 25px 25px;
+
+		.guest-block{
+			height: 220px;
+
+			i{
+				display: block;
+				margin-left: 30%;
+				font-size: 105px;
+				line-height: 166px;
+			}
+
+			.login-button{
+				background-color: #027B73;
+				height: 39px;
+				margin: 0px 25px;         
+
+				.button-text{
+						font-size: 18px;
+						font-weight: bold;
+						color: #FFFFFF;
+						line-height: 40px;
+						text-align: center;
+				}
+			}
+		}
 		
     .page{
-		height: 45px;
-		display: flex;
-		align-items: center;
+			height: 45px;
+			display: flex;
+			align-items: center;
 
-		a{
-			color: #000000;
-			font-size: 17px;
-			padding-left: 5px;
-		}
+			a{
+				color: #000000;
+				font-size: 17px;
+				padding-left: 5px;
+			}
     }
 
     .line-padding{
-		padding: 10px 0;
+			padding: 10px 0;
     }
     
     #line{
-		display: block;
-		height: 1px;
-		border: 0.51px solid #707070;
-		margin: auto;
+			display: block;
+			height: 1px;
+			border: 0.51px solid #707070;
+			margin: auto;
     }
   }
 

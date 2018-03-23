@@ -1,18 +1,21 @@
 import { Component, ViewChild } from '@angular/core';
-import { MenuController, Nav, Platform } from 'ionic-angular';
+import { MenuController, Nav, Events, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 // pages
 import { HomePage } from '../pages/home/home';
 import { TheMarketPage } from '../pages/the-market/the-market';
 import { ShoppingCartPage } from '../pages/shopping-cart/shopping-cart';
+import { ListingPage } from '../pages/listing/listing';
 import { ProfilePage } from '../pages/profile/profile';
 import { BuyerOrderPage } from '../pages/buyer-order/buyer-order';
 import { MessagePage } from '../pages/message/message';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnersPage } from '../pages/partners/partners';
 import { LoginPage } from '../pages/login/login';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -21,49 +24,83 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
-	buyer_pages: any;
-	user_bottom_pages: any;
+	upper_page: any;
+	bottom_pages: any;
 	login: any;
+	guest: boolean = true;
 
   constructor(
+		private ev: Events,
+		private storage: Storage,
 		protected menu: MenuController,
 		protected platform: Platform, 
 		protected statusBar: StatusBar, 
 		protected splashScreen: SplashScreen
   ) {
-	// platform.ready().then(() => {
-	//   statusBar.show();
-	// });
-	this.initializeApp();
+		let buyer_pages = [
+			{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
+			{ title: 'The Market', component: TheMarketPage, icon: 'fa fa-shopping-bag fa-fw fa-lg'},
+			{ title: 'Shopping Cart', component: ShoppingCartPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
+			{ title: 'Profile', component: ProfilePage, icon: 'fa fa-user fa-fw fa-lg'},
+			{ title: 'Your Orders', component: BuyerOrderPage, icon: 'fa fa-clipboard fa-fw fa-lg'},
+			{ title: 'Message', component: MessagePage, icon: 'fa fa-comments fa-fw fa-lg'}
+		]
 
-	this.buyer_pages = [
-		{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
-		{ title: 'The Market', component: TheMarketPage, icon: 'fa fa-shopping-bag fa-fw fa-lg'},
-		{ title: 'Shopping Cart', component: ShoppingCartPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
-		{ title: 'Profile', component: ProfilePage, icon: 'fa fa-user fa-fw fa-lg'},
-		{ title: 'Your Orders', component: BuyerOrderPage, icon: 'fa fa-clipboard fa-fw fa-lg'},
-		{ title: 'Message', component: MessagePage, icon: 'fa fa-comments fa-fw fa-lg'}
-	]
+		let seller_pages = [
+			{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
+			{ title: 'Listing', component: ListingPage, icon: 'fa fa-list-ul fa-fw fa-lg'},
+			{ title: 'Profile', component: ProfilePage, icon: 'fa fa-user fa-fw fa-lg'},
+			{ title: 'Orders Received', component: BuyerOrderPage, icon: 'fa fa-clipboard fa-fw fa-lg'},
+			{ title: 'Message', component: MessagePage, icon: 'fa fa-comments fa-fw fa-lg'}
+		]
 
-	this.user_bottom_pages = [
-		{ title: 'Setting', component: HomePage, icon: 'fa fa-cog fa-fw fa-lg'},
-		{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
-		{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
-	]
+		let user_bottom_pages = [
+			{ title: 'Setting', component: HomePage, icon: 'fa fa-cog fa-fw fa-lg'},
+			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
+			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
+		]
 
-	this.login = { title: 'Login', component: LoginPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'}
+		let guset_pages = [
+			{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
+			{ title: 'The Market', component: TheMarketPage, icon: 'fa fa-shopping-bag fa-fw fa-lg'},
+			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
+			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
+		]
 
-  }
+		this.storage.get('user_info').then((user_info)=>{
+			this.ev.subscribe('user', (token, identity) => {
+				switch(identity){
+					case 0:
+						this.guest = false;
+						this.upper_page = buyer_pages;
+						this.bottom_pages = user_bottom_pages;
+						break;
 
-  initializeApp() {
-	this.platform.ready().then(() => {
-	  // Okay, so the platform is ready and our plugins are available.
-	  // Here you can do any higher level native things you might need.
-	  // this.statusBar.overlaysWebView(false);
-	  // this.statusBar.backgroundColorByHexString('#00a69c');
-	  // this.splashScreen.hide();
-	});
-  }
+					case 1:
+						this.guest = false;
+						this.upper_page = seller_pages;
+						this.bottom_pages = user_bottom_pages;
+						break;
+					
+					default:
+						this.guest = true;
+						this.upper_page = null
+						this.bottom_pages = guset_pages;	
+						break;
+				}
+			});
+
+			if(user_info)
+				//push info to ionic event
+				this.ev.publish('user', user_info.token, user_info.identity);
+			else
+				//set deafult event
+				this.ev.publish('user', null, null)
+		})
+
+		//login button test
+		this.login = { title: 'Login', component: LoginPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'}
+	}
 
   openPage(page) {
 		// Reset the content nav to have just this page

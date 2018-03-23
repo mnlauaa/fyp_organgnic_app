@@ -23,8 +23,8 @@
                 Forget Password ?
             </div>
 
-            <div class="login-button">
-                <div class="button-text" (click)="login()" tappable>Login</div>
+            <div class="login-button" (click)="login()" tappable>
+                <div class="button-text">Login</div>
             </div>
             
             <div class="fb-button">
@@ -36,10 +36,10 @@
                 Don’t Have an Account ?
                 <span class="span-button" tappable (click)="SignUpOpenPage()">SIGN UP</span>
             </div>
-
+            
             <div class="funcation-tab">
                 Are You a Farmer and Want to Join Us?
-                <span class="span-button">CONTACT US</span>
+                <span class="span-button" tappable (click)="ContactOpenPage()">CONTACT US</span>
             </div>
         </form>
     </div>

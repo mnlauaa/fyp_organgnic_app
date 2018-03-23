@@ -1,6 +1,5 @@
-
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../providers/api-service/api-service';
@@ -20,7 +19,8 @@ export class LoginPage {
     public navParams: NavParams,
     private formBuilder: FormBuilder,
     private api: ApiService,
-    private storage: Storage
+    private storage: Storage,
+    private ev: Events
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -39,7 +39,7 @@ export class LoginPage {
   ContactOpenPage() {
     this.navCtrl.push(ContactusPage);
   }
-  
+
   login(){
     if (this.loginForm.valid) {
       let username = this.loginForm.controls['username'].value,
@@ -49,10 +49,16 @@ export class LoginPage {
         this.api.postMeLogin({username: username,
                               password: password})
       ]).then(data => {
-        this.storage.set('jwt_token', data[0].token).then((val)=>{
+        let user_info = {
+          token: data[0].token,
+          identity: data[0].identity
+        }
+        this.storage.set('user_info', user_info).then((val)=>{
+          this.ev.publish('user', user_info.token, user_info.identity);
           this.navCtrl.pop();
         })
       }, err => {
+        this.storage.clear()
         console.log(err);
       })
     }
