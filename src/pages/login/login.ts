@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events} from 'ionic-angular';
+import { NavController, NavParams, Events, MenuController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../providers/api-service/api-service';
@@ -20,7 +20,8 @@ export class LoginPage {
     private formBuilder: FormBuilder,
     private api: ApiService,
     private storage: Storage,
-    private ev: Events
+    private ev: Events,
+    private menu: MenuController
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -32,8 +33,16 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+  }
+
+  ionViewWillLeave() {
+    this.menu.swipeEnable(true);
+  } 
+
   SignUpOpenPage() {
-      this.navCtrl.push(SignupPage);
+    this.navCtrl.push(SignupPage);
   }
 
   ContactOpenPage() {
@@ -58,7 +67,7 @@ export class LoginPage {
           this.navCtrl.pop();
         })
       }, err => {
-        this.storage.clear()
+        // this.storage.clear()
         console.log(err);
       })
     }
