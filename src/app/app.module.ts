@@ -10,6 +10,8 @@ import { ApiService } from '../providers/api-service/api-service';
 
 // components
 import { MyNavbar } from '../components/my-navbar/my-navbar';
+import { FilterBox } from '../components/filter-box/filter-box'
+import { SortingBox } from '../components/sorting-box/sorting-box'
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -45,7 +47,9 @@ export const myComponets = [
   ListingPage,
 
 	// components
-  MyNavbar
+  MyNavbar,
+  FilterBox,
+  SortingBox
 ];
 
 export const myProviders = [

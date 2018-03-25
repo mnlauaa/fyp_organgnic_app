@@ -1,0 +1,9 @@
+<div *ngFor="let item of sorting_option">
+	<label class="radio-label">
+		<span class="text" [class.active]="item.id == parent.sorting_id">{{item.name}}</span>
+		<input type="radio" name="sorting-group"
+			[checked]="item.id == parent.sorting_id" 
+			(change)="selectItem(item.id)">
+		<span class="checkmark"></span>
+	</label>
+</div>
