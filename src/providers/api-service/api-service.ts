@@ -20,9 +20,8 @@ export class ApiService extends BaseService{
   }
 
   public postMeLogin(data){
-    const body = new HttpParams()
-                      .set('username', data.username)
-                      .set('password', data.password);
+    const body = new HttpParams().set('username', data.username)
+                                 .set('password', data.password);
     return this.post_normal('/me/login', body)
   }
 

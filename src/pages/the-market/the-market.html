@@ -11,12 +11,12 @@
   <div class="filter-area">
     <div class="num-of-result">130 Results</div>
 
-    <div class="popover-button">
+    <div class="popover-button" [class.active]="filter_box_show" (click)="openFilterBox($event)" tappable>
       <span class="text">Filter</span>
       <ion-icon name="md-arrow-dropdown"></ion-icon>
     </div>
 
-    <div class="popover-button">
+    <div class="popover-button" [class.active]="sorting_box_show" (click)="openSortingBox($event)">
       <span class="text">Sort By</span>
       <ion-icon name="md-arrow-dropdown"></ion-icon>
     </div>

@@ -1,0 +1,70 @@
+$popover-ios-width: 130px;
+$popover-ios-border-radius :0px;
+
+.popover-arrow{
+    display: none !important;
+}
+
+.sorting-box { 
+    .popover-content{
+        right: 69px !important;
+        top: 135px !important;
+        left: auto !important;
+        width: 229px;
+        border-radius: 1px !important;
+        margin: -4.5px 0px 0px 8px;
+        box-shadow: none !important;
+    }
+
+    ion-backdrop{
+        opacity: 0 !important;
+    }
+}
+
+sorting-box {
+    input{
+        position: absolute;
+        opacity: 0;
+    }
+
+    .radio-label{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 40px;
+        background: #FFFFFF;
+        margin: 1px;
+
+        .checkmark {
+            margin: 0 12px;
+            height: 14px;
+            width: 14px;
+            border: 1px solid #000000;
+            border-radius: 50%;
+        }
+    
+        .checkmark:after {
+            content: "";
+            display: none;
+            margin: auto;
+            margin-top: 2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #000000;
+        }
+        
+        input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .text{
+            margin: 0 12px;
+            font-size: 13px;
+        }
+
+        .text.active{
+            font-weight: bold;
+        }
+    }
+}
