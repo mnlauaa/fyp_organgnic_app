@@ -1,8 +1,19 @@
 <ion-header>
-  <my-navbar [title]="title"></my-navbar>
+  <my-navbar [logo_url]="'assets/imgs/app-logo.png'"></my-navbar>
 </ion-header>
 
 <ion-content >
-  Shopping Cart
+  <div class="shopping-cart">
+    <ion-icon class="icon" name="md-cart" ></ion-icon>
+    <span>Shopping Cart</span>
+  </div>
+
+  <div class="cart-block">
+    <span>Your shopping cart is empty!</span>
+  </div>
+
+  <div class="shopping-button" (click)="openPage()" tappable>
+      <div class="button-text">Continue Shopping</div>
+  </div>
 </ion-content>
   
