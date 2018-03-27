@@ -1,3 +1,66 @@
 page-profile {
+    .proPic{
+        padding: 10px;
+        text-align: center;
+        font-size: 75px;
+        color: rgb(87, 87, 87);
+    }
+
+    .content{
+        background: #EEEEEE;
+    }
+
+    .userName{
+        font-size: 17px;
+        font-family: "Lantinghei SC";
+        font-weight: Extralight;
+        text-align: center;
+    }
+
+    .role{
+        font-size: 14px;
+        font-family: "Arial";
+        color: #212121;
+        text-align: center;        
+    }
+
+    .button{
+        display: block;
+        width: 95%;
+        height: 54px;
+        background: white;
+        margin: auto;
+        padding: 9px;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .button-text{
+        font-size: 16px;
+        font-family: "Arial";
+        color: #212121; 
+    }
+
+    .iconCircle{
+        padding: 6px;
+        width: 36px;
+        height: 36px;
+        border-radius: 18px;     
+        background: #00A69C;
+    }
+
+    .buttonIcon{
+        font-size: 20px;
+        color: white;
+    }
+
+    .button-arrow{
+        font-size: 18px;
+    }
 
 }
