@@ -69,7 +69,7 @@ export class MyApp {
 
 		this.storage.get('user_info').then((user_info)=>{
 			this.ev.subscribe('user', (token, identity) => {
-				switch(identity){
+				switch(Number(identity)){
 					case 0:
 						this.guest = false;
 						this.upper_page = buyer_pages;
@@ -95,14 +95,14 @@ export class MyApp {
 				this.ev.publish('user', user_info.token, user_info.identity);
 			else
 				//set deafult event
-				this.ev.publish('user', null, null)
+				this.ev.publish('user', null, 1)
 		})
 
 		//login button test
 		this.login = { title: 'Login', component: LoginPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'}
 	}
 
-  openPage(page) {
+  	openPage(page) {
 		// Reset the content nav to have just this page
 		// we wouldn't want the back button to show in this scenario
 		this.nav.setRoot(page.component);

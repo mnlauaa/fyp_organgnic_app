@@ -1,3 +1,97 @@
 page-about-us {
+    .banner{
+        position: relative;
+        height: 224px;
+        background-color: #00A69C;
+        padding: 21px;
+    }
 
+    .circle{
+        width: 182px;
+        height: 182px;
+        border-radius: 90px;     
+        border: 1px solid white;
+        margin: auto;
+    }
+
+    .bannerTitle{
+        font-family: "Heiti SC";
+        font-size: 25px;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 182px;
+    }
+
+    .contentHeading{
+        font-family: "Arial";
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        color: #212121;
+    }
+
+    .content{
+        padding: 0px 17px 17px 17px;
+        font-family: "Arial";
+        font-size: 16px;
+        text-align: center;
+        color: #212121;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .subtitle{
+        padding: 0px 2px 0px 2px;
+        font-family: "Arial";
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        color: #212121;
+        width: 90px;
+    }
+
+    .icon{
+        color: white;
+        font-size: 20px;
+        margin: auto;
+        padding-top: 8.5px;
+    }
+
+    .logo{
+        width: 36px;
+        height: 36px;
+        background: #00A69C;
+        border-radius: 18px;
+    }
+
+    .featureContent{
+        padding: 3px 2px 3px 2px;
+        width: 194px;
+        font-family: "Arial";
+        font-size: 15px;
+        text-align: center;
+        color: #363636;
+    }
+
+    .tab{
+        width: 155px;
+	    height: 38px;
+        background: #00A69C;
+        border-bottom: 4px solid rgb(61, 107, 103)
+    }
+
+    .tabHeading{
+        padding: 10px;
+        font-family: "Arial";
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+    }
 }
