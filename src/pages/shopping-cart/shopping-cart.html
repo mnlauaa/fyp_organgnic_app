@@ -3,17 +3,101 @@
 </ion-header>
 
 <ion-content >
+  <!-->Shopping cart title</!-->
   <div class="shopping-cart">
-    <ion-icon class="icon" name="md-cart" ></ion-icon>
-    <span>Shopping Cart</span>
+      <ion-icon class="icon" name="md-cart" ></ion-icon>
+      <span>Shopping Cart</span>
   </div>
 
-  <div class="cart-block">
-    <span>Your shopping cart is empty!</span>
-  </div>
 
-  <div class="shopping-button" (click)="openPage()" tappable>
-      <div class="button-text">Continue Shopping</div>
+  <!-->main body(empty)
+  <div id="empty-cart" ng-hide="empty-hidden">
+    <div class="cart-block">
+      <div class="empty-cart-notice">
+          <span>Your shopping cart is empty!</span>
+      </div>
+    </div>
+
+    <div class="shopping-button" (click)="MarketOpenPage()" tappable>
+        <div class="button-text">Continue Shopping</div>
+    </div>
+  </div></!-->
+
+
+  <!-->main body(has products)</!-->
+  <div id="non-empty-cart">
+      <div class="non-empty-cart-block">
+        <div class="list-title">
+            <span >List 1 HEALTHY FARM</span>
+            <button class="tab" (click)="buttonClick()">></button>
+        </div>
+
+        <div class="line-padding"><i id="line"></i></div>
+        <div class="product-block">
+          <span><img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg"></span>
+          <div class="product-info">
+              <div class="title">Potato</div>
+              <div class="farm-name">by HAPPY FARM</div>
+              <div class="price">$50</div>
+          </div>
+          <div class="weight">
+            <button class="minus">-</button>
+            <span>600g</span>
+            <button class="plus">+</button>
+          </div>
+          <button class="delete" (click)="buttonClick()">&#10005;</button>
+          </div>
+
+        <div class="line-padding"><i id="line"></i></div>
+        <div class="product-block">
+          <span><img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg"></span>
+          <div class="product-info">
+              <div class="title">Potato</div>
+              <div class="farm-name">by HAPPY FARM</div>
+              <div class="price">$50</div>
+          </div>
+          <div class="weight">
+            <button class="minus">-</button>
+            <span>600g</span>
+            <button class="plus">+</button>
+          </div>
+          <button class="delete" (click)="buttonClick()">&#10005;</button>
+        </div>
+        <div class="line-padding"><i id="line"></i></div>
+
+        <div class="select-text">
+            <span>This farm allows you to select:</span>
+        </div>
+        <div class="delivery-block">
+          <input class="radio-button" type="radio" name="delivery" value="free"> Free shipping pick-up point:<br>
+          <div class="select-box">
+              <select>
+                  <option selected>-Please Select-</option>
+              </select>
+          </div>
+          <div class="or">
+            <span>OR</span><br>
+          </div>
+          <input class="radio-button" type="radio" name="delivery" value="home"> Delivery to your preset address:<br>
+          <div class="address">
+            <span>10/F, 123 ABC Street, Choi Hung</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="counting-block">
+        <table class="counting-table">
+          <tr><td class="text">Subtotal</td><td class="price text">$96</td></tr>
+          <tr><td colspan="2"><div class="line-padding"><i id="line"></i></div></td></tr>
+          <tr><td class="text">Shipping Cost</td><td class="price text">$</td></tr>
+          <tr><td colspan="2"><div class="line-padding"><i id="line"></i></div></td></tr>
+          <tr><td class="bold-text">Total Cost</td><td class="price text">$96</td></tr>
+        </table>
+      </div>
+
+      <div class="checkout-button" (click)="checkOutOpenPage()" tappable>
+          <div class="button-text">Check Out This List</div>
+      </div>
   </div>
 </ion-content>
   
