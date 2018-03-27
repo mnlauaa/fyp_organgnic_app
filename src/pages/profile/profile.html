@@ -1,8 +1,60 @@
 <ion-header>
     <my-navbar [title]="title"></my-navbar>
-  </ion-header>
+</ion-header>
   
-  <ion-content >
-      Profile
-  </ion-content>
+<ion-content >
+    <div class="content">
+        <div class="proPic"><i class="fa fa-user-circle fa-7x"></i></div>
+        <div class="userName">Cindy Li</div>
+        <div class="role">Buyer</div>
+
+        <p><div class="button" (click)="pushPage(change-icon)" tappable>
+            <div class="container">
+                <div class="buttonIcon">
+                    <div class="iconCircle">
+                        <ion-icon name="md-happy"></ion-icon>
+                    </div>
+                </div>
+                <div class="button-text">Change Icon</div>
+                <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+            </div>
+        </div>
+
+        <p><div class="button" (click)="pushPage(transaction-history)" tappable>
+                <div class="container">
+                    <div class="buttonIcon">
+                        <div class="iconCircle">
+                            <i class="fa fa-history"></i>
+                        </div>
+                    </div>
+                    <div class="button-text">Transaction History</div>
+                    <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                </div>
+            </div>
+
+            <div class="button" (click)="pushPage(pickup-address)" tappable>
+                    <div class="container">
+                        <div class="buttonIcon">
+                            <div class="iconCircle">
+                                <ion-icon name="md-pin"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="button-text">Pickup Address</div>
+                        <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                    </div>
+                </div>
+
+            <div class="button" (click)="pushPage(favourite-farms)" tappable>
+                    <div class="container">
+                        <div class="buttonIcon">
+                            <div class="iconCircle">
+                                <ion-icon name="md-heart"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="button-text">Favourite Farms</div>
+                            <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                    </div>
+                </div>  
+    </div>
+</ion-content>
   
