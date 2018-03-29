@@ -26,9 +26,10 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { ContactusPage } from '../pages/contactus/contactus';
 import { ListingPage } from '../pages/listing/listing';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { CheckOutPage } from '../pages/check-out/check-out';
+
 
 export const myComponets = [
 	// pages
@@ -44,8 +45,7 @@ export const myComponets = [
   SignupPage,
   ContactusPage,
   ListingPage,
-  CheckOutPage,
-  
+
 	// components
   MyNavbar,
   FilterBox,
