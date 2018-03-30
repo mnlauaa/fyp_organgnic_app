@@ -17,6 +17,7 @@ import { PartnersPage } from '../pages/partners/partners';
 import { LoginPage } from '../pages/login/login';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })

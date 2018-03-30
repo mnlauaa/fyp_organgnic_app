@@ -27,6 +27,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { ContactusPage } from '../pages/contactus/contactus';
 import { ListingPage } from '../pages/listing/listing';
 import { TransactionHistoryPage } from '../pages/transaction-history/transaction-history';
+import { CheckOutPage } from '../pages/check-out/check-out';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,6 +48,7 @@ export const myComponets = [
   ContactusPage,
   ListingPage,
   TransactionHistoryPage,
+  CheckOutPage,
 
 	// components
   MyNavbar,

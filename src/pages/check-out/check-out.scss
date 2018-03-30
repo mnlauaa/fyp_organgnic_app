@@ -1,0 +1,38 @@
+page-check-out {
+    .payment-block{
+        border-radius: 2%;
+        height: 500px;
+        background-color: #FFFFFF;
+
+        .list-title{
+            padding: 4px 0px 0px 20px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .line-padding{
+            padding: 10px 10px;
+        }
+    
+        #line{
+            display: block;
+            height: 1px;
+            border: 0.51px solid #707070;
+            margin: auto;
+        }
+        .payment-title{
+            padding-left: 15px;
+            font-size: 20px;
+        }
+        .payment-method{
+            padding-left: 25px;
+            padding-top: 5px;
+            font-size: 15px;
+            line-height: 30px;
+        }
+        .deposite-method{
+            padding-left: 15px;
+            color: #B9B7B7;
+        }
+    }
+}
