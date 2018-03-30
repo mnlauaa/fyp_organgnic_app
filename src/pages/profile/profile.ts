@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { TransactionHistoryPage } from '../transaction-history/transaction-history'
 
 @Component({
   selector: 'page-profile',
@@ -7,11 +8,20 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
   title = 'Profile';
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  TranHistory = TransactionHistoryPage;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
+      
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
+  }
+
+  pushPage(page) {
+    this.navCtrl.push(page);
   }
 
 }
