@@ -14,7 +14,8 @@ $popover-ios-border-radius :0px;
         max-height: 300px;
         border-radius: 1px !important;
         margin: -4.5px 0px 0px 8px;
-        box-shadow: none !important;
+        box-shadow: 6px 9px 15px -9px rgba(0,0,0,0.38)!important;
+        
     }
 
     ion-backdrop{
@@ -23,5 +24,96 @@ $popover-ios-border-radius :0px;
 }
 
 filter-box {
+    input[type=checkbox]{
+        position: absolute;
+        opacity: 0;
+    }
 
+    .checkmark {
+        margin: 0 12px;
+        height: 12px;
+        width: 12px;
+        border: 0.5px solid #000000;
+    }
+
+    .checkmark:after {
+        content: "";
+        display: none;
+        margin: auto;
+        margin-top: 0.5px;
+        width: 2.5px;
+        height: 5px;
+        border: solid #000000;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    input:checked ~ .text{
+        font-weight: bold;
+    }
+
+    .brand-area{
+        background: #FFFFFF;
+        margin: 1px;
+        padding : 12px 0;
+
+        .brand-block{
+            max-height: 110px;
+            overflow-y: scroll;
+        }
+
+        .title{
+            font-size: 15px;
+            padding: 0 12px;
+            padding-bottom: 5px;
+        }
+
+        .brand{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 25px;
+            padding: 0 20px;
+            font-size: 12px;
+        }
+    }
+
+    
+
+    .number-input{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #FFFFFF;
+        margin: 1px;
+        padding : 9.5px 0;
+
+        .title{
+            font-size: 15px;
+            padding: 0 12px;
+        }
+
+        ion-input{
+            margin-right: 12px;
+            border: 1px solid #707070;
+
+            .text-input{
+                margin: 4px 4px 4px 0;
+            }
+        }
+    }
+
+    .checkbox-label{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 46px;
+        background: #FFFFFF;
+        margin: 1px;
+        padding : 0 12px;
+    }
 }
