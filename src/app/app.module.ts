@@ -28,7 +28,7 @@ import { ContactusPage } from '../pages/contactus/contactus';
 import { ListingPage } from '../pages/listing/listing';
 import { TransactionHistoryPage } from '../pages/transaction-history/transaction-history';
 import { CheckOutPage } from '../pages/check-out/check-out';
-
+import {ConfirmOrderPage} from '../pages/confirm-order/confirm-order';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -49,7 +49,8 @@ export const myComponets = [
   ListingPage,
   TransactionHistoryPage,
   CheckOutPage,
-
+  ConfirmOrderPage,
+  
 	// components
   MyNavbar,
   FilterBox,
