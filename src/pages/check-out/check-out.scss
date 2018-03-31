@@ -1,7 +1,7 @@
 page-check-out {
     .payment-block{
         border-radius: 2%;
-        height: 500px;
+        height: 530px;
         background-color: #FFFFFF;
 
         .list-title{
@@ -33,6 +33,19 @@ page-check-out {
         .deposite-method{
             padding-left: 15px;
             color: #B9B7B7;
+        }
+    }
+
+    .confirm-button{
+        background-color: #027B73;
+        height: 39px;
+        margin: 10px 0;         
+        .button-text{
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFFFFF;
+            line-height: 40px;
+            text-align: center;
         }
     }
 }
