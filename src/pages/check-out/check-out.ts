@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {ConfirmOrderPage} from '../confirm-order/confirm-order';
 /**
  * Generated class for the CheckOutPage page.
  *
@@ -22,4 +22,7 @@ export class CheckOutPage {
     console.log('ionViewDidLoad CheckOutPage');
   }
 
+  ConfirmOpenPage(){
+    this.navCtrl.push(ConfirmOrderPage);
+  }
 }

@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'confirm-order.html',
 })
 export class ConfirmOrderPage {
-
+  title = 'Confirmed Order';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
