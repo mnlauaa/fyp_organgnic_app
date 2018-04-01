@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { FilterBox } from '../../components/filter-box/filter-box'
 import { SortingBox } from '../../components/sorting-box/sorting-box'
+import { SingleProductPage } from '../single-product/single-product'
 
 @Component({
   selector: 'page-the-market',
@@ -55,10 +56,6 @@ export class TheMarketPage {
       }
     }, {cssClass: 'sorting-box'});
 
-    popover.onWillDismiss(()=>{
-      console.log("hello");
-    });
-
     popover.present({
       ev: myEvent
     });
@@ -66,6 +63,10 @@ export class TheMarketPage {
     setTimeout(()=>{
       this.sorting_box_show = true;
     }, 100);
+  }
+
+  openProductDetail(){
+    this.navCtrl.push(SingleProductPage);
   }
 
 

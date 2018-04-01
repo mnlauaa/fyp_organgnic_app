@@ -31,8 +31,9 @@ filter-box {
 
     .checkmark {
         margin: 0 12px;
-        height: 12px;
-        width: 12px;
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
         border: 0.5px solid #000000;
     }
 
@@ -40,11 +41,11 @@ filter-box {
         content: "";
         display: none;
         margin: auto;
-        margin-top: 0.5px;
+        margin-top: 20%;
         width: 2.5px;
         height: 5px;
         border: solid #000000;
-        border-width: 0 2px 2px 0;
+        border-width: 0 1.5px 1.5px 0;
         transform: rotate(45deg);
     }
 
