@@ -1,0 +1,131 @@
+page-single-product {
+    ion-content{
+        background-color: #FFFFFF !important;
+    }
+
+    .top-session{
+        margin: 18px;
+
+        .title{
+            margin: 0 7px;
+            font-size: 17px; 
+        }
+
+        .container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2px 7px;
+
+            .sub-container{
+                display: flex;
+                align-items: center;
+
+                .farm-name{
+                    display: inline-block;
+                    font-size: 12px;
+                    color: #B9B7B7;
+                    padding-right: 3px;
+                }
+
+                .icon{
+                    color: #027B73;
+                    padding: 0 2px;
+                    font-size: 15px;
+                }
+            }
+
+            .rating{
+                color: #FCA706;
+                font-size: 20px;
+            }   
+        }
+
+        hr{
+            border-color: #B5B5B5;
+        }
+    }
+
+    .product-img{
+        height: 260px;
+        // width: 260px;
+        margin: 0 22px;
+        margin-bottom: 18px;
+        img{
+            object-fit: cover;
+            height: 260px;
+            // width: 260px;
+        }
+    }
+
+    .product-info{
+        margin: 0 18px;
+        font-size: 12px;
+
+        tr{
+            height: 25px;  
+        }
+
+        th{
+            text-align: right;
+            padding-right: 5px;
+        }
+
+        .qty-input{
+            display: flex;
+            align-items: center;
+            height: 25px;
+
+            .icon{
+                font-size: 15px;
+                color: #747373;
+                padding: 2px;
+            }
+
+            .qty-choose{
+                margin: 0 2px;
+                border: 1px solid #747373;
+                height: 23px;
+                line-height: 23px;
+                min-width: 50px;
+                text-align: center;
+            }
+
+            .qty-left{
+                color: #898989;
+                padding: 0 2px;
+            }
+        }
+    }
+
+    .add-cart-button{
+        height: 31px;
+        width: 167px;
+        background-color: #027B73;
+        font-size: 18px;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 31px;
+        margin: 20px auto;
+        font-weight: bold;
+
+        .icon{
+            font-size: 22px;
+            font-weight: normal;
+            line-height: 31px;
+            padding-right: 8px;
+        }
+    }
+
+    #line{
+        display: block;
+        height: 1px;
+        border: 0.51px solid rgb(181,181,181);
+        // margin: 0 12px;
+    }
+
+    .bottom-area{
+        margin: 0 18px;
+    }
+    
+}

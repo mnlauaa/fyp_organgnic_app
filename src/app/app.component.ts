@@ -58,14 +58,14 @@ export class MyApp {
 		let user_bottom_pages = [
 			{ title: 'Setting', component: HomePage, icon: 'fa fa-cog fa-fw fa-lg'},
 			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
-			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
+			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-handshake-o fa-fw fa-lg'},
 		]
 
 		let guset_pages = [
 			{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
 			{ title: 'The Market', component: TheMarketPage, icon: 'fa fa-shopping-bag fa-fw fa-lg'},
 			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
-			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'},
+			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-handshake-o fa-fw fa-lg'},
 		]
 
 		this.storage.get('user_info').then((user_info)=>{
