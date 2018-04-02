@@ -29,6 +29,10 @@ export class ApiService extends BaseService{
     return this.get('/me', this.token)
   }
 
+  public getNews(){
+    return this.get('/news');
+  }
+
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';
 
