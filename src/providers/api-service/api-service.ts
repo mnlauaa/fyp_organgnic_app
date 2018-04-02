@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../core/base-service';
-import { Events } from 'ionic-angular';
+import { Events, LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class ApiService extends BaseService{
@@ -11,9 +11,10 @@ export class ApiService extends BaseService{
 
   constructor(
     public http: HttpClient,
-    private ev: Events
+    private ev: Events,
+    protected loadingCtrl: LoadingController
   ) {
-    super(http);
+    super(http, loadingCtrl);
     console.log('Hello ApiService');
     this.ev.subscribe('user:token', (token) => {
       this.token = token;
@@ -32,6 +33,12 @@ export class ApiService extends BaseService{
   public getNews(){
     return this.get('/news');
   }
+
+  public getProducts(sorting, keyword, filter){
+    let params = {sorting: sorting}
+    return this.get('/products', null, params);
+  }
+
 
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';

@@ -1,32 +1,37 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-// import { LoadingController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 
 export class BaseService {
     protected api_prefix: string = '';
-
-
     constructor(
         protected http: HttpClient,
-        // private loadingCtrl: LoadingController
+        protected loadingCtrl: LoadingController
     ) {
     }
 
     public startQueue(promises: Promise<any>[]): Promise<any> {
-        return Promise.all(promises).then(data => {
-            return data;
-        }).catch(err => {
-            console.log(err.status)
-            return Promise.reject(err);
-        });
+        let loading = this.loadingCtrl.create();
+        return loading.present().then(()=>{
+            return Promise.all(promises).then(data => {
+                loading.dismiss();
+                return data;
+            }).catch(err => {
+                console.log(err.status)
+                loading.dismiss();
+                return Promise.reject(err);
+            });
+        })
+        
     }
 
     // GET request
-    protected get(url, auth = null): Promise<any> {
+    protected get(url, auth = null, params = null): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.get(url, {
-                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth)
+                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth),
+                params: params
             })
                 .subscribe(data => {
                     resolve(data);
