@@ -2,8 +2,9 @@
   <ion-header>
     <ion-toolbar>
       <div class="menu_header">
-        <i class="fa fa-user-circle fa-3x"></i> 
-        <span class="menu_header_text">Hello, Visitor</span>
+        <i class="fa fa-user-circle fa-3x icon" *ngIf="!profile_pic_url"></i> 
+        <img [src]="profile_pic_url" *ngIf="profile_pic_url">
+        <span class="menu_header_text">Hello, {{display_name}}</span>
       </div>
     </ion-toolbar>
   </ion-header>

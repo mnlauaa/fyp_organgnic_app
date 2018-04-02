@@ -29,6 +29,8 @@ export class MyApp {
 	bottom_pages: any;
 	login: any;
 	guest: boolean = true;
+	display_name: string = 'Visitor';
+	profile_pic_url: string = null;
 
   constructor(
 		private ev: Events,
@@ -69,7 +71,9 @@ export class MyApp {
 		]
 
 		this.storage.get('user_info').then((user_info)=>{
-			this.ev.subscribe('user', (token, identity) => {
+			this.ev.subscribe('user_info', (identity, display_name, profile_pic_url) => {
+				this.display_name = display_name;
+				this.profile_pic_url = profile_pic_url;
 				switch(Number(identity)){
 					case 0:
 						this.guest = false;
@@ -91,12 +95,17 @@ export class MyApp {
 				}
 			});
 
-			if(user_info)
-				//push info to ionic event
-				this.ev.publish('user', user_info.token, user_info.identity);
-			else
-				//set deafult event
-				this.ev.publish('user', null, 1)
+			//push info to ionic event
+			if(user_info){
+				this.ev.publish('user_info', user_info.identity, user_info.display_name, user_info.profile_pic_url);
+				this.ev.publish('user:token', user_info.token);
+				
+			}
+			//set deafult event
+			else{
+				this.ev.publish('user_info', -1, 'Visitor', null)
+				this.ev.publish('user:token', null);
+			}	
 		})
 
 		//login button test

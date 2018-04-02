@@ -28,6 +28,17 @@ ion-menu{
 		align-items: center;
 		padding-left: 16px;
 		color: #FFFFFF;
+
+		img{
+			border-radius: 50%;
+			object-fit: cover;
+			width: 47px;
+            height: 47px;
+		}
+
+		.icon{
+			font-size: 47px;
+		}
 	}    
 
 	.menu_header_text{
@@ -56,11 +67,11 @@ ion-menu{
 				margin: 0px 25px;         
 
 				.button-text{
-						font-size: 18px;
-						font-weight: bold;
-						color: #FFFFFF;
-						line-height: 40px;
-						text-align: center;
+					font-size: 18px;
+					font-weight: bold;
+					color: #FFFFFF;
+					line-height: 40px;
+					text-align: center;
 				}
 			}
 		}
