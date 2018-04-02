@@ -3,13 +3,13 @@
   <div class="search-block">
 		<div class="searchbar">
 			<ion-icon class="icon" name="ios-search"></ion-icon>
-			<ion-input placeholder="{{keyword}}" [(ngModel)]="search_bar"></ion-input>
+			<ion-input placeholder="{{keyword || 'What product are you looking for'}}" [(ngModel)]="search_bar"></ion-input>
 			<ion-icon class="icon" name="md-send" tappable (click)="getProductBykeyword()"></ion-icon>
 		</div>
   </div>
 
   <div class="filter-area">
-    <div class="num-of-result">130 Results</div>
+    <div class="num-of-result">{{result_num}} Results</div>
 
     <div class="popover-button" [class.active]="filter_box_show" (click)="openFilterBox($event)" tappable>
       <span class="text">Filter</span>
