@@ -3,7 +3,7 @@
 </ion-header>
 
 <ion-content >
-  <!-->Shopping cart title</!-->
+  <!--Shopping cart title</!-->
   <div class="shopping-cart">
       <ion-icon class="icon" name="md-cart" ></ion-icon>
       <span>Shopping Cart</span>
@@ -28,42 +28,31 @@
   <div id="non-empty-cart">
       <div class="non-empty-cart-block">
         <div class="list-title">
-            <span >List 1 HEALTHY FARM</span>
-            <button class="tab" (click)="buttonClick()">></button>
+            <div class="list-title-text">List 1 - HEALTHY FARM</div>
+            <div class="next" (click)="buttonClick()">></div>
         </div>
 
-        <div class="line-padding"><i id="line"></i></div>
-        <div class="product-block">
+        <hr>
+
+        <p><div class="product-block">
           <span><img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg"></span>
           <div class="product-info">
               <div class="title">Potato</div>
               <div class="farm-name">by HAPPY FARM</div>
-              <div class="price">$50</div>
-          </div>
-          <div class="weight">
-            <button class="minus">-</button>
-            <span>600g</span>
-            <button class="plus">+</button>
-          </div>
-          <button class="delete" (click)="buttonClick()">&#10005;</button>
+              <div class="container">
+                  <div class="price">$50</div>
+                  <div class="quantity">
+                    <ion-icon name="md-remove"></ion-icon>
+                    &nbsp;&nbsp;600g&nbsp;&nbsp;
+                    <ion-icon name="md-add"></ion-icon>
+                  </div>
+              </div>
           </div>
 
-        <div class="line-padding"><i id="line"></i></div>
-        <div class="product-block">
-          <span><img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg"></span>
-          <div class="product-info">
-              <div class="title">Potato</div>
-              <div class="farm-name">by HAPPY FARM</div>
-              <div class="price">$50</div>
-          </div>
-          <div class="weight">
-            <button class="minus">-</button>
-            <span>600g</span>
-            <button class="plus">+</button>
-          </div>
-          <button class="delete" (click)="buttonClick()">&#10005;</button>
+          <div class="delete" (click)="buttonClick()"><ion-icon name="md-close"></ion-icon></div>
         </div>
-        <div class="line-padding"><i id="line"></i></div>
+
+        <hr><hr>
 
         <div class="select-text">
             <span>This farm allows you to select:</span>
@@ -72,7 +61,7 @@
           <input class="radio-button" type="radio" name="delivery" value="free"> Free shipping pick-up point:<br>
           <div class="select-box">
               <select>
-                  <option selected>-Please Select-</option>
+                  <option selected>- Please Select -</option>
               </select>
           </div>
           <div class="or">
@@ -88,9 +77,8 @@
       <div class="counting-block">
         <table class="counting-table">
           <tr><td class="text">Subtotal</td><td class="price text">$96</td></tr>
-          <tr><td colspan="2"><div class="line-padding"><i id="line"></i></div></td></tr>
           <tr><td class="text">Shipping Cost</td><td class="price text">$</td></tr>
-          <tr><td colspan="2"><div class="line-padding"><i id="line"></i></div></td></tr>
+          <tr><td colspan="2"><hr></td></tr>
           <tr><td class="bold-text">Total Cost</td><td class="price text">$96</td></tr>
         </table>
       </div>
