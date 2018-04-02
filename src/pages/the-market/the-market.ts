@@ -13,6 +13,7 @@ export class TheMarketPage {
   title = 'The Market';
   
   productList: any;
+  result_num:any = 0;
   
   //for filter
   filter_box_show : boolean = false;
@@ -32,7 +33,7 @@ export class TheMarketPage {
     public popoverCtrl: PopoverController,
     public api: ApiService
   ) {
-    this.keyword = navParams.get('keyword') || 'What product are you looking for';
+    this.keyword = navParams.get('keyword');
     this.getProductList();
   }
 
@@ -41,7 +42,8 @@ export class TheMarketPage {
     this.api.startQueue([
       this.api.getProducts(this.sorting_id, this.keyword, this.filter_list)
     ]).then(data => {
-      this.productList = data[0];
+      this.productList = data[0].product_list;
+      this.result_num = data[0].result_num;
       this.productList.map(product=>product.rating = Math.ceil(product.rating*2)/2)
       console.log(this.productList);
     }, err => {

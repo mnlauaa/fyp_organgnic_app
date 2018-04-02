@@ -35,11 +35,10 @@ export class ApiService extends BaseService{
   }
 
   public getProducts(sorting, keyword, filter){
-    let params = {sorting: sorting, 
-                  keyword: null,
-                  filter: null}
+    let params = {sorting: sorting}
     if(keyword)
-      params.keyword = keyword;
+      params['keyword'] = keyword;
+    console.log("get product api", params)
     return this.get('/products', null, params);
   }
 
