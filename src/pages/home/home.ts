@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform} from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
+import { TheMarketPage } from '../the-market/the-market';
 import * as moment from 'moment';
 // import { Storage } from '@ionic/storage';
 
@@ -11,17 +12,13 @@ import * as moment from 'moment';
 export class HomePage {
   title = 'Home';
   newsList: any;
+  search_bar: String;
   constructor(
     protected platform: Platform,
     protected navCtrl: NavController,
     protected api: ApiService,
     // private storage: Storage
   ) {
-    
-    // this.storage.get('jwt_token').then((val) => {
-    //   console.log('token', val);
-    // });
-
     this.api.startQueue([
       this.api.getNews()
     ]).then(data => {
@@ -30,6 +27,13 @@ export class HomePage {
       console.log(this.newsList);
     }, err => {
       console.log(err)
+    });
+  }
+
+  searchBarSend(){
+    console.log(this.search_bar);
+    this.navCtrl.setRoot(TheMarketPage, {
+      keyword: this.search_bar
     });
   }
 }

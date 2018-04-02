@@ -3,6 +3,7 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { FilterBox } from '../../components/filter-box/filter-box'
 import { SortingBox } from '../../components/sorting-box/sorting-box'
 import { SingleProductPage } from '../single-product/single-product'
+import { ApiService } from '../../providers/api-service/api-service'
 
 @Component({
   selector: 'page-the-market',
@@ -10,19 +11,39 @@ import { SingleProductPage } from '../single-product/single-product'
 })
 export class TheMarketPage {
   title = 'The Market';
-  sorting_id: any = 0;
+  
+  productList: any;
+  
+  //for filter
   filter_box_show : boolean = false;
+  filter_list: any = [];
+  keyword: any;
+
+  //for sorting
   sorting_box_show: boolean = false;
+  sorting_id: any = 0;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public popoverCtrl: PopoverController
+    public popoverCtrl: PopoverController,
+    public api: ApiService
   ) {
-
+    this.keyword = navParams.get('keyword') || 'What product are you looking for';
+    
+    this.getProductList(this.sorting_id);
   }
 
-  ionViewDidLoad() {
-    // console.log('ionViewDidLoad TheMarketPage');
+  getProductList(sorting, keyword = null, filter = null){
+    this.api.startQueue([
+      this.api.getProducts(sorting, keyword, filter)
+    ]).then(data => {
+      this.productList = data[0];
+      this.productList.map(product=>product.rating = Math.ceil(product.rating*2)/2)
+      console.log(this.productList);
+    }, err => {
+      console.log(err)
+    });
   }
 
   //open filter box
@@ -49,7 +70,7 @@ export class TheMarketPage {
       parent: this,
       callback: (sorting_id) => {
         this.sorting_id = sorting_id;
-        console.log(this.sorting_id);
+        this.getProductList(sorting_id);
       },
       sortingBoxWillClose : ()=>{
         this.sorting_box_show = false;
@@ -68,7 +89,14 @@ export class TheMarketPage {
   openProductDetail(){
     this.navCtrl.push(SingleProductPage);
   }
+  
+  getFullStarNumber(num){
+    return new Array(Math.floor(num));
+  }
 
+  getOutlineStarNumber(num){
+    return new Array(Math.floor(5-num));
+  }
 
 
 }
