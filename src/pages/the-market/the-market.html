@@ -3,8 +3,8 @@
   <div class="search-block">
 		<div class="searchbar">
 			<ion-icon class="icon" name="ios-search"></ion-icon>
-			<ion-input placeholder="{{keyword}}"></ion-input>
-			<ion-icon class="icon" name="md-send"></ion-icon>
+			<ion-input placeholder="{{keyword}}" [(ngModel)]="search_bar"></ion-input>
+			<ion-icon class="icon" name="md-send" tappable (click)="getProductBykeyword()"></ion-icon>
 		</div>
   </div>
 

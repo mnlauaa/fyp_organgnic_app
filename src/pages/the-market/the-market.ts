@@ -16,8 +16,11 @@ export class TheMarketPage {
   
   //for filter
   filter_box_show : boolean = false;
-  filter_list: any = [];
+  filter_list: any = null;
+
+  search_bar: String;
   keyword: any;
+  
 
   //for sorting
   sorting_box_show: boolean = false;
@@ -30,13 +33,13 @@ export class TheMarketPage {
     public api: ApiService
   ) {
     this.keyword = navParams.get('keyword') || 'What product are you looking for';
-    
-    this.getProductList(this.sorting_id);
+    this.getProductList();
   }
 
-  getProductList(sorting, keyword = null, filter = null){
+  //update product list
+  getProductList(){
     this.api.startQueue([
-      this.api.getProducts(sorting, keyword, filter)
+      this.api.getProducts(this.sorting_id, this.keyword, this.filter_list)
     ]).then(data => {
       this.productList = data[0];
       this.productList.map(product=>product.rating = Math.ceil(product.rating*2)/2)
@@ -44,6 +47,13 @@ export class TheMarketPage {
     }, err => {
       console.log(err)
     });
+  }
+
+  //filter bt keyword
+  getProductBykeyword(){
+    this.keyword = this.search_bar;
+    this.search_bar = null;
+    this.getProductList()
   }
 
   //open filter box
@@ -70,7 +80,7 @@ export class TheMarketPage {
       parent: this,
       callback: (sorting_id) => {
         this.sorting_id = sorting_id;
-        this.getProductList(sorting_id);
+        this.getProductList();
       },
       sortingBoxWillClose : ()=>{
         this.sorting_box_show = false;
