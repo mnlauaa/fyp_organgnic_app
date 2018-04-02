@@ -3,7 +3,7 @@
   <div class="search-block">
 		<div class="searchbar">
 			<ion-icon class="icon" name="ios-search"></ion-icon>
-			<ion-input placeholder="What product are you looking for"></ion-input>
+			<ion-input placeholder="{{keyword}}"></ion-input>
 			<ion-icon class="icon" name="md-send"></ion-icon>
 		</div>
   </div>
@@ -24,22 +24,26 @@
 </ion-header>
 
 <ion-content >
-  <div class="product-block" (click)="openProductDetail()" tappable>
+  <div *ngFor="let p of productList" class="product-block" (click)="openProductDetail()" tappable>
     <span>
-      <img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg">
+      <img [src]="p.image_url">
     </span>
     
 
     <div class="product-info">
-      <div class="title">Potato</div>
-      <div class="farm-name">by HAPPY FARM</div>
-      <div class="price">$45/ 600g</div>
+      <div class="title">{{p.name}}</div>
+      <div class="farm-name">by {{p.display_name}}</div>
+      <div class="price">${{p.price}}/ {{p.weight}}g</div>
       <div class="rating">
-        <ion-icon name="md-star"></ion-icon>
-        <ion-icon name="md-star"></ion-icon>
-        <ion-icon name="md-star"></ion-icon>
-        <ion-icon name="md-star"></ion-icon>
-        <ion-icon name="md-star-half"></ion-icon>
+        <span *ngFor="let i of getFullStarNumber(p.rating)">
+            <ion-icon name="md-star"></ion-icon>
+        </span>
+        <span *ngIf="p.rating % 1 != 0">
+          <ion-icon name="md-star-half"></ion-icon>
+        </span>
+        <span *ngFor="let i of getOutlineStarNumber(p.rating)">
+            <ion-icon name="md-star-outline"></ion-icon>
+        </span>
       </div>
     </div>
 
@@ -49,30 +53,6 @@
     </div>
   </div>
 
-  <div class="product-block">
-      <span>
-        <img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg">
-      </span>
-      
-  
-      <div class="product-info">
-        <div class="title">Potato</div>
-        <div class="farm-name">by HAPPY FARM</div>
-        <div class="price">$45/ 600g</div>
-        <div class="rating">
-          <ion-icon name="md-star"></ion-icon>
-          <ion-icon name="md-star"></ion-icon>
-          <ion-icon name="md-star"></ion-icon>
-          <ion-icon name="md-star"></ion-icon>
-          <ion-icon name="md-star-half"></ion-icon>
-        </div>
-      </div>
-  
-      <div class="detail-block">
-        <span>More detail</span>
-        <ion-icon name="ios-arrow-forward"></ion-icon>
-      </div>
-    </div>
 </ion-content>
 
     

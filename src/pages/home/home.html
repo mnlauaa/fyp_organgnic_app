@@ -3,8 +3,8 @@
 	<div class="search-block">
 		<div class="searchbar">
 			<ion-icon class="icon" name="ios-search"></ion-icon>
-			<ion-input placeholder="What product are you looking for" clearInput></ion-input>
-			<ion-icon class="icon" name="md-send"></ion-icon>
+			<ion-input placeholder="What product are you looking for" clearInput [(ngModel)]="search_bar" ></ion-input>
+			<ion-icon class="icon" name="md-send" tappable (click)="searchBarSend()"></ion-icon>
 		</div>
 	</div>
 </ion-header>
@@ -17,7 +17,7 @@
 			<div class="info-item">{{n.datetime}}</div>
 		</div>
 		<div class="img-box">
-			<img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg">
+			<img [src]="n.image_url">
 		</div>
 		<div class="bottom-part" >
 			<div class="description">{{n.description}}</div>
