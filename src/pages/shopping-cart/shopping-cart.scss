@@ -23,32 +23,30 @@ page-shopping-cart {
         }
     }
 
-    .line-padding{
-        padding: 10px 0;
-    }
-
-    #line{
-        display: block;
-        height: 1px;
-        border: 0.51px solid #707070;
-        margin: auto;
-    }
     .non-empty-cart-block{
         border-radius: 2%;
-        height:550px;
+        height:370px;
         margin: 7px; 
         padding: 10px 14px;
         background-color: #FFFFFF;
 
         .list-title{
-            padding: 4px 0px 0px 80px;
-            text-align: center;
-            font-size: 15px;
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            font-size: 17px;
+            font-family: "Lantinghei SC";
+            font-weight: "Extralight";
 
-            .tab{
-                display:inline-block;
-                padding-left: 50px;
-                font-size: 20px;
+            .list-title-text{
+                text-align: center;
+            }
+
+            .next{
+                position: absolute;
+                right: 5px;
             }
         }
         .product-block{
@@ -56,67 +54,59 @@ page-shopping-cart {
             display: flex;
             background-color: #FFFFFF;
             margin: 2px;
-            height: 143px;
+            height: 117px;
            
-    
             img{
                 object-fit: cover;
-                height: 120px;
-                width: 120px;
+                height: 116px;
+                width: 116px;
             }
 
             .product-info{
-                margin: 6px 5px;
+                margin: 6px;
+                padding-left: 13px;
 
                 .title{
                     font-size: 17px;
                     color: #000000;
-                    white-space: nowrap;
-                    overflow : hidden;
-                    text-overflow : ellipsis;
                 }
 
                 .farm-name{
                     font-size: 12px;
                     color: #B9B7B7;
-                    margin: 6px 0;
+                    margin: 6px 0px;
                 }
 
-                .price{
-                    font-size: 30px;
-                    padding: 10px 0;
-                }
-          
+
+                .container{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .price{
+                        font-size: 30px;
+                        padding: 10px 0px; 
+                    }
+    
+                    .quantity{
+                        font-size: 16px;
+                        position: absolute;
+                        right: 20px;
+                    }
+                } 
             }
             .delete{
-                height: 10px;
-                font-size: 20px;
-               
+                position: absolute;
+                right: 5px;
+                top: 3px;
+                font-size: 14px;
+                padding-left: 15px;
             }
-
-            .weight{
-                width:100px;
-                display: inline-block;
-                padding-top:90px;
-                padding-left:10px;
-                .minus{
-                    border: 1px solid;
-                    border-radius: 50%;
-                }
-                .plus{
-                    border: 1px solid;
-                    border-radius: 50%;
-                }
-            }
-
-
         }
-
-        
-  
     }
     .select-text{
-        font-size: 15px;
+        font-size: 17px; 
     }
     .delivery-block{
         margin: 10px;
@@ -127,10 +117,12 @@ page-shopping-cart {
             font-size: 15px;
         }
         .select-box{
+            color: #9D9D9D;
             padding-left: 35px;
+            text-align: center;
         }
         .address{
-            font-weight: lighter;
+            color: #9D9D9D;
             padding-left: 35px;
         }
     }
@@ -142,20 +134,23 @@ page-shopping-cart {
         border-radius: 2%;
         height: 150px;
         margin: 7px; 
-        padding: 15px 14px;
+        padding: 10px;
         background-color: #FFFFFF;
-        font-size:10px;
         position: relative;
         .counting-table{
             width:100%;
             .text{
-                font-size:20px;
+                padding: 10px;
+                font-size:17px;
             }
             .bold-text{
-                font-size:20px;
+                padding: 10px;
+                font-size:17px;
                 font-weight: bold;
             }
             .price{
+                padding: 10px;
+                font-size:17px;
                 text-align: right;
             }
         }
@@ -163,27 +158,27 @@ page-shopping-cart {
 
     .checkout-button{
         background-color: #027B73;
-        height: 39px;
-        margin: 10px 10px;         
+        height: 50px;
+        margin: 7px; 
+        padding: 13px;        
 
         .button-text{
             font-size: 18px;
             font-weight: bold;
             color: #FFFFFF;
-            line-height: 40px;
             text-align: center;
         }
     }
     .shopping-button{
         background-color: #027B73;
         height: 50px;
-        margin: 10px 10px;         
+        margin: 7px;   
+        padding: 13px;       
 
         .button-text{
             font-size: 18px;
             font-weight: bold;
             color: #FFFFFF;
-            line-height: 40px;
             text-align: center;
         }
     }
