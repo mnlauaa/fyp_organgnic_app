@@ -69,36 +69,37 @@ export class MyApp {
 			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
 			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-handshake-o fa-fw fa-lg'},
 		]
+		
+		this.ev.subscribe('user_info', (identity, display_name, profile_pic_url) => {
+			this.display_name = display_name;
+			this.profile_pic_url = profile_pic_url;
+			switch(Number(identity)){
+				case 0:
+					this.guest = false;
+					this.upper_page = buyer_pages;
+					this.bottom_pages = user_bottom_pages;
+					break;
 
+				case 1:
+					this.guest = false;
+					this.upper_page = seller_pages;
+					this.bottom_pages = user_bottom_pages;
+					break;
+				
+				default:
+					this.guest = true;
+					this.upper_page = null
+					this.bottom_pages = guset_pages;	
+					break;
+			}
+		});
+		
 		this.storage.get('user_info').then((user_info)=>{
-			this.ev.subscribe('user_info', (identity, display_name, profile_pic_url) => {
-				this.display_name = display_name;
-				this.profile_pic_url = profile_pic_url;
-				switch(Number(identity)){
-					case 0:
-						this.guest = false;
-						this.upper_page = buyer_pages;
-						this.bottom_pages = user_bottom_pages;
-						break;
-
-					case 1:
-						this.guest = false;
-						this.upper_page = seller_pages;
-						this.bottom_pages = user_bottom_pages;
-						break;
-					
-					default:
-						this.guest = true;
-						this.upper_page = null
-						this.bottom_pages = guset_pages;	
-						break;
-				}
-			});
-
 			//push info to ionic event
 			if(user_info){
 				this.ev.publish('user_info', user_info.identity, user_info.display_name, user_info.profile_pic_url);
 				this.ev.publish('user:token', user_info.token);
+				console.log(user_info);
 				
 			}
 			//set deafult event

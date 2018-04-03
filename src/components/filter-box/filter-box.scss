@@ -11,7 +11,7 @@ $popover-ios-border-radius :0px;
         top: 135px !important;
         left: auto !important;
         width: 229px;
-        max-height: 300px;
+        // max-height: 300px;
         border-radius: 1px !important;
         margin: -4.5px 0px 0px 8px;
         box-shadow: 6px 9px 15px -9px rgba(0,0,0,0.38)!important;
@@ -24,6 +24,10 @@ $popover-ios-border-radius :0px;
 }
 
 filter-box {
+    ion-toggle {
+        zoom: 0.6;
+    }
+
     input[type=checkbox]{
         position: absolute;
         opacity: 0;
@@ -73,6 +77,12 @@ filter-box {
             padding-bottom: 5px;
         }
 
+        .disable{
+            color: #B9B7B7;
+            border-color: #B9B7B7;
+
+        }
+
         .brand{
             display: flex;
             justify-content: space-between;
@@ -80,6 +90,10 @@ filter-box {
             height: 25px;
             padding: 0 20px;
             font-size: 12px;
+
+            .favourite{
+                font-size: 14px;
+            }
         }
     }
 
@@ -116,5 +130,34 @@ filter-box {
         background: #FFFFFF;
         margin: 1px;
         padding : 0 12px;
+    }
+
+    .button-area{
+        background: #FFFFFF;
+        display: flex;
+        margin: 1px;
+        height: 35px;
+        
+        .submit-button{
+            display: inline-block;
+            width: 50%;
+            background-color: #027B73;
+            line-height: 35px;
+            text-align: center;
+            color: #FFFFFF;
+            // font-weight: bold;
+            font-size: 17px;
+        }
+
+        .cancel-button{
+            display: inline-block;
+            width: 50%;
+            background-color: #8C8C8C;
+            line-height: 35px;
+            text-align: center;
+            color: #FFFFFF;
+            // font-weight: bold;
+            font-size: 17px;
+        }
     }
 }

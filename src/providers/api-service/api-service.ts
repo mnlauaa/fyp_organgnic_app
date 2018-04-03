@@ -2,6 +2,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../core/base-service';
 import { Events, LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ApiService extends BaseService{
@@ -12,7 +13,8 @@ export class ApiService extends BaseService{
   constructor(
     public http: HttpClient,
     private ev: Events,
-    protected loadingCtrl: LoadingController
+    protected loadingCtrl: LoadingController,
+    private storage: Storage,
   ) {
     super(http, loadingCtrl);
     console.log('Hello ApiService');
@@ -20,6 +22,13 @@ export class ApiService extends BaseService{
       this.token = token;
       console.log("login_subscribe: ", this.token)
     })
+    this.storage.get('user_info').then((user_info)=>{
+      if(user_info){
+        this.token = user_info.token;
+      }
+    });
+
+
   }
 
   public getUserById(id){
@@ -34,14 +43,30 @@ export class ApiService extends BaseService{
     return this.get('/news');
   }
 
+  public getFarms(){
+    return this.get('/users/farms');
+  }
+
+  public getMyFavourite(){
+    return this.get('/me/favourite', this.token);
+  }
+
   public getProducts(sorting, keyword, filter){
     let params = {sorting: sorting}
     if(keyword)
       params['keyword'] = keyword;
+
+    if(filter){
+      if(filter.selection)
+      params['brand'] = filter.selection
+      if(filter.price_below)
+        params['price_below'] = filter.price_below
+      if(filter.price_above)
+        params['price_above'] = filter.price_above
+    }
     console.log("get product api", params)
     return this.get('/products', null, params);
   }
-
 
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';
@@ -50,7 +75,7 @@ export class ApiService extends BaseService{
                                  .set('password', data.password);
 
     return this.post_normal('/me/login', body, type, this.token).then((data)=>{
-      this.ev.publish('user:token', data.token,);
+      this.ev.publish('user:token', data.token);
       console.log('login: ',data)
       return data;
     })

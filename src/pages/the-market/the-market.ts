@@ -17,7 +17,7 @@ export class TheMarketPage {
   
   //for filter
   filter_box_show : boolean = false;
-  filter_list: any = null;
+  filter_list: any;
 
   search_bar: String;
   keyword: any;
@@ -35,6 +35,12 @@ export class TheMarketPage {
   ) {
     this.keyword = navParams.get('keyword');
     this.getProductList();
+    this.filter_list = {
+      favourite: false,
+      selection: [],
+      price_below: null,
+      price_above: null
+    }
   }
 
   //update product list
@@ -62,6 +68,9 @@ export class TheMarketPage {
   openFilterBox(myEvent) {
     let popover = this.popoverCtrl.create(FilterBox, {
         parent: this,
+        callback: ()=>{
+          this.getProductList();
+        },
         filterBoxWillClose : ()=>{
           this.filter_box_show = false;
         }

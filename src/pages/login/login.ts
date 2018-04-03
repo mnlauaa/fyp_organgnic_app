@@ -60,6 +60,7 @@ export class LoginPage {
       ]).then(data => {
         this.api.startQueue([this.api.getMe()]).then(user =>{
           let user_info = {
+            token: data[0].token,
             identity: data[0].identity,
             display_name: user[0].display_name,
             profile_pic_url: user[0].profile_pic_url
@@ -70,7 +71,7 @@ export class LoginPage {
           })
         })
       }, err => {
-        // this.storage.clear()
+        this.storage.clear()
         console.log(err);
       })
     }
