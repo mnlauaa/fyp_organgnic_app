@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service/api-service'
 
 /**
  * Generated class for the FilterBoxComponent component.
@@ -12,12 +13,70 @@ import { ViewController, NavParams } from 'ionic-angular';
   templateUrl: 'filter-box.html'
 })
 export class FilterBox {
+  parent: any;
+  callback: any;
+  brandList: any;
+  favouriteList: any
+
+  //local
+  favourite: Boolean;
+  selection: any = [];
+  price_below: Number = null;
+  price_above: Number = null;
   constructor(
     private navParams: NavParams,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    protected api: ApiService,
   ){
+    this.api.startQueue([
+      this.api.getFarms(),
+      this.api.getMyFavourite()
+    ]).then(data => {
+      console.log(data);
+      this.brandList = data[0]
+      this.favouriteList = data[1]
+    }, err => {
+      if(err.status == 401){
+        console.log(401)
+      }
+    });
+    this.parent = navParams.data.parent;
+    this.callback = navParams.data.callback;
+
+    this.favourite = this.parent.filter_list.favourite;
+    this.selection = this.parent.filter_list.selection;
+    this.price_below = this.parent.filter_list.price_below || null;
+    this.price_above = this.parent.filter_list.price_above;
+
     viewCtrl.onWillDismiss(()=>{
       navParams.data.filterBoxWillClose();
     })
+  }
+
+  toggleSelection(id){
+    let idx = this.selection.indexOf(id);
+    if(idx >= 0)
+      this.selection.splice(idx, 1)
+    else
+      this.selection.push(id)
+  }
+
+  submit(){
+    if(this.favourite){
+      this.parent.filter_list.favourite = true;
+      this.selection = [];
+      this.favouriteList.map((item)=>{
+        this.selection.push(item.farm_id)
+      })
+    }
+    this.parent.filter_list.selection = this.selection;
+    this.parent.filter_list.price_below = Number(this.price_below);
+    this.parent.filter_list.price_above = Number(this.price_above);
+    this.callback();
+    this.viewCtrl.dismiss();
+  }
+
+  close(){
+    this.viewCtrl.dismiss();
   }
 }

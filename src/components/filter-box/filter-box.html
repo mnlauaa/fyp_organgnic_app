@@ -2,27 +2,30 @@
     <div class="title">Brand</div>
     <div class="brand-block">
         <label class="brand">
-            <input type="checkbox" name="vehicle" value="0">
-            <span class="text">Headlth Farm</span>
-            <span class="checkmark"></span>
+            <span class="text favourite">My Favourite Brand</span>
+            <ion-toggle [(ngModel)]="favourite" color="fyp"></ion-toggle>
         </label>
-        <label class="brand">
-            <input type="checkbox" name="vehicle" value="0">
-            <span class="text">Big Farm</span>
-            <span class="checkmark"></span>
+        <label *ngFor="let b of brandList" class="brand">
+            <input type="checkbox" (change)="toggleSelection(b.farm_id)" [disabled]="favourite" [checked]="selection.indexOf(b.farm_id) >= 0">
+            <span class="text" [class.disable]="favourite">{{b.display_name}}</span>
+            <span class="checkmark" [class.disable]="favourite"></span>
         </label>
     </div>
 </div>
 <div class="number-input">
     <span class="title">Price Below:</span>
-    <ion-input type="number" placeholder=""></ion-input>
+    <ion-input type="number" placeholder="" [(ngModel)]="price_below"></ion-input>
 </div>
 <div class="number-input">
     <span class="title">Price Above:</span>
-    <ion-input type="number" placeholder=""></ion-input>
+    <ion-input type="number" placeholder="" [(ngModel)]="price_above"></ion-input>
 </div>
 <label class="checkbox-label">
     <input type="checkbox" name="vehicle" value="0">
     <span class="text">Special Offrt</span>
     <span class="checkmark"></span>
 </label>
+<div class="button-area">
+    <div class="submit-button" (click)="submit()" tappable>Submit</div>
+    <div class="cancel-button" (click)="close()" tappable>Cancel</div>
+</div>
