@@ -8,14 +8,14 @@
         <div class="userName">Cindy Li</div>
         <div class="role">Buyer</div>
         
-        <p><div class="button" (click)="pushPage(change-icon)" tappable>
+        <p><div class="button" (click)="pushPage(personalise-profile)" tappable>
             <div class="container">
                 <div class="buttonIcon">
                     <div class="iconCircle">
                         <ion-icon name="md-happy"></ion-icon>
                     </div>
                 </div>
-                <div class="button-text">Change Icon</div>
+                <div class="button-text">Personalise Profile</div>
                 <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
             </div>
         </div>
@@ -32,18 +32,6 @@
                 </div>
             </div>
 
-            <div class="button" (click)="pushPage(pickup-address)" tappable>
-                    <div class="container">
-                        <div class="buttonIcon">
-                            <div class="iconCircle">
-                                <ion-icon name="md-pin"></ion-icon>
-                            </div>
-                        </div>
-                        <div class="button-text">Pickup Address</div>
-                        <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
-                    </div>
-                </div>
-
             <div class="button" (click)="pushPage(favourite-farms)" tappable>
                     <div class="container">
                         <div class="buttonIcon">
@@ -54,7 +42,19 @@
                         <div class="button-text">Favourite Farms</div>
                             <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
                     </div>
-                </div>  
+                </div> 
+                
+            <div class="button" (click)="pushPage(message-box)" tappable>
+                    <div class="container">
+                        <div class="buttonIcon">
+                            <div class="iconCircle">
+                                <ion-icon name="md-chatboxes"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="button-text">Message Box</div>
+                        <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                    </div>
+                </div>
     </div>
 </ion-content>
   
