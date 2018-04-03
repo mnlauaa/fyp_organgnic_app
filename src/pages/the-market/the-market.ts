@@ -107,8 +107,9 @@ export class TheMarketPage {
     }, 100);
   }
 
-  openProductDetail(){
-    this.navCtrl.push(SingleProductPage);
+  openProductDetail(product_detail){
+    console.log(product_detail);
+    this.navCtrl.push(SingleProductPage, {product_detail: product_detail});
   }
   
   getFullStarNumber(num){

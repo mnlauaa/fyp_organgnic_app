@@ -73,7 +73,6 @@ export class FilterBox {
     this.parent.filter_list.price_below = Number(this.price_below);
     this.parent.filter_list.price_above = Number(this.price_above);
     this.callback();
-    this.viewCtrl.dismiss();
   }
 
   close(){

@@ -28,7 +28,7 @@ export class BaseService {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.get(url, {
-                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth),
+                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth),  
                 params: params
             })
                 .subscribe(data => {
