@@ -58,16 +58,31 @@
             <span>This farm allows you to select:</span>
         </div>
         <div class="delivery-block">
-          <input class="radio-button" type="radio" name="delivery" value="free"> Free shipping pick-up point:<br>
-          <div class="select-box">
-              <select>
-                  <option selected>- Please Select -</option>
-              </select>
-          </div>
+          <!-- <input class="radio-button" type="radio" name="delivery" value="free"> Free shipping pick-up point:<br> -->
+
+          <label class="radio-label">
+            <input type="radio" name="pick-up-way">
+            <span class="checkmark"></span>
+            <span class="text">Free shipping pick-up point:</span>
+          </label>
+          <ion-item>
+            <ion-label>Pick up at: </ion-label>
+            <ion-select [(ngModel)]="gender">
+              <ion-option value="f">Female</ion-option>
+              <ion-option value="m">Male</ion-option>
+            </ion-select>
+          </ion-item>
+          
           <div class="or">
             <span>OR</span><br>
           </div>
-          <input class="radio-button" type="radio" name="delivery" value="home"> Delivery to your preset address:<br>
+
+          <label class="radio-label">
+            <input type="radio" name="pick-up-way">
+            <span class="checkmark"></span>
+            <span class="text">Delivery to your preset address:</span>
+          </label>
+          <!-- <input class="radio-button" type="radio" name="delivery" value="home"> Delivery to your preset address:<br> -->
           <div class="address">
             <span>10/F, 123 ABC Street, Choi Hung</span>
           </div>
