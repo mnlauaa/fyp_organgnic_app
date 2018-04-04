@@ -31,9 +31,9 @@ export class BaseService {
                 headers: new HttpHeaders().set('Authorization', 'jwt ' + auth),  
                 params: params
             })
-                .subscribe(data => {
-                    resolve(data);
-                }, err => reject(err));
+            .subscribe(data => {
+                resolve(data);
+            }, err => reject(err));
         });
     }
 
