@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, NavParams } from 'ionic-angular';
+import { NavController, MenuController, NavParams, ToastController  } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service/api-service'
+
 import * as moment from 'moment';
 
 @Component({
@@ -12,7 +14,9 @@ export class SingleProductPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private menu: MenuController
+    public api: ApiService,
+    private menu: MenuController,
+    private toastCtrl: ToastController
   ) {
     this.product = navParams.get('product_detail');
     this.product.last_update = moment(this.product.last_update).format("D MMM, YYYY")
@@ -28,6 +32,28 @@ export class SingleProductPage {
       if(this.buyyer_qty > 1)
         this.buyyer_qty--;
     }
+  }
+
+  addToCart(){
+    let data = {
+      farm_id: this.product.farm_id,
+      product_id: this.product.id,
+      qty: this.buyyer_qty
+    }
+    this.api.startQueue([
+      this.api.postShopingCart(data)
+    ]).then(data => {
+      let toast = this.toastCtrl.create({
+        message: 'Product added to cart successfully',
+        duration: 2000,
+        position: 'bottom'
+      });
+      toast.present();
+    }, err => {
+      console.log(err)
+    });
+
+    
   }
 
 

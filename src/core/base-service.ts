@@ -38,7 +38,7 @@ export class BaseService {
     }
 
     // POST request, x-www-form-urlencoded
-    protected post_normal(url, body: HttpParams = null, type = null, auth = null): Promise<any> {
+    protected post(url, body: HttpParams = null, type = null, auth = null): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.post(url, body.toString(), {
