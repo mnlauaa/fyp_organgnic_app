@@ -51,16 +51,17 @@ page-single-product {
         // width: 260px;
         margin: 0 22px;
         margin-bottom: 18px;
+        text-align: center;
         img{
             object-fit: cover;
             height: 260px;
-            // width: 260px;
+            width: 260px;
         }
     }
 
     .product-info{
         margin: 0 18px;
-        font-size: 12px;
+        font-size: 14px;
 
         tr{
             height: 25px;  
@@ -79,7 +80,7 @@ page-single-product {
             .icon{
                 font-size: 15px;
                 color: #747373;
-                padding: 2px;
+                padding: 5px;
             }
 
             .qty-choose{

@@ -24,34 +24,35 @@
 </ion-header>
 
 <ion-content >
-  <div *ngFor="let p of productList" class="product-block" (click)="openProductDetail()" tappable>
-    <span>
-      <img [src]="p.image_url">
-    </span>
+  <span  *ngFor="let p of productList" >
+    <div class="product-block" (click)="openProductDetail(p)" tappable>
+      <span>
+        <img [src]="p.image_url">
+      </span>
     
+      <div class="product-info">
+        <div class="title">{{p.name}}</div>
+        <div class="farm-name">by {{p.display_name}}</div>
+        <div class="price">${{p.price}}/ {{p.weight}}g</div>
+        <div class="rating">
+          <span *ngFor="let i of getFullStarNumber(p.rating)">
+              <ion-icon name="md-star"></ion-icon>
+          </span>
+          <span *ngIf="p.rating % 1 != 0">
+            <ion-icon name="md-star-half"></ion-icon>
+          </span>
+          <span *ngFor="let i of getOutlineStarNumber(p.rating)">
+              <ion-icon name="md-star-outline"></ion-icon>
+          </span>
+        </div>
+      </div>
 
-    <div class="product-info">
-      <div class="title">{{p.name}}</div>
-      <div class="farm-name">by {{p.display_name}}</div>
-      <div class="price">${{p.price}}/ {{p.weight}}g</div>
-      <div class="rating">
-        <span *ngFor="let i of getFullStarNumber(p.rating)">
-            <ion-icon name="md-star"></ion-icon>
-        </span>
-        <span *ngIf="p.rating % 1 != 0">
-          <ion-icon name="md-star-half"></ion-icon>
-        </span>
-        <span *ngFor="let i of getOutlineStarNumber(p.rating)">
-            <ion-icon name="md-star-outline"></ion-icon>
-        </span>
+      <div class="detail-block">
+        <span>More detail</span>
+        <ion-icon name="ios-arrow-forward"></ion-icon>
       </div>
     </div>
-
-    <div class="detail-block">
-      <span>More detail</span>
-      <ion-icon name="ios-arrow-forward"></ion-icon>
-    </div>
-  </div>
+  </span>
 
 </ion-content>
 

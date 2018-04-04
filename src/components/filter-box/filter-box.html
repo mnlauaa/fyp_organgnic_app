@@ -6,7 +6,7 @@
             <ion-toggle [(ngModel)]="favourite" color="fyp"></ion-toggle>
         </label>
         <label *ngFor="let b of brandList" class="brand">
-            <input type="checkbox" (change)="toggleSelection(b.farm_id)" [disabled]="favourite" [checked]="selection.indexOf(b.farm_id) >= 0">
+            <input type="checkbox" (change)="toggleSelection(b.farm_id)" [disabled]="favourite" [checked]="selection.indexOf(b.farm_id) >= 0" tappable>
             <span class="text" [class.disable]="favourite">{{b.display_name}}</span>
             <span class="checkmark" [class.disable]="favourite"></span>
         </label>
@@ -22,7 +22,7 @@
 </div>
 <label class="checkbox-label">
     <input type="checkbox" name="vehicle" value="0">
-    <span class="text">Special Offrt</span>
+    <span class="text">Special Offer</span>
     <span class="checkmark"></span>
 </label>
 <div class="button-area">

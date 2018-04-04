@@ -12,15 +12,17 @@ export class BaseService {
 
     public startQueue(promises: Promise<any>[]): Promise<any> {
         let loading = this.loadingCtrl.create();
-        loading.present().then(()=>{})
-        return Promise.all(promises).then(data => {
-            loading.dismiss();
-            return data;
-        }, err => {
-            console.log(err.status)
-            loading.dismiss()
-            return Promise.reject(err);
-        });   
+        return loading.present().then(()=>{
+            return Promise.all(promises).then(data => {
+                loading.dismiss();
+                return data;
+            }, err => {
+                console.log(err.status)
+                loading.dismiss()
+                return Promise.reject(err);
+            });   
+
+        })
     }
 
     // GET request
@@ -28,7 +30,7 @@ export class BaseService {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.get(url, {
-                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth),
+                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth),  
                 params: params
             })
             .subscribe(data => {
@@ -38,7 +40,7 @@ export class BaseService {
     }
 
     // POST request, x-www-form-urlencoded
-    protected post_normal(url, body: HttpParams = null, type = null, auth = null): Promise<any> {
+    protected post(url, body: HttpParams = null, type = null, auth = null): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.post(url, body.toString(), {
