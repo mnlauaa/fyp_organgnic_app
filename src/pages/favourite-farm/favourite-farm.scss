@@ -1,0 +1,68 @@
+page-favourite-farm {
+    .farmBlock{
+        margin: 13px;
+        height: 180px;
+        border-radius: 2%;     
+        background: white;
+        margin: 7px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .farmInfo{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+
+            .farmIcon{
+                width: 83px;
+                height: 83px;
+                border-radius: 50%;     
+                border: 1px solid #707070;
+            }
+
+            .farmDetail{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                position: relative;
+                
+
+                .name{
+                    font-size: 17px;
+                    font-family: "Lantinghei SC";
+                    display: block;
+                    padding-left: 10px;
+                    padding-bottom: 7px;
+                    padding-top: 13px;
+
+                    .del{
+                        position: absolute;
+                        right: 7px;
+                        top: 7px;
+                        display: block;
+                        
+                    }
+                }
+
+                .info{
+                    font-size: 14px;
+                    color: rgb(51, 51, 51);
+                    padding-left: 10px;
+                }
+            }
+        }
+
+        .shopNow{
+            margin: 20px;
+            height: 35px;
+            background-color: #027B73;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            padding-top: 6px;
+        }
+    }
+}

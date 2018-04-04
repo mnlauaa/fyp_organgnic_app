@@ -1,0 +1,25 @@
+<ion-header>
+    <my-navbar [title]="title" [enable_back]="true" [enable_shopping_button]="false"></my-navbar>
+  </ion-header>
+
+<ion-content>
+  <div class="farmBlock">
+    <div class="farmInfo">
+      <div class="farmIcon"></div>
+      <div class="farmDetail">
+        <div class="name">Happy Farm
+          <div class="del" tappable><ion-icon name="md-close"></ion-icon></div>
+        </div>
+        <div class="info">  
+            <ion-icon name="md-pin"></ion-icon>&nbsp;Happy Road, Sai Kung, Hong Kong<br>
+            <ion-icon name="md-call"></ion-icon>&nbsp;24681234<br>
+            <ion-icon name="md-card"></ion-icon>&nbsp;Shipping coupon supported<br>
+        </div>
+      </div>
+    </div>
+
+    <div class="shopNow" (click)="pushPage(shop-now)" tappable><b>Shop in this farm now</b></div>
+  </div>
+
+
+</ion-content>

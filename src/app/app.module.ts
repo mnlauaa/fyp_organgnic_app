@@ -31,7 +31,7 @@ import { CheckOutPage } from '../pages/check-out/check-out';
 import { ConfirmOrderPage } from '../pages/confirm-order/confirm-order';
 import { SingleProductPage } from '../pages/single-product/single-product'
 import { BuyerPersonaliseProfilePage } from '../pages/buyer-personalise-profile/buyer-personalise-profile'
-
+import { FavouriteFarmPage } from '../pages/favourite-farm/favourite-farm'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -56,6 +56,7 @@ export const myComponets = [
   ConfirmOrderPage,
   SingleProductPage,
   BuyerPersonaliseProfilePage,
+  FavouriteFarmPage,
   
 	// components
   MyNavbar,
