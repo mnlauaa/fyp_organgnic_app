@@ -30,6 +30,7 @@ import { TransactionHistoryPage } from '../pages/transaction-history/transaction
 import { CheckOutPage } from '../pages/check-out/check-out';
 import { ConfirmOrderPage } from '../pages/confirm-order/confirm-order';
 import { SingleProductPage } from '../pages/single-product/single-product'
+import { BuyerPersonaliseProfilePage } from '../pages/buyer-personalise-profile/buyer-personalise-profile'
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -54,6 +55,7 @@ export const myComponets = [
   CheckOutPage,
   ConfirmOrderPage,
   SingleProductPage,
+  BuyerPersonaliseProfilePage,
   
 	// components
   MyNavbar,

@@ -1,0 +1,26 @@
+<ion-header>
+  <my-navbar [title]="title" [enable_back]="true" [enable_shopping_button]="false"></my-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="changeIcon">  
+    <div class="buyerIcon"></div>
+    <div class="changeIconButton" (click)="pushPage(change-icon)" tappable>
+      <ion-icon name="md-happy"></ion-icon>&nbsp;Change Icon
+    </div>
+  </div>
+
+  <div class="changeData">
+    <div>
+      <div class="dataTitle">Name</div>
+      <div class="edit" (click)="pushPage(edit-data)" tappable><ion-icon name="md-create"></ion-icon></div>
+    </div>
+    
+      <div class="data">Cindy Li</div><br>
+    <div class="dataTitle">Address</div>
+      <div class="data">3 Clear Water Bay, Hong Kong</div><br>
+    <div class="dataTitle">Contact no.</div>
+      <div class="data">12345678</div><br>
+  </div>
+</ion-content>
