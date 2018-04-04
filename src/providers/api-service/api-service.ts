@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ApiService extends BaseService{
-  protected api_prefix: string = 'http://localhost:3000';
+  protected api_prefix: string = 'http://192.168.1.205:3000';
   private token = null;
   
 
@@ -17,17 +17,10 @@ export class ApiService extends BaseService{
     private storage: Storage,
   ) {
     super(http, loadingCtrl);
-    console.log('Hello ApiService');
     this.ev.subscribe('user:token', (token) => {
       this.token = token;
       console.log("login_subscribe: ", this.token)
     })
-    this.storage.get('user_info').then((user_info)=>{
-      if(user_info){
-        this.token = user_info.token;
-        console.log("get from storage", this.token)
-      }
-    });
   }
 
   public getUserById(id){
@@ -36,6 +29,10 @@ export class ApiService extends BaseService{
 
   public getMe(){
     return this.get('/me', this.token)
+  }
+
+  public getShopingCart(){
+    return this.get('/me/shopping_cart', this.token);
   }
 
   public getNews(){

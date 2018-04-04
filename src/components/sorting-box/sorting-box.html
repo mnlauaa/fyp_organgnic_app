@@ -3,7 +3,7 @@
 		<span class="text" [class.active]="item.id == parent.sorting_id">{{item.name}}</span>
 		<input type="radio" name="sorting-group"
 			[checked]="item.id == parent.sorting_id" 
-			(change)="selectItem(item.id)">
+			(change)="selectItem(item.id)" tappable>
 		<span class="checkmark"></span>
 	</label>
 </div>

@@ -46,7 +46,7 @@ export class FilterBox {
     this.favourite = this.parent.filter_list.favourite;
     this.selection = this.parent.filter_list.selection;
     this.price_below = this.parent.filter_list.price_below || null;
-    this.price_above = this.parent.filter_list.price_above;
+    this.price_above = this.parent.filter_list.price_above || null;
 
     viewCtrl.onWillDismiss(()=>{
       navParams.data.filterBoxWillClose();

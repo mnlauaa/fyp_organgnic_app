@@ -1,13 +1,17 @@
 <ion-header>
-  <my-navbar [enable_shopping_button]="false" [logo_url]="'assets/imgs/app-logo.png'"></my-navbar>
+  <my-navbar [enable_shopping_button]="false" [logo_url]="'assets/imgs/app-logo.png'" [enable_back]="enable_back"></my-navbar>
+  <div class="shopping-cart">
+    <ion-icon class="icon" name="md-cart" ></ion-icon>
+    <span>Shopping Cart</span>
+  </div>
 </ion-header>
 
 <ion-content >
   <!--Shopping cart title</!-->
-  <div class="shopping-cart">
+  <!-- <div class="shopping-cart">
       <ion-icon class="icon" name="md-cart" ></ion-icon>
       <span>Shopping Cart</span>
-  </div>
+  </div> -->
 
 
   <!-->main body(empty)
@@ -26,81 +30,84 @@
 
   <!-->main body(has products)</!-->
   <div id="non-empty-cart">
-      <div class="non-empty-cart-block">
-        <div class="list-title">
-            <div class="list-title-text">List 1 - HEALTHY FARM</div>
-            <div class="next" (click)="buttonClick()">></div>
-        </div>
+    <ion-slides>
 
-        <hr>
+      <ion-slide *ngFor="let o of allOrder; let i = index">
+        <div class="non-empty-cart-block">
+          <div class="list-title">
+            <ion-icon name="ios-arrow-back" (click)="slideButtonClick(1)" [class.hidden]="hiddenCheck(1)" tappable></ion-icon>
+            <div class="list-title-text">List {{i+1}} - {{o[0].display_name}}</div>
+            <ion-icon name="ios-arrow-forward" (click)="slideButtonClick(0)" [class.hidden]="hiddenCheck(0)" tappable></ion-icon>
+          </div>
 
-        <p><div class="product-block">
-          <span><img src="https://cdn1.medicalnewstoday.com/content/images/articles/280/280579/potatoes-can-be-healthful.jpg"></span>
-          <div class="product-info">
-              <div class="title">Potato</div>
-              <div class="farm-name">by HAPPY FARM</div>
-              <div class="container">
-                  <div class="price">$50</div>
+          <i id="line"></i>
+          <div *ngFor="let p of o">
+            <div class="product-block">
+              <span><img [src]="p.image_url"></span>
+              <div class="product-info">
+                  <div class="title">{{p.name}}</div>
+                  <div class="farm-name">by {{p.display_name}}</div>
+                  <div class="price">${{p.price*p.qty}}</div>
                   <div class="quantity">
-                    <ion-icon name="md-remove"></ion-icon>
-                    &nbsp;&nbsp;600g&nbsp;&nbsp;
-                    <ion-icon name="md-add"></ion-icon>
+                    <ion-icon name="md-remove" (click)="productBuyerQtyEdit(p, 0)" tappable></ion-icon>
+                    &nbsp;&nbsp;{{p.qty*p.weight}}g&nbsp;&nbsp;
+                    <ion-icon name="md-add" (click)="productBuyerQtyEdit(p, 1)" tappable></ion-icon>
                   </div>
               </div>
+              <div class="delete" (click)="buttonClick()"><ion-icon name="md-close"></ion-icon></div>
+            </div>
+          <i id="line"></i>
           </div>
-
-          <div class="delete" (click)="buttonClick()"><ion-icon name="md-close"></ion-icon></div>
-        </div>
-
-        <hr><hr>
-
-        <div class="select-text">
-            <span>This farm allows you to select:</span>
-        </div>
-        <div class="delivery-block">
-          <!-- <input class="radio-button" type="radio" name="delivery" value="free"> Free shipping pick-up point:<br> -->
-
-          <label class="radio-label">
-            <input type="radio" name="pick-up-way">
-            <span class="checkmark"></span>
-            <span class="text">Free shipping pick-up point:</span>
-          </label>
-          <ion-item>
-            <ion-label>Pick up at: </ion-label>
-            <ion-select [(ngModel)]="gender">
-              <ion-option value="f">Female</ion-option>
-              <ion-option value="m">Male</ion-option>
-            </ion-select>
-          </ion-item>
           
-          <div class="or">
-            <span>OR</span><br>
+
+          <div class="select-title-cs">
+              <span>This farm allows you to select:</span>
           </div>
 
-          <label class="radio-label">
-            <input type="radio" name="pick-up-way">
-            <span class="checkmark"></span>
-            <span class="text">Delivery to your preset address:</span>
-          </label>
-          <!-- <input class="radio-button" type="radio" name="delivery" value="home"> Delivery to your preset address:<br> -->
-          <div class="address">
-            <span>10/F, 123 ABC Street, Choi Hung</span>
+          <div class="delivery-block">
+            <label class="radio-label">
+              <input type="radio" name="pick-up-way">
+              <span class="checkmark"></span>
+              <span class="text">Free shipping pick-up point:</span>
+            </label>
+
+            <ion-item>
+              <ion-select [(ngModel)]="gender" placeholder=" - Please Select - ">
+                <ion-option value="f">Female</ion-option>
+                <ion-option value="m">Male</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <label class="radio-label">
+              <input type="radio" name="pick-up-way">
+              <span class="checkmark"></span>
+              <span class="text">Delivery to your preset address:</span>
+            </label>
+
+            <div class="address">
+              <span>10/F, 123 ABC Street, Choi Hung</span>
+            </div>
           </div>
+
         </div>
-      </div>
 
-      <div class="counting-block">
-        <table class="counting-table">
-          <tr><td class="text">Subtotal</td><td class="price text">$96</td></tr>
-          <tr><td class="text">Shipping Cost</td><td class="price text">$</td></tr>
-          <tr><td colspan="2"><hr></td></tr>
-          <tr><td class="bold-text">Total Cost</td><td class="price text">$96</td></tr>
-        </table>
-      </div>
+        <div class="counting-block">
+          <table class="counting-table">
+            <tr><td class="text">Subtotal</td><td class="price text">${{o.sum}}</td></tr>
+            <tr><td class="text">Shipping Cost</td><td class="price text">$</td></tr>
+            <tr><td colspan="2"><hr></td></tr>
+            <tr><td class="bold-text">Total Cost</td><td class="price text">$96</td></tr>
+          </table>
+        </div>
 
-      <div class="checkout-button" (click)="checkOutOpenPage()" tappable>
+        <div class="checkout-button" (click)="checkOutOpenPage()" tappable>
           <div class="button-text">Check Out This List</div>
-      </div>
+        </div>
+      </ion-slide>
+
+    </ion-slides>
+
+
   </div>
 </ion-content>
   

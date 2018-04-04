@@ -45,7 +45,7 @@ export class SingleProductPage {
     ]).then(data => {
       let toast = this.toastCtrl.create({
         message: 'Product added to cart successfully',
-        duration: 2000,
+        duration: 1000,
         position: 'bottom'
       });
       toast.present();

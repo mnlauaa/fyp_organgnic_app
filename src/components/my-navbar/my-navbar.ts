@@ -20,6 +20,6 @@ export class MyNavbar {
   }
 
   openPage() {
-    this.nav.setRoot(ShoppingCartPage);
+    this.nav.push(ShoppingCartPage, {enable_back: true});
     }
 }

@@ -12,15 +12,17 @@ export class BaseService {
 
     public startQueue(promises: Promise<any>[]): Promise<any> {
         let loading = this.loadingCtrl.create();
-        loading.present().then(()=>{})
-        return Promise.all(promises).then(data => {
-            loading.dismiss();
-            return data;
-        }, err => {
-            console.log(err.status)
-            loading.dismiss()
-            return Promise.reject(err);
-        });   
+        return loading.present().then(()=>{
+            return Promise.all(promises).then(data => {
+                loading.dismiss();
+                return data;
+            }, err => {
+                console.log(err.status)
+                loading.dismiss()
+                return Promise.reject(err);
+            });   
+
+        })
     }
 
     // GET request
