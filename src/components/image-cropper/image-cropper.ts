@@ -68,9 +68,8 @@ export class ImageCropper{
   }
 
   changeImage(){
-    this.cropperInstance.clear();
     this.camera.getPicture(this.getCameraOptions(this.pickMethod)).then((imageData) => {
-      
+      this.cropperInstance.clear();
       // this was the only way i was able to dynamically change the source
       this.imageElement.nativeElement.src = imageData;
       this.cropImage();
@@ -95,7 +94,7 @@ export class ImageCropper{
   }
 
   cropDone() {
-    this.croppedImg = this.cropperInstance.getCroppedCanvas({ width: 500, height: 500}).toDataURL('image/jpeg');
+    this.croppedImg = this.cropperInstance.getCroppedCanvas({ width: 150, height: 150}).toDataURL('image/jpeg');
     console.log(this.croppedImg)
     // do whatever you want with base64 variable croppedImg
   }

@@ -12,6 +12,7 @@ export class ProfilePage {
   title = 'Profile';
   display_name = null;
   profile_pic_url = null;
+  personal_info = null;
   role = null
 
   TranHistory = TransactionHistoryPage;
@@ -30,9 +31,11 @@ export class ProfilePage {
     });
 
     this.storage.get('user_info').then((user_info)=>{
+      console.log(user_info)
       if(user_info){
-        this.display_name = user_info.display_name;
+        this.personal_info = user_info;
         this.profile_pic_url = user_info.profile_pic_url;
+        this.display_name = user_info.display_name;
         if(user_info.identity == 0)
           this.role = "Buyer"
         else  
@@ -46,12 +49,8 @@ export class ProfilePage {
   }
 
   pushPage(page) {
-    let personal_info = {
-      display_name: this.display_name,
-      profile_pic_url: this.profile_pic_url,
-    }
     this.navCtrl.push(page,{
-      personal_info: personal_info
+      personal_info: this.personal_info
     });
   }
 
