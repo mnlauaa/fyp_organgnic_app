@@ -2,6 +2,80 @@
   <my-navbar [title]="title"></my-navbar>
 </ion-header>
 
-<ion-content >
-    Our Partners
+<ion-content>
+    <div class="top">
+        <div class="banner"></div>
+        <div class="farmIcon"></div>
+        <div class="info">
+            <div class="farmName">Happy Farm</div>
+            <div class="identity">Farmer</div>
+            <div class="farmInfo">
+                <ion-icon name="md-pin"></ion-icon>&nbsp;Happy Road, Sai Kung, Hong Kong<br>
+                <ion-icon name="md-call"></ion-icon>&nbsp;24681234<br>
+                <ion-icon name="md-card"></ion-icon>&nbsp;Shipping coupon supported
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+    <p><div class="button" (click)="pushPage(personaliseProfile)" tappable>
+        <div class="container">
+            <div class="buttonIcon">
+                <div class="iconCircle">
+                    <ion-icon name="md-happy"></ion-icon>
+                </div>
+            </div>
+            <div class="button-text">Personalise Profile</div>
+            <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+        </div>
+    </div>
+
+    <p><div class="button" (click)="pushPage(listings)" tappable>
+            <div class="container">
+                <div class="buttonIcon">
+                    <div class="iconCircle">
+                        <ion-icon name="md-list-box"></ion-icon>
+                    </div>
+                </div>
+                <div class="button-text">Listings</div>
+                <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+            </div>
+        </div>
+
+        <div class="button" (click)="pushPage(busi-stat)" tappable>
+                <div class="container">
+                    <div class="buttonIcon">
+                        <div class="iconCircle">
+                            <ion-icon name="md-trending-up"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="button-text">Business Statistics</div>
+                        <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                </div>
+            </div> 
+            
+        <div class="button" (click)="pushPage(operational-setting)" tappable>
+                <div class="container">
+                    <div class="buttonIcon">
+                        <div class="iconCircle">
+                            <ion-icon name="md-hammer"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="button-text">Operational Setting</div>
+                    <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                </div>
+            </div>
+
+            <div class="button" (click)="pushPage(message-box)" tappable>
+                <div class="container">
+                    <div class="buttonIcon">
+                        <div class="iconCircle">
+                            <ion-icon name="md-chatboxes"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="button-text">Message Box</div>
+                    <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                </div>
+            </div>
+          </div>
 </ion-content>
