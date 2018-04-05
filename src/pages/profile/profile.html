@@ -4,9 +4,12 @@
   
 <ion-content >
     <div class="content">
-        <div class="proPic"><i class="fa fa-user-circle fa-7x"></i></div>
-        <div class="userName">Cindy Li</div>
-        <div class="role">Buyer</div>
+        <div class="proPic">
+            <i *ngIf="!profile_pic_url" class="fa fa-user-circle fa-7x icon"></i>
+            <img *ngIf="profile_pic_url" [src]=profile_pic_url>
+        </div>
+        <div class="userName">{{display_name}}</div>
+        <div class="role">{{role}}</div>
         
         <p><div class="button" (click)="pushPage(personaliseProfile)" tappable>
             <div class="container">
@@ -32,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="button" (click)="pushPage(favourite_farms)" tappable>
+            <div class="button" (click)="pushPage(favourite-farms)" tappable>
                     <div class="container">
                         <div class="buttonIcon">
                             <div class="iconCircle">

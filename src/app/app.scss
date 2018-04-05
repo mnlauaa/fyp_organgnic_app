@@ -19,6 +19,9 @@ ion-header{
 }
 
 ion-menu{
+	ion-content{
+		background-color: #FFFFFF !important;
+	}
 	ion-toolbar{
 		height: 80px;
 	}
@@ -52,7 +55,6 @@ ion-menu{
 
 	.menu_content{
 		background-color: #FFFFFF;
-		height: 100%;
 		padding: 10px 25px 25px 25px;
 
 		.guest-block{

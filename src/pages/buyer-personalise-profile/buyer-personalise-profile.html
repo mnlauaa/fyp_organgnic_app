@@ -5,22 +5,37 @@
 
 <ion-content>
   <div class="changeIcon">  
-    <div class="buyerIcon"></div>
-    <div class="changeIconButton" (click)="pushPage(change-icon)" tappable>
-      <ion-icon name="md-happy"></ion-icon>&nbsp;Change Icon
+    <div class="buyerIcon">
+      <img [src]="personal_info.profile_pic_url">
     </div>
   </div>
 
   <div class="changeData">
     <div>
       <div class="dataTitle">Name</div>
-      <div class="edit" (click)="pushPage(edit-data)" tappable><ion-icon name="md-create"></ion-icon></div>
+      <div *ngIf="!edit_mode" class="edit" (click)="edit_mode = true" tappable>
+        <ion-icon name="md-create"></ion-icon>
+      </div>
     </div>
-    
-      <div class="data">Cindy Li</div><br>
+      <div class="data">
+        {{personal_info.display_name}}
+      </div><br>
     <div class="dataTitle">Address</div>
-      <div class="data">3 Clear Water Bay, Hong Kong</div><br>
+      <div class="data">
+        {{personal_info.address}}
+      </div><br>
     <div class="dataTitle">Contact no.</div>
-      <div class="data">12345678</div><br>
+      <div class="data">
+        {{personal_info.phone_number}}
+      </div>
+  </div>
+
+  <div *ngIf="edit_mode" class="button_session">
+    <div class="button submit">
+      Submit
+    </div>
+    <div class="button cancel" (click)="edit_mode = false" tappable>
+      Cancel
+    </div>
   </div>
 </ion-content>

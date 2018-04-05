@@ -1,0 +1,55 @@
+<ion-header>
+    <my-navbar [enable_shopping_button]="false" [enable_close]="true" [enable_menu]="false"></my-navbar>
+</ion-header>
+<ion-content>
+  <div class="backgraoud">
+    <div class="top-session-button">
+      <div class="submit-button" (click)="cropDone()" tappable>
+          <ion-icon name="md-checkmark"></ion-icon>
+      </div>
+      <div class="change-button" (click)="changeImage()" tappable>
+          <ion-icon name="md-image"></ion-icon>
+      </div>
+    </div>
+
+    <div class="bottom-session-button">
+      <div class="sub-botton-group">
+          <div class="method-button" (click)="zoom(0.1)" tappable>
+            <i class="fa fa-search-plus" aria-hidden="true"></i>
+          </div>
+          <div class="method-button" (click)="zoom(-0.1)" tappable>
+            <i class="fa fa-search-minus" aria-hidden="true"></i>
+          </div>
+      </div>
+
+      <div class="sub-botton-group">
+        <div class="method-button" (click)="rotate(-45)" tappable>
+          <i class="fa fa-undo" aria-hidden="true"></i>
+        </div>
+        <div class="method-button" (click)="rotate(45)" tappable>
+          <i class="fa fa-repeat" aria-hidden="true"></i>
+        </div>
+        </div>
+
+      <div class="sub-botton-group">
+        <div class="method-button" (click)="move(-10, 0)" tappable>
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </div>
+        <div class="method-button" (click)="move(10, 0)" tappable>
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </div>
+        <div class="method-button" (click)="move(0, -10)" tappable >
+          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </div>
+        <div class="method-button" (click)="move(0, 10)" tappable>
+          <i class="fa fa-arrow-down" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <img #imageSrc  onerror="this.style.opacity='0'"/>
+
+    <!-- <img [src]="croppedImg"> -->
+    <!-- <img src="data:image/png;base64,{{item.icon64}}" /> -->
+</ion-content>

@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ActionSheetController  } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service/api-service'
+import { ImageCropper } from '../../components/image-cropper/image-cropper'
 
-/**
- * Generated class for the BuyerPersonaliseProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +11,55 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class BuyerPersonaliseProfilePage {
   title = "Personalise Profile";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  personal_info: any;
+  edit_mode:boolean = false;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private actionSheetCtrl: ActionSheetController,
+    private modalCtrl: ModalController,
+    protected api: ApiService
+  ) {
+    this.personal_info = navParams.get('personal_info');
+    console.log(this.personal_info)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuyerPersonaliseProfilePage');
+  }
+
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: 'Take Photo',
+          handler: () => {
+            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 0 });
+            profileModal.onDidDismiss(data =>{
+              console.log(data )
+            })
+            profileModal.present();
+          }
+        },
+        {
+          text: 'Pick Image',
+          handler: () => {
+            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 1 });
+            profileModal.onDidDismiss(data =>{
+              console.log(data)
+            })
+            profileModal.present();
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {}
+        }
+      ]
+    });
+ 
+    actionSheet.present();
   }
 
 }

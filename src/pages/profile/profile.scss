@@ -2,8 +2,18 @@ page-profile {
     .proPic{
         padding: 10px;
         text-align: center;
-        font-size: 75px;
         color: rgb(87, 87, 87);
+
+        img{
+            border-radius: 50%;
+            object-fit: cover;
+            height: 150px;
+            width: 150px;
+        }
+
+        .icon{
+            font-size: 150px;
+        }
     }
 
     .content{
@@ -11,14 +21,14 @@ page-profile {
     }
 
     .userName{
-        font-size: 17px;
-        font-family: "Lantinghei SC";
-        font-weight: Extralight;
+        font-size: 25px;
+        // font-family: "Lantinghei SC";
+        // font-weight: Extralight;
         text-align: center;
     }
 
     .role{
-        font-size: 14px;
+        font-size: 16px;
         font-family: "Arial";
         color: #212121;
         text-align: center;        
