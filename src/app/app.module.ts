@@ -12,6 +12,8 @@ import { ApiService } from '../providers/api-service/api-service';
 import { MyNavbar } from '../components/my-navbar/my-navbar';
 import { FilterBox } from '../components/filter-box/filter-box'
 import { SortingBox } from '../components/sorting-box/sorting-box'
+import { ImageCropper } from '../components/image-cropper/image-cropper'
+
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -31,10 +33,11 @@ import { CheckOutPage } from '../pages/check-out/check-out';
 import { ConfirmOrderPage } from '../pages/confirm-order/confirm-order';
 import { SingleProductPage } from '../pages/single-product/single-product'
 import { BuyerPersonaliseProfilePage } from '../pages/buyer-personalise-profile/buyer-personalise-profile'
-import { FavouriteFarmPage } from '../pages/favourite-farm/favourite-farm'
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Camera } from '@ionic-native/camera';
 
 
 export const myComponets = [
@@ -56,12 +59,12 @@ export const myComponets = [
   ConfirmOrderPage,
   SingleProductPage,
   BuyerPersonaliseProfilePage,
-  FavouriteFarmPage,
   
 	// components
   MyNavbar,
   FilterBox,
-  SortingBox
+  SortingBox,
+  ImageCropper
 ];
 
 export const myProviders = [
@@ -94,6 +97,7 @@ export const myImports = [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera
   ]
 })
 export class AppModule {}

@@ -24,7 +24,7 @@ export class FilterBox {
   price_below: Number = null;
   price_above: Number = null;
   constructor(
-    private navParams: NavParams,
+    public navParams: NavParams,
     public viewCtrl: ViewController,
     protected api: ApiService,
   ){

@@ -9,7 +9,7 @@
 
     <!-- Menu button -->
     <ion-buttons left menuToggle>
-        <button ion-button>
+        <button *ngIf="enable_menu" ion-button>
             <ion-icon name="menu"></ion-icon>
         </button>
     </ion-buttons>
@@ -22,9 +22,16 @@
     </ion-buttons>
 
     <!-- Shopping Cart button -->
-    <ion-buttons end>
-        <button *ngIf="enable_shopping_button" ion-button (click)="openPage()" tappable>
+    <ion-buttons *ngIf="enable_shopping_button" end>
+        <button ion-button (click)="openPage()" tappable>
             <ion-icon class="icon" name="md-cart" ></ion-icon>
+        </button>
+    </ion-buttons>
+    
+    <!-- close button -->
+    <ion-buttons *ngIf="enable_close" left>
+        <button ion-button (click)="closeView()" class="text-button">
+           Close
         </button>
     </ion-buttons>
 </ion-navbar>
