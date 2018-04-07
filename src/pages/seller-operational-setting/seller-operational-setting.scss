@@ -1,3 +1,181 @@
 page-seller-operational-setting {
+    .shipping{
+        display: flex;
+        flex-direction: column;
+        flex: space-between;
+        border-radius: 2%;
+        margin: 7px; 
+        padding: 10px;
+        background-color: white;
+        position: relative;
+        height: 83px;
 
+        .title{
+            font-size: 19px;
+            padding-left: 10px;
+            display: inline-block;
+        }
+        
+        .listRow{
+            display: flex;
+            flex-direction: row;
+            flex: flex-start;
+            position: relative;
+            align-items: center;
+            padding: 10px 0px 10px 0px;
+
+            .listItem{
+                padding-left: 10px;
+                display: inline-block;
+            }
+    
+            .help{
+                color: #027B73;
+                display: inline-block;
+                position: absolute;
+                left: 123px;
+            }
+    
+            .switch{
+                width: 41px;
+                height: 26px;
+                display: inline-block;
+                position: absolute;
+                right: 17px;
+            }
+        }
+    }
+
+    .delivery{
+        display: flex;
+        flex-direction: column;
+        flex: space-between;
+        border-radius: 2%;
+        margin: 7px; 
+        padding: 10px;
+        background-color: white;
+        position: relative;
+        height:150px;
+
+        .titleLine{
+            display: flex;
+            flex-direction: row;
+            flex: flex-start;
+            position: relative;
+            align-items: center;
+            padding: 10px 0px 10px 0px;
+  
+            .title{
+                font-size: 19px;
+                padding-left: 10px;
+                display: inline-block;
+            }
+    
+            .edit{
+                display: inline-block;
+                position: absolute;
+                right: 10px;
+            }
+
+            .help{
+                color: #027B73;
+                display: inline-block;
+                position: absolute;
+                left: 210px;
+            }
+        }
+
+        .listRow{
+            display: flex;
+            flex-direction: row;
+            flex: flex-start;
+            position: relative;
+            align-items: center;
+            padding: 15px 0px 15px 0px;
+
+            .pickUpPoint{
+                padding-left: 10px;
+                display: inline-block;
+            }
+    
+            .switch{
+                width: 41px;
+                height: 26px;
+                display: inline-block;
+                position: absolute;
+                right: 17px;
+            }
+
+            .homeDelivery{
+                padding-left: 10px;
+                display: inline-block;
+            }
+        }
+       
+    }
+
+    .charging{
+        display: flex;
+        flex-direction: column;
+        flex: space-between;
+        border-radius: 2%;
+        margin: 7px; 
+        padding: 10px;
+        background-color: white;
+        position: relative;
+        height:125px;
+
+        .titleLine{
+            display: flex;
+            flex-direction: row;
+            flex: flex-start;
+            position: relative;
+            align-items: center;
+            padding: 10px 0px 10px 0px;
+  
+
+            .title{
+                font-size: 19px;
+                padding-left: 10px;
+                display: inline-block;
+            }
+    
+            .edit{
+                display: inline-block;
+                position: absolute;
+                right: 10px;
+            }
+        }
+
+        .method{
+            padding-left: 10px;
+        }
+
+        .account{
+            color: #707070;
+            padding-left: 20px;
+        }
+
+        .listRow{
+            display: flex;
+            flex-direction: row;
+            flex: flex-start;
+            position: relative;
+            align-items: center;
+            padding: 15px 0px 15px 0px;
+
+            .payAfter{
+                padding-left: 10px;
+                display: inline-block;
+            }
+    
+            .switch{
+                width: 41px;
+                height: 26px;
+                display: inline-block;
+                position: absolute;
+                right: 17px;
+            }
+        }
+    }
 }
