@@ -2,8 +2,66 @@
   <my-navbar [title]="title" [enable_shopping_button]="false" [enable_back]="true"></my-navbar>
 </ion-header>
   
-
-
 <ion-content>
+    <div class="changeIcon">  
+        <div class="sellerIcon">
+          
+        </div>
+      </div>
+    
+      <div class="changeCover">
+        <div>
+            <div class="title">Cover photo</div>
+            <div class="edit" (click)="edit_mode = true" tappable>
+              <ion-icon name="md-create"></ion-icon>
+            </div>
+        </div>
+        <div class="coverPhoto"></div>
+      </div>
 
+      <div class="changeData">
+        <div>
+          <div class="dataTitle">Name</div>
+          <div class="edit" (click)="edit_mode = true" tappable>
+            <ion-icon name="md-create"></ion-icon>
+          </div>
+        </div>
+          <div class="data">
+            Happy Farm
+          </div><br>
+        <div class="dataTitle">Address</div>
+          <div class="data">
+            Happy Road, Sai Kung, Hong Kong
+          </div><br>
+        <div class="dataTitle">Contact no.</div>
+          <div class="data">
+            24681234
+          </div>
+      </div>
+
+      <div class="changeAbout">
+          <div>
+              <div class="title">About</div>
+              <div class="edit" (click)="edit_mode = true" tappable>
+                <ion-icon name="md-create"></ion-icon>
+              </div>
+          </div>
+          <div class="aboutPhoto"></div>
+          <div class="aboutContent">
+              We persist to provide the best quality organic food 
+              to you. Our farm mainly produce green vegetables, 
+              potato, tomato, and apple. Sometimes, we offer our 
+              recommendation package for those who can’t 
+              decide what to eat too!
+          </div>
+      </div>
+    
+      <div class="button_session">
+        <div class="button submit">
+          Submit
+        </div>
+        <div class="button cancel" (click)="edit_mode = false" tappable>
+          Cancel
+        </div>
+      </div>
 </ion-content>

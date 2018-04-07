@@ -1,3 +1,141 @@
 page-seller-personalise-profile {
+    .changeIcon{
+        padding: 17px 0 7px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
+        .sellerIcon{
+            width: 150px;
+            height: 150px;
+            
+            img{
+                border-radius: 50%;
+                object-fit: cover;
+                height: 150px;
+                width: 150px;
+            }
+        }
+    }
+
+    .changeCover{
+        display: flex;
+        flex-direction: column;
+        flex: space-between;
+        border-radius: 2%;
+        margin: 7px; 
+        padding: 10px;
+        background-color: white;
+        position: relative;
+
+        .edit{
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+        }
+
+        .title{
+            font-size: 19px;
+            padding-left: 10px;
+            display: inline-block;
+        }
+
+        .coverPhoto{
+            margin: 5px;
+            height: 106px;
+            background-color: rgb(221, 221, 221);
+        }
+    }
+
+    .changeData{
+        display: flex;
+        flex-direction: column;
+        flex: space-between;
+        border-radius: 2%;
+        margin: 7px; 
+        padding: 10px;
+        background-color: white;
+        position: relative;
+
+        .edit{
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+        }
+
+        .dataTitle{
+            font-size: 19px;
+            padding-left: 10px;
+            display: inline-block;
+        }
+
+        .data{
+            padding-top: 3px;
+            padding-left: 27px;
+            font-size: 17px;
+            color: rgb(172, 172, 172);
+        }
+
+        .icon{
+            padding: 10px;
+            padding-top: 3px;
+        }
+    }
+
+    .changeAbout{
+        display: flex;
+        flex-direction: column;
+        flex: space-between;
+        border-radius: 2%;
+        margin: 7px; 
+        padding: 10px;
+        background-color: white;
+        position: relative;
+
+        .edit{
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+        }
+
+        .title{
+            font-size: 19px;
+            padding-left: 10px;
+            display: inline-block;
+        }
+
+        .aboutPhoto{
+            margin: 5px;
+            height: 110px;
+            background-color: rgb(221, 221, 221);
+        }
+
+        .aboutContent{
+            margin: 5px;
+        }
+    }
+
+    .button_session{
+        display: flex;
+        justify-content:space-between;
+        margin: 20px 7px;
+        
+        .button{
+            height: 45px;
+            width: 49%;
+            font-size: 20px;
+            text-align: center;
+            line-height: 45px;
+        }
+
+        .submit{
+            background-color: #027B73;
+            color: #fff;
+        }
+
+        .cancel{
+            background-color: rgb(119, 119, 119);
+            color: #fff;
+        }
+    }
 }
