@@ -1,0 +1,161 @@
+page-farmer-profile {
+    .top{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .banner{
+            height: 107px;
+            background-color: grey;
+        }
+    
+        .farmIcon{
+            width: 71px;
+            height: 71px;
+            border-radius: 50%;
+            border: 1px solid #707070;
+            background-color: white;
+            position: absolute;
+            left: 15px;
+            top: 80px;
+            z-index: 2;
+        }
+    
+        .info{
+            height: 170px;
+            padding-top: 50px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            padding-left: 15px;
+
+            .farmName{
+                font-family: "Lantinghei SC";
+                font-size: 17px;
+                font-weight: "Extralight";
+            }
+
+            .identity{
+                font-size: 14px;
+                font-family: "Arial";
+                padding-bottom: 5px;
+            }
+
+            .farmInfo{
+                color: rgb(119, 118, 118);
+                font-size: 14px;
+                font-family: "Arial";
+                padding: 3px;
+            }
+        }
+    }
+    
+    .top-button{
+        margin: 20px 0;
+    }
+
+    .button{
+        display: block;
+        width: 95%;
+        height: 54px;
+        background: white;
+        margin: 5px auto;
+        padding: 0 9px;
+
+        .container{
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 100%;
+
+            .button-text{
+                font-size: 16px;
+                font-family: "Arial";
+                color: #212121; 
+                padding-left: 15px;
+            }
+        
+            .iconCircle{
+                padding: 6px;
+                width: 36px;
+                height: 36px;
+                border-radius: 18px;     
+                background: #00A69C;
+            }
+        
+            .buttonIcon{
+                font-size: 20px;
+                color: white;
+            }
+        
+            .button-arrow{
+                position: absolute;
+                font-size: 20px;
+                right: 0px;
+            }
+        }
+    }
+
+    .active{
+        background: #00A69C !important;
+        margin: 1px auto;
+        color: white;
+
+        .button-text{
+            color: white !important;
+        }
+
+        .iconCircle{
+            background: white !important;
+        }
+
+        .buttonIcon{
+            color: #00A69C !important;
+        }
+    }
+
+    .listing-block{
+        margin: 9px auto;
+
+        .listing-button{
+            display: block;
+            width: 95%;
+            height: 54px;
+            background: white;
+            margin: 1px auto;
+            padding: 0 9px;
+    
+            .container{
+                display: flex;
+                align-items: center;
+                position: relative;
+                height: 100%;
+    
+                .button-text{
+                    display: inline-block;
+                    font-size: 16px;
+                    font-family: "Arial";
+                    color: #212121; 
+                    padding-left: 50px;
+                }
+            
+                .button-arrow{
+                    position: absolute;
+                    font-size: 20px;
+                    right: 0px;
+                }
+            }
+        }
+    }
+    
+
+    
+   
+
+    .bottom{
+        padding-bottom: 15px;
+    }
+}

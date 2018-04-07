@@ -33,6 +33,12 @@ import { CheckOutPage } from '../pages/check-out/check-out';
 import { ConfirmOrderPage } from '../pages/confirm-order/confirm-order';
 import { SingleProductPage } from '../pages/single-product/single-product'
 import { BuyerPersonaliseProfilePage } from '../pages/buyer-personalise-profile/buyer-personalise-profile'
+import { FavouriteFarmPage } from '../pages/favourite-farm/favourite-farm'
+import { FarmerProfilePage } from '../pages/farmer-profile/farmer-profile'
+import { SellerPersonaliseProfilePage } from '../pages/seller-personalise-profile/seller-personalise-profile'
+import { SellerPersonaliseProductsPage } from '../pages/seller-personalise-products/seller-personalise-products'
+import { SellerPersonaliseNewsPage } from '../pages/seller-personalise-news/seller-personalise-news'
+import { SellerOperationalSettingPage } from '../pages/seller-operational-setting/seller-operational-setting'
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -45,7 +51,6 @@ export const myComponets = [
   HomePage,
   TheMarketPage,
   ShoppingCartPage,
-  ProfilePage,
   BuyerOrderPage,
   MessagePage,
   AboutUsPage,
@@ -58,7 +63,15 @@ export const myComponets = [
   CheckOutPage,
   ConfirmOrderPage,
   SingleProductPage,
+  ProfilePage,
   BuyerPersonaliseProfilePage,
+  SellerPersonaliseProfilePage,
+  SellerPersonaliseProductsPage,
+  SellerPersonaliseNewsPage,
+  SellerOperationalSettingPage,
+  FavouriteFarmPage,
+  FarmerProfilePage,
+  
   
 	// components
   MyNavbar,

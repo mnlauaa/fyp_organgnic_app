@@ -10,6 +10,7 @@ import { TheMarketPage } from '../pages/the-market/the-market';
 import { ShoppingCartPage } from '../pages/shopping-cart/shopping-cart';
 import { ListingPage } from '../pages/listing/listing';
 import { ProfilePage } from '../pages/profile/profile';
+import { FarmerProfilePage } from '../pages/farmer-profile/farmer-profile'
 import { BuyerOrderPage } from '../pages/buyer-order/buyer-order';
 import { MessagePage } from '../pages/message/message';
 import { AboutUsPage } from '../pages/about-us/about-us';
@@ -52,7 +53,7 @@ export class MyApp {
 		let seller_pages = [
 			{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
 			{ title: 'Listing', component: ListingPage, icon: 'fa fa-list-ul fa-fw fa-lg'},
-			{ title: 'Profile', component: ProfilePage, icon: 'fa fa-user fa-fw fa-lg'},
+			{ title: 'Profile', component: FarmerProfilePage, icon: 'fa fa-user fa-fw fa-lg'},
 			{ title: 'Orders Received', component: BuyerOrderPage, icon: 'fa fa-clipboard fa-fw fa-lg'},
 			{ title: 'Message', component: MessagePage, icon: 'fa fa-comments fa-fw fa-lg'}
 		]
@@ -97,14 +98,24 @@ export class MyApp {
 		this.storage.get('user_info').then((user_info)=>{
 			//push info to ionic event
 			if(user_info){
-				this.ev.publish('user_info', user_info.identity, user_info.display_name, user_info.profile_pic_url);
+				this.ev.publish('user_info', 
+								user_info.identity, 
+								user_info.display_name, 
+								user_info.profile_pic_url,
+								user_info.address,
+								user_info.phone_number);
 				this.ev.publish('user:token', user_info.token);
 				console.log(user_info);
 				
 			}
 			//set deafult event
 			else{
-				this.ev.publish('user_info', -1, 'Visitor', null)
+				this.ev.publish('user_info', 
+								-1,
+								'Visitor', 
+								null,
+								null,
+								null);
 				this.ev.publish('user:token', null);
 			}	
 		})

@@ -1,5 +1,5 @@
 <ion-header>
-    <my-navbar [title]="title"></my-navbar>
+    <my-navbar [logo_url]="'assets/imgs/app-logo.png'" [enable_shopping_button]="false"></my-navbar>
 </ion-header>
   
 <ion-content >
@@ -11,53 +11,56 @@
         <div class="userName">{{display_name}}</div>
         <div class="role">{{role}}</div>
         
-        <p><div class="button" (click)="pushPage(personaliseProfile)" tappable>
+        
+        <div class="top-button">
+            <div class="button" (click)="pushPage(personaliseProfile)" tappable>
+                <div class="container">
+                    <div class="buttonIcon">
+                        <div class="iconCircle">
+                            <ion-icon name="md-happy"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="button-text">Personalise Profile</div>
+                    <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button" (click)="pushPage(tranHistory)" tappable>
             <div class="container">
                 <div class="buttonIcon">
                     <div class="iconCircle">
-                        <ion-icon name="md-happy"></ion-icon>
+                        <i class="fa fa-history"></i>
                     </div>
                 </div>
-                <div class="button-text">Personalise Profile</div>
+                <div class="button-text">Transaction History</div>
                 <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
             </div>
         </div>
 
-        <p><div class="button" (click)="pushPage(TranHistory)" tappable>
-                <div class="container">
-                    <div class="buttonIcon">
-                        <div class="iconCircle">
-                            <i class="fa fa-history"></i>
-                        </div>
+        <div class="button" (click)="pushPage(favouriteFarmPage)" tappable>
+            <div class="container">
+                <div class="buttonIcon">
+                    <div class="iconCircle">
+                        <ion-icon name="md-heart"></ion-icon>
                     </div>
-                    <div class="button-text">Transaction History</div>
+                </div>
+                <div class="button-text">Favourite Farms</div>
                     <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
-                </div>
             </div>
-
-            <div class="button" (click)="pushPage(favourite-farms)" tappable>
-                    <div class="container">
-                        <div class="buttonIcon">
-                            <div class="iconCircle">
-                                <ion-icon name="md-heart"></ion-icon>
-                            </div>
-                        </div>
-                        <div class="button-text">Favourite Farms</div>
-                            <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
-                    </div>
-                </div> 
+        </div> 
                 
-            <div class="button" (click)="pushPage(message-box)" tappable>
-                    <div class="container">
-                        <div class="buttonIcon">
-                            <div class="iconCircle">
-                                <ion-icon name="md-chatboxes"></ion-icon>
-                            </div>
-                        </div>
-                        <div class="button-text">Message Box</div>
-                        <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+        <div class="button" (click)="pushPage(message-box)" tappable>
+            <div class="container">
+                <div class="buttonIcon">
+                    <div class="iconCircle">
+                        <ion-icon name="md-chatboxes"></ion-icon>
                     </div>
                 </div>
+                <div class="button-text">Message Box</div>
+                <div class="button-arrow"><ion-icon name="arrow-forward"></ion-icon></div>
+            </div>
+        </div>
     </div>
 </ion-content>
   
