@@ -19,7 +19,7 @@
 
         <div class="bottom">
             <div class="top-button">
-                <div class="button" (click)="pushPage(personaliseProfile)" tappable>
+                <div class="button" (click)="pushPage(sellerPersonalise)" tappable>
                     <div class="container">
                         <div class="buttonIcon">
                             <div class="iconCircle">
@@ -61,13 +61,13 @@
                     </div>
                 </div>
 
-                <div class="listing-button" (click)="true" tappable>
+                <div class="listing-button" (click)="pushPage(sellerNews)" tappable>
                     <div class="container">
                         <div class="button-text">Your News</div>
                         <div class="button-arrow"><ion-icon name="ios-arrow-forward"></ion-icon></div>
                     </div>
                 </div>
-                <div class="listing-button" (click)="true" tappable>
+                <div class="listing-button" (click)="pushPage(sellerProducts)" tappable>
                     <div class="container">
                         <div class="button-text">Your Products</div>
                         <div class="button-arrow"><ion-icon name="ios-arrow-forward"></ion-icon></div>
@@ -90,7 +90,7 @@
                 </div>
             </div> 
                 
-            <div class="button" (click)="pushPage(operational-setting)" tappable>
+            <div class="button" (click)="pushPage(sellerSetting)" tappable>
                 <div class="container">
                     <div class="buttonIcon">
                         <div class="iconCircle">
