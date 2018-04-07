@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ApiService extends BaseService{
-  protected api_prefix: string = 'http://192.168.1.205:3000';
+  protected api_prefix: string = 'http://localhost:3000';
   private token = null;
   
 

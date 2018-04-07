@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
-import { TransactionHistoryPage } from '../transaction-history/transaction-history'
 import { BuyerPersonaliseProfilePage } from '../buyer-personalise-profile/buyer-personalise-profile'
+import { TransactionHistoryPage } from '../transaction-history/transaction-history'
+import { FavouriteFarmPage } from '../favourite-farm/favourite-farm'
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
@@ -15,8 +17,9 @@ export class ProfilePage {
   personal_info = null;
   role = null
 
-  TranHistory = TransactionHistoryPage;
   personaliseProfile = BuyerPersonaliseProfilePage;
+  tranHistory = TransactionHistoryPage;
+  favouriteFarmPage = FavouriteFarmPage
 
   constructor(
     private ev: Events,

@@ -48,6 +48,13 @@ page-about-us {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
+
+        .icon{
+            color: white;
+            font-size: 20px;
+            margin: auto;
+            padding-top: 8.5px;
+        }
     }
 
     .subtitle{
@@ -60,12 +67,6 @@ page-about-us {
         width: 90px;
     }
 
-    .icon{
-        color: white;
-        font-size: 20px;
-        margin: auto;
-        padding-top: 8.5px;
-    }
 
     .logo{
         width: 36px;
