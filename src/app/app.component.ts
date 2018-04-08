@@ -30,8 +30,7 @@ export class MyApp {
 	bottom_pages: any;
 	login: any;
 	guest: boolean = true;
-	display_name: string = 'Visitor';
-	profile_pic_url: string = null;
+	user_info = {};
 
   constructor(
 		private ev: Events,
@@ -71,10 +70,9 @@ export class MyApp {
 			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-handshake-o fa-fw fa-lg'},
 		]
 		
-		this.ev.subscribe('user_info', (identity, display_name, profile_pic_url) => {
-			this.display_name = display_name;
-			this.profile_pic_url = profile_pic_url;
-			switch(Number(identity)){
+		this.ev.subscribe('user_info', (user_info) => {
+			this.user_info = user_info;
+			switch(Number(user_info.identity)){
 				case 0:
 					this.guest = false;
 					this.upper_page = buyer_pages;
@@ -97,27 +95,19 @@ export class MyApp {
 		
 		this.storage.get('user_info').then((user_info)=>{
 			//push info to ionic event
-			if(user_info){
-				this.ev.publish('user_info', 
-								user_info.identity, 
-								user_info.display_name, 
-								user_info.profile_pic_url,
-								user_info.address,
-								user_info.phone_number);
-				this.ev.publish('user:token', user_info.token);
-				console.log(user_info);
-				
-			}
+			if(user_info)
+				this.ev.publish('user_info', user_info);	
 			//set deafult event
 			else{
-				this.ev.publish('user_info', 
-								-1,
-								'Visitor', 
-								null,
-								null,
-								null);
-				this.ev.publish('user:token', null);
-			}	
+				let guest_info = {
+					identity: -1,
+					display_name: 'Visitor',
+					profile_pic_url: null,
+					address: null,
+					phone_number: null,
+				}
+				this.ev.publish('user_info', guest_info);
+			}
 		})
 
 		//login button test
@@ -127,7 +117,7 @@ export class MyApp {
   	openPage(page) {
 		// Reset the content nav to have just this page
 		// we wouldn't want the back button to show in this scenario
-		this.nav.setRoot(page.component);
+		this.nav.setRoot(page.component, {user_info: this.user_info});
 		this.menu.close();
 	}
 

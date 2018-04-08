@@ -3,22 +3,31 @@
   </ion-header>
 
 <ion-content>
-  <div class="farmBlock">
+  <div *ngFor="let f of farmList" class="farmBlock">
     <div class="farmInfo">
-      <div class="farmIcon"></div>
+      <div class="farmIcon">
+        <img [src]="f.profile_pic_url">
+      </div>
       <div class="farmDetail">
-        <div class="name">Happy Farm
-          <div class="del" tappable><ion-icon name="md-close"></ion-icon></div>
-        </div>
-        <div class="info">  
-            <ion-icon name="md-pin"></ion-icon>&nbsp;Happy Road, Sai Kung, Hong Kong<br>
-            <ion-icon name="md-call"></ion-icon>&nbsp;24681234<br>
-            <ion-icon name="md-card"></ion-icon>&nbsp;Shipping coupon supported<br>
+        <div class="name">{{f.display_name}}</div>
+        <div class="info">
+            <div class="line">
+                <ion-icon name="md-pin"></ion-icon>
+                <span class="text">{{f.address}}</span>
+            </div>
+            <div class="line">
+                <ion-icon name="md-call"></ion-icon>
+                <span class="text">{{f.phone_number}}</span>
+            </div>
+            <div class="line">
+                <ion-icon name="md-card"></ion-icon>
+                <span class="text">Shipping coupon supported</span> 
+            </div>
         </div>
       </div>
     </div>
-
-    <div class="shopNow" (click)="pushPage(shop-now)" tappable><b>Shop in this farm now</b></div>
+    <div class="del" tappable><ion-icon name="md-close"></ion-icon></div>
+    <div class="shopNow" (click)="onShop(f.farm_id)" tappable><b>Shop in this farm now</b></div>
   </div>
 
 

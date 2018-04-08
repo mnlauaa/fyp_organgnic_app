@@ -14,6 +14,7 @@ export class ImageCropper{
   cropperInstance: any;
   croppedImg: any;
   pickMethod: any;
+  aspectRatioType: any;
   
   getCameraOptions(type) {
     let photo_type = null;
@@ -46,6 +47,7 @@ export class ImageCropper{
   ) {
     console.log('pickMethod', params.get('pickMethod'));
     this.pickMethod = params.get('pickMethod');
+    this.aspectRatioType = params.get('type');
     if(this.plt.is('cordova'))
       this.camera.getPicture(this.getCameraOptions(this.pickMethod)).then((imageData) => {
         this.imageElement.nativeElement.src = imageData;
@@ -68,18 +70,31 @@ export class ImageCropper{
     this.cropperInstance.rotate(num);
   }
 
-  changeImage(){
-    this.camera.getPicture(this.getCameraOptions(this.pickMethod)).then((imageData) => {
-      this.imageElement.nativeElement.src = imageData;
-      this.cropImage();
-    }, err => {
-
-    });
+  changeImage(change = false){
+    if(change){
+      this.camera.getPicture(this.getCameraOptions(this.pickMethod)).then((imageData) => {
+        this.cropperInstance.replace(imageData)
+      }, err => {
+        console.log(err)
+      });
+    } else {
+      this.camera.getPicture(this.getCameraOptions(this.pickMethod)).then((imageData) => {
+        this.imageElement.nativeElement.src = imageData;
+        this.cropImage();
+      }, err => {
+        
+      });
+    }
   }
 
   cropImage() {
+    let aspectRatio: number;
+    if(this.aspectRatioType == 0)
+      aspectRatio = 1 / 1
+    else
+      aspectRatio = 16.0 / 9.0;
     this.cropperInstance = new Cropper(this.imageElement.nativeElement, {
-        aspectRatio: 1 / 1, // square
+        aspectRatio: aspectRatio, // square
         modal: true,
         guides: false,
         highlight: false,
@@ -93,14 +108,22 @@ export class ImageCropper{
   }
 
   cropDone() {
-    this.cropperInstance.getCroppedCanvas({ width: 150, height: 150}).toBlob((blob)=>{
-      this.croppedImg = this.cropperInstance.getCroppedCanvas({ width: 150, height: 150}).toDataURL('image/jpeg');
-        let data = {
-          imageURL: this.croppedImg,
-          file: blob
-        }
-        this.view.dismiss(data);
-      })
+    let width, height;
+    if(this.aspectRatioType == 0){
+      width = 260;
+      height = 260;
+    } else {
+      width = 462;
+      height = 260;
+    }
+    this.cropperInstance.getCroppedCanvas({ width: width, height: height}).toBlob((blob)=>{
+      this.croppedImg = this.cropperInstance.getCroppedCanvas({ width: width, height: height}).toDataURL('image/jpeg');
+      let data = {
+        imageURL: this.croppedImg,
+        file: blob
+      }
+      this.view.dismiss(data);
+    })
 
     
     // console.log(this.croppedImg)

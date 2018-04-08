@@ -58,24 +58,22 @@ export class LoginPage {
         this.api.postMeLogin({username: username,
                               password: password})
       ]).then(data => {
-        this.api.getMe().then(user =>{
-          console.log(user);
-          let user_info = {
-            token: data[0].token,
-            identity: data[0].identity,
-            display_name: user.display_name,
-            profile_pic_url: user.profile_pic_url,
-            address: user.address,
-            phone_number: user.phone_number
-          }
-          this.storage.set('user_info', user_info).then((val)=>{
-            this.ev.publish('user_info', 
-                            user_info.identity, 
-                            user_info.display_name, 
-                            user_info.profile_pic_url,
-                            user_info.address,
-                            user_info.phone_number);
-            this.navCtrl.pop();
+        this.storage.set('user:token', data[0].token).then((val)=>{
+          this.ev.publish('user:token', val);
+          this.api.getMe().then(user =>{
+            console.log(user);
+            let user_info = {
+              identity: user.identity,
+              display_name: user.display_name,
+              profile_pic_url: user.profile_pic_url,
+              address: user.address,
+              phone_number: user.phone_number
+            }
+  
+            this.storage.set('user_info', user_info).then((val)=>{
+              this.ev.publish('user_info', val);
+              this.navCtrl.pop();
+            })
           })
         })
       }, err => {

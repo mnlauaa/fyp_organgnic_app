@@ -22,6 +22,9 @@ export class ApiService extends BaseService{
       this.token = token;
       console.log("login_subscribe: ", this.token)
     })
+    this.storage.get('user:token').then((token)=>{
+      this.token = token;
+    })
   }
 
   public getUserById(id){
@@ -30,6 +33,10 @@ export class ApiService extends BaseService{
 
   public getMe(){
     return this.get('/me', this.token)
+  }
+
+  public getMeFarm(){
+    return this.get('/me/farm/', this.token);
   }
 
   public getShopingCart(){
@@ -44,6 +51,7 @@ export class ApiService extends BaseService{
     return this.get('/users/farms');
   }
 
+
   public getMyFavourite(){
     return this.get('/me/favourite', this.token);
   }
@@ -55,7 +63,7 @@ export class ApiService extends BaseService{
 
     if(filter){
       if(filter.selection)
-      params['brand'] = filter.selection
+        params['brand'] = filter.selection
       if(filter.price_below)
         params['price_below'] = filter.price_below
       if(filter.price_above)
@@ -70,11 +78,7 @@ export class ApiService extends BaseService{
     const body = new HttpParams().set('username', data.username)
                                  .set('password', data.password);
 
-    return this.post('/me/login', body, type, this.token).then((data)=>{
-      this.ev.publish('user:token', data.token);
-      console.log('login: ',data)
-      return data;
-    })
+    return this.post('/me/login', body, type, this.token);
   }
 
   public postShopingCart(data){
@@ -88,12 +92,26 @@ export class ApiService extends BaseService{
   public putMe(data, file){
     var formData: FormData = new FormData();
     if(file)
-      formData.append('icon', file, "icon.png")
+      formData.append('icon', file, 'icon-' + Date.now() + '.png')
     formData.append('display_name', data.display_name)
     formData.append('address', data.address)
     formData.append('phone_number', data.phone_number)
     
     return this.put('/me', formData, this.token)
+  }
+
+  public putMeFarm(data, icon, banner){
+    var formData: FormData = new FormData();
+    if(icon)
+      formData.append('icon', icon, 'icon-' + Date.now() + '.png')
+    if(banner)
+      formData.append('banner', banner, 'banner-' + Date.now() + '.png')
+    formData.append('display_name', data.display_name)
+    formData.append('address', data.address)
+    formData.append('phone_number', data.phone_number)
+    formData.append('about_intro', data.about_intro)
+    
+    return this.put('/me/farm', formData, this.token)
   }
 
 }

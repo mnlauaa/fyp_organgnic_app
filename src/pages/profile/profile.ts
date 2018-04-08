@@ -14,12 +14,12 @@ export class ProfilePage {
   title = 'Profile';
   display_name = null;
   profile_pic_url = null;
-  personal_info = null;
+  user_info = {};
   role = null
 
   personaliseProfile = BuyerPersonaliseProfilePage;
   tranHistory = TransactionHistoryPage;
-  favouriteFarmPage = FavouriteFarmPage
+  favouriteFarmPage = FavouriteFarmPage;
 
   constructor(
     private ev: Events,
@@ -27,24 +27,15 @@ export class ProfilePage {
     public navCtrl: NavController, 
     public navParams: NavParams
   ) {
-    this.ev.subscribe('user_info', (identity, display_name, profile_pic_url) => {
-      this.display_name = display_name;
-      this.profile_pic_url = profile_pic_url;
+    this.user_info = navParams.get('user_info');
+    if(navParams.get('user_info').identity == 0)
+      this.role = "Buyer"
+    else  
+      this.role = "Farmer"
 
+    this.ev.subscribe('user_info', user_info => {
+      this.user_info = user_info
     });
-
-    this.storage.get('user_info').then((user_info)=>{
-      console.log(user_info)
-      if(user_info){
-        this.personal_info = user_info;
-        this.profile_pic_url = user_info.profile_pic_url;
-        this.display_name = user_info.display_name;
-        if(user_info.identity == 0)
-          this.role = "Buyer"
-        else  
-          this.role = "Farmer"
-			}
-    })
   }
 
   ionViewDidLoad() {
@@ -52,9 +43,7 @@ export class ProfilePage {
   }
 
   pushPage(page) {
-    this.navCtrl.push(page,{
-      personal_info: this.personal_info
-    });
+    this.navCtrl.push(page, {user_info: this.user_info});
   }
 
 }

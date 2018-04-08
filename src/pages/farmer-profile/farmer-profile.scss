@@ -6,8 +6,13 @@ page-farmer-profile {
         justify-content: flex-start;
 
         .banner{
-            height: 107px;
+            height: 200px;
             background-color: grey;
+
+            img{
+                height: 200px;
+                object-fit: cover;
+            }
         }
     
         .farmIcon{
@@ -18,8 +23,15 @@ page-farmer-profile {
             background-color: white;
             position: absolute;
             left: 15px;
-            top: 80px;
+            top: 170px;
             z-index: 2;
+
+            img{
+                border-radius: 50%;
+                object-fit: cover;
+                height: 71px;
+                width: 71px;
+            }
         }
     
         .info{
@@ -33,7 +45,6 @@ page-farmer-profile {
             padding-left: 15px;
 
             .farmName{
-                font-family: "Lantinghei SC";
                 font-size: 17px;
                 font-weight: "Extralight";
             }
@@ -41,7 +52,6 @@ page-farmer-profile {
             .identity{
                 font-size: 14px;
                 font-family: "Arial";
-                padding-bottom: 5px;
             }
 
             .farmInfo{
@@ -49,6 +59,22 @@ page-farmer-profile {
                 font-size: 14px;
                 font-family: "Arial";
                 padding: 3px;
+
+                .line{
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    margin: 5px 0;
+                    color: #7E7E7E;
+
+                    .icon{
+                        position: absolute;
+                    }
+
+                    .text{
+                        padding-left: 20px; 
+                    }
+                }
             }
         }
     }
