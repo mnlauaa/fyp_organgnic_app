@@ -6,7 +6,7 @@
 <ion-content>
   <div class="changeIcon">
     <div class="buyerIcon">
-      <img *ngIf="!edit_mode" [src]="personal_info.profile_pic_url">
+      <img *ngIf="!edit_mode" [src]="user_info.profile_pic_url">
       <img *ngIf="edit_mode" [src]="imgURL">
     </div>
 
@@ -28,21 +28,21 @@
     </div>
 
     <div *ngIf="!edit_mode" class="data">
-      {{personal_info.display_name}}
+      {{user_info.display_name}}
     </div>
 
     <div *ngIf="edit_mode" class="data editing">
-      <ion-input placeholder="{{personal_info.display_name}}" [(ngModel)]="edit_info.display_name"></ion-input>
+      <ion-input placeholder="{{user_info.display_name}}" [(ngModel)]="edit_info.display_name"></ion-input>
     </div>
     <br>
 
     <div class="dataTitle">Address</div>
 
     <div *ngIf="!edit_mode" class="data">
-      {{personal_info.address}}
+      {{user_info.address}}
     </div>
     <div *ngIf="edit_mode" class="data editing">
-      <ion-input placeholder="{{personal_info.address}}" [(ngModel)]="edit_info.address"></ion-input>
+      <ion-input placeholder="{{user_info.address}}" [(ngModel)]="edit_info.address"></ion-input>
     </div>
     <br>
 
@@ -50,10 +50,10 @@
     <div class="dataTitle">Contact no.</div>
 
     <div *ngIf="!edit_mode" class="data">
-      {{personal_info.phone_number}}
+      {{user_info.phone_number}}
     </div>
     <div *ngIf="edit_mode" class="data editing">
-      <ion-input type="number" placeholder="{{personal_info.phone_number}}" [(ngModel)]="edit_info.phone_number"></ion-input>
+      <ion-input type="number" placeholder="{{user_info.phone_number}}" [(ngModel)]="edit_info.phone_number"></ion-input>
     </div>
   </div>
 

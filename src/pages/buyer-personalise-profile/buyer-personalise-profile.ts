@@ -18,11 +18,12 @@ import { ImageCropper } from '../../components/image-cropper/image-cropper'
 })
 export class BuyerPersonaliseProfilePage {
   title = "Personalise Profile";
-  personal_info: any = {};
+  user_info: any = {};
   edit_mode: boolean = false;
   imgURL: any;
   imgFile: any;
   edit_info: any = {};
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -32,11 +33,10 @@ export class BuyerPersonaliseProfilePage {
     private storage: Storage,
     protected api: ApiService
   ) {
-    this.storage.get('user_info').then((user_info)=>{
-      if(user_info){
-        this.personal_info = user_info
-			}
-    })
+    this.user_info = navParams.get('user_info');
+    this.ev.subscribe('user_info', user_info => {
+      this.user_info = user_info
+    });
   }
 
   ionViewDidLoad() {
@@ -45,31 +45,24 @@ export class BuyerPersonaliseProfilePage {
 
   onSubmit(){
     let data = this.edit_info
-        data.display_name = data.display_name ? data.display_name : this.personal_info.display_name;
-        data.address = data.address ? data.address : this.personal_info.address;
-        data.phone_number = data.phone_number ? data.phone_number : this.personal_info.phone_number;
+        data.display_name = data.display_name ? data.display_name : this.user_info.display_name;
+        data.address = data.address ? data.address : this.user_info.address;
+        data.phone_number = data.phone_number ? data.phone_number : this.user_info.phone_number;
     
     this.api.startQueue([
       this.api.putMe(data, this.imgFile)
     ]).then(data=>{
       this.api.getMe().then(user =>{
-        let user_info = {
+        let temp_user_info = {
           identity: user.identity,
           display_name: user.display_name,
           profile_pic_url: user.profile_pic_url,
           address: user.address,
           phone_number: user.phone_number
         }
-        this.personal_info = user_info;
-        console.log(this.personal_info);
-        this.storage.set('user_info', user_info).then((val)=>{
-          this.ev.publish('user_info', 
-                          user_info.identity, 
-                          user_info.display_name, 
-                          user_info.profile_pic_url,
-                          user_info.address,
-                          user_info.phone_number);
-          
+
+        this.storage.set('user_info', temp_user_info).then((val)=>{
+          this.ev.publish('user_info', temp_user_info);
         })
         this.edit_mode = false;
       })
@@ -84,7 +77,7 @@ export class BuyerPersonaliseProfilePage {
       address: null,
       phone_number: null,
     }
-    this.imgURL = this.personal_info.profile_pic_url;
+    this.imgURL = this.user_info.profile_pic_url;
     this.edit_mode = true;
   }
 

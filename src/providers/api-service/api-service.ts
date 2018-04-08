@@ -22,6 +22,9 @@ export class ApiService extends BaseService{
       this.token = token;
       console.log("login_subscribe: ", this.token)
     })
+    this.storage.get('user:token').then((token)=>{
+      this.token = token;
+    })
   }
 
   public getUserById(id){
@@ -70,11 +73,7 @@ export class ApiService extends BaseService{
     const body = new HttpParams().set('username', data.username)
                                  .set('password', data.password);
 
-    return this.post('/me/login', body, type, this.token).then((data)=>{
-      this.ev.publish('user:token', data.token);
-      console.log('login: ',data)
-      return data;
-    })
+    return this.post('/me/login', body, type, this.token);
   }
 
   public postShopingCart(data){

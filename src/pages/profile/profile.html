@@ -5,10 +5,10 @@
 <ion-content >
     <div class="content">
         <div class="proPic">
-            <i *ngIf="!profile_pic_url" class="fa fa-user-circle fa-7x icon"></i>
-            <img *ngIf="profile_pic_url" [src]=profile_pic_url>
+            <i *ngIf="!user_info.profile_pic_url" class="fa fa-user-circle fa-7x icon"></i>
+            <img *ngIf="user_info.profile_pic_url" [src]=user_info.profile_pic_url>
         </div>
-        <div class="userName">{{display_name}}</div>
+        <div class="userName">{{user_info.display_name}}</div>
         <div class="role">{{role}}</div>
         
         
