@@ -12,7 +12,10 @@ import { ImageCropper } from '../../components/image-cropper/image-cropper'
 export class BuyerPersonaliseProfilePage {
   title = "Personalise Profile";
   personal_info: any;
-  edit_mode:boolean = false;
+  edit_mode: boolean = false;
+  imgURL: any;
+  imgFile: any;
+  edit_info: any = {};
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -21,11 +24,35 @@ export class BuyerPersonaliseProfilePage {
     protected api: ApiService
   ) {
     this.personal_info = navParams.get('personal_info');
-    console.log(this.personal_info)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BuyerPersonaliseProfilePage');
+  }
+
+  onSubmit(){
+    let data = this.edit_info
+        data.display_name = data.display_name ? data.display_name : this.personal_info.display_name;
+        data.address = data.address ? data.address : this.personal_info.address;
+        data.phone_number = data.phone_number ? data.phone_number : this.personal_info.phone_number;
+
+    this.api.startQueue([
+      this.api.putMe(data, this.imgFile)
+    ]).then(data=>{
+      console.log(data)
+    }, err=>{
+      console.log(err)
+    })
+  }
+
+  editModeOn(): void {
+    this.edit_info = {
+      display_name : null,
+      address: null,
+      phone_number: null,
+    }
+    this.imgURL = this.personal_info.profile_pic_url;
+    this.edit_mode = true;
   }
 
   presentActionSheet() {
@@ -36,7 +63,9 @@ export class BuyerPersonaliseProfilePage {
           handler: () => {
             let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 0 });
             profileModal.onDidDismiss(data =>{
-              console.log(data )
+              if(data)
+                this.imgURL = data.imageURL;
+                this.imgFile = data.file;
             })
             profileModal.present();
           }

@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Camera, CameraOptions  } from '@ionic-native/camera';
-import { NavParams, Platform } from 'ionic-angular';
+import { NavParams, Platform, ViewController } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service/api-service'
 import Cropper from 'cropperjs';
 
 @Component({
@@ -39,16 +40,16 @@ export class ImageCropper{
   constructor(
     private params: NavParams,
     private camera: Camera,
-    private plt: Platform
+    private plt: Platform,
+    public  view: ViewController,
+    public api: ApiService
   ) {
     console.log('pickMethod', params.get('pickMethod'));
     this.pickMethod = params.get('pickMethod');
     if(this.plt.is('cordova'))
       this.camera.getPicture(this.getCameraOptions(this.pickMethod)).then((imageData) => {
-      
-      // this was the only way i was able to dynamically change the source
-      this.imageElement.nativeElement.src = imageData;
-      this.cropImage();
+        this.imageElement.nativeElement.src = imageData;
+        this.cropImage();
       }, (error) => {
         // do what you want
       });
@@ -69,8 +70,6 @@ export class ImageCropper{
 
   changeImage(){
     this.camera.getPicture(this.getCameraOptions(this.pickMethod)).then((imageData) => {
-      this.cropperInstance.clear();
-      // this was the only way i was able to dynamically change the source
       this.imageElement.nativeElement.src = imageData;
       this.cropImage();
     }, err => {
@@ -94,8 +93,19 @@ export class ImageCropper{
   }
 
   cropDone() {
-    this.croppedImg = this.cropperInstance.getCroppedCanvas({ width: 150, height: 150}).toDataURL('image/jpeg');
-    console.log(this.croppedImg)
+    this.cropperInstance.getCroppedCanvas({ width: 150, height: 150}).toBlob((blob)=>{
+      this.croppedImg = this.cropperInstance.getCroppedCanvas({ width: 150, height: 150}).toDataURL('image/jpeg');
+        let data = {
+          imageURL: this.croppedImg,
+          file: blob
+        }
+        this.view.dismiss(data);
+      })
+
+    
+    // console.log(this.croppedImg)
+    // this.view.dismiss(this.croppedImg);
+    // console.log(this.croppedImg)
     // do whatever you want with base64 variable croppedImg
   }
 
