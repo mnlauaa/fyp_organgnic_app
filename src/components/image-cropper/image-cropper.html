@@ -7,7 +7,7 @@
       <div class="submit-button" (click)="cropDone()" tappable>
           <ion-icon name="md-checkmark"></ion-icon>
       </div>
-      <div class="change-button" (click)="changeImage()" tappable>
+      <div class="change-button" (click)="changeImage(true)" tappable>
           <ion-icon name="md-image"></ion-icon>
       </div>
     </div>
@@ -32,16 +32,16 @@
         </div>
 
       <div class="sub-botton-group">
-        <div class="method-button" (click)="move(-10, 0)" tappable>
+        <div class="method-button" (click)="move(-20, 0)" tappable>
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
         </div>
-        <div class="method-button" (click)="move(10, 0)" tappable>
+        <div class="method-button" (click)="move(20, 0)" tappable>
           <i class="fa fa-arrow-right" aria-hidden="true"></i>
         </div>
-        <div class="method-button" (click)="move(0, -10)" tappable >
+        <div class="method-button" (click)="move(0, -20)" tappable >
           <i class="fa fa-arrow-up" aria-hidden="true"></i>
         </div>
-        <div class="method-button" (click)="move(0, 10)" tappable>
+        <div class="method-button" (click)="move(0, 20)" tappable>
           <i class="fa fa-arrow-down" aria-hidden="true"></i>
         </div>
       </div>

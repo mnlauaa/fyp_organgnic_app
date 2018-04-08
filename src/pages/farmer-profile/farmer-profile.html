@@ -4,15 +4,28 @@
   
     <ion-content>
         <div class="top">
-            <div class="banner"></div>
-            <div class="farmIcon"></div>
+            <div class="banner">
+                <img [src]="user_info.banner_pic_url">
+            </div>
+            <div class="farmIcon">
+                <img [src]="user_info.profile_pic_url">
+            </div>
             <div class="info">
-                <div class="farmName">Happy Farm</div>
+                <div class="farmName">{{user_info.display_name}}</div>
                 <div class="identity">Farmer</div>
                 <div class="farmInfo">
-                    <ion-icon name="md-pin"></ion-icon>&nbsp;Happy Road, Sai Kung, Hong Kong<br>
-                    <ion-icon name="md-call"></ion-icon>&nbsp;24681234<br>
-                    <ion-icon name="md-card"></ion-icon>&nbsp;Shipping coupon supported
+                    <div class="line">
+                        <ion-icon name="md-pin"></ion-icon>
+                        <span class="text">{{user_info.address}}</span>
+                    </div>
+                    <div class="line">
+                        <ion-icon name="md-call"></ion-icon>
+                        <span class="text">{{user_info.phone_number}}</span>
+                    </div>
+                    <div class="line">
+                        <ion-icon name="md-card"></ion-icon>
+                        <span class="text">Shipping coupon supported</span> 
+                    </div>
                 </div>
             </div>
         </div>

@@ -87,7 +87,7 @@ export class BuyerPersonaliseProfilePage {
         {
           text: 'Take Photo',
           handler: () => {
-            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 0 });
+            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 0, type: 0 });
             profileModal.onDidDismiss(data =>{
               if(data){
                 this.imgURL = data.imageURL;
@@ -100,7 +100,7 @@ export class BuyerPersonaliseProfilePage {
         {
           text: 'Pick Image',
           handler: () => {
-            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 1 });
+            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 1, type: 0 });
             profileModal.onDidDismiss(data =>{
               if(data){
                 this.imgURL = data.imageURL;

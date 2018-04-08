@@ -4,64 +4,101 @@
   
 <ion-content>
     <div class="changeIcon">  
-        <div class="sellerIcon">
-          
+      <div class="sellerIcon">
+          <img *ngIf="!edit_mode" [src]="user_info.profile_pic_url">
+          <img *ngIf="edit_mode" [src]="icon_imgURL">
+      </div>
+
+      <div class="edit-button" *ngIf="edit_mode" (click)="presentActionSheet(0)" tappable>
+        <div class="change">
+          <ion-icon name="ios-camera"></ion-icon>
+          Change icon
+        </div>   
+      </div>
+    </div>
+    
+    <div class="changeCover">
+      <div>
+          <div class="title">Cover photo</div>
+          <div *ngIf="!edit_mode" class="edit" (click)="editModeOn()" tappable>
+            <ion-icon name="md-create"></ion-icon>
+          </div>
+      </div>
+      <div class="coverPhoto">
+        <img *ngIf="!edit_mode" [src]="user_info.banner_pic_url">
+        <img *ngIf="edit_mode" [src]="banner_imgURL">
+      </div>
+      <div class="edit-button" *ngIf="edit_mode" (click)="presentActionSheet(1)" tappable>
+        <div class="change">
+          <ion-icon name="ios-camera"></ion-icon>
+          Change icon
+        </div>   
+      </div>
+
+    </div>
+
+
+
+    <div class="changeData">
+      <div>
+        <div class="dataTitle">Name</div>
+        <div *ngIf="!edit_mode" class="edit" (click)="editModeOn()" tappable>
+          <ion-icon name="md-create"></ion-icon>
         </div>
       </div>
-    
-      <div class="changeCover">
+  
+      <div *ngIf="!edit_mode" class="data">
+        {{user_info.display_name}}
+      </div>
+  
+      <div *ngIf="edit_mode" class="data editing">
+        <ion-input placeholder="{{user_info.display_name}}" [(ngModel)]="edit_info.display_name"></ion-input>
+      </div>
+      <br>
+  
+      <div class="dataTitle">Address</div>
+  
+      <div *ngIf="!edit_mode" class="data">
+        {{user_info.address}}
+      </div>
+      <div *ngIf="edit_mode" class="data editing">
+        <ion-input placeholder="{{user_info.address}}" [(ngModel)]="edit_info.address"></ion-input>
+      </div>
+      <br>
+  
+      
+      <div class="dataTitle">Contact no.</div>
+  
+      <div *ngIf="!edit_mode" class="data">
+        {{user_info.phone_number}}
+      </div>
+      <div *ngIf="edit_mode" class="data editing">
+        <ion-input type="number" placeholder="{{user_info.phone_number}}" [(ngModel)]="edit_info.phone_number"></ion-input>
+      </div>
+    </div>
+
+    <div class="changeAbout">
         <div>
-            <div class="title">Cover photo</div>
-            <div class="edit" (click)="edit_mode = true" tappable>
+            <div class="title">About</div>
+            <div *ngIf="!edit_mode" class="edit" (click)="editModeOn()" tappable>
               <ion-icon name="md-create"></ion-icon>
             </div>
         </div>
-        <div class="coverPhoto"></div>
-      </div>
-
-      <div class="changeData">
-        <div>
-          <div class="dataTitle">Name</div>
-          <div class="edit" (click)="edit_mode = true" tappable>
-            <ion-icon name="md-create"></ion-icon>
-          </div>
+        <div *ngIf="!edit_mode"class="aboutContent">
+            {{user_info.about_intro}}
         </div>
-          <div class="data">
-            Happy Farm
-          </div><br>
-        <div class="dataTitle">Address</div>
-          <div class="data">
-            Happy Road, Sai Kung, Hong Kong
-          </div><br>
-        <div class="dataTitle">Contact no.</div>
-          <div class="data">
-            24681234
-          </div>
-      </div>
-
-      <div class="changeAbout">
-          <div>
-              <div class="title">About</div>
-              <div class="edit" (click)="edit_mode = true" tappable>
-                <ion-icon name="md-create"></ion-icon>
-              </div>
-          </div>
-          <div class="aboutPhoto"></div>
-          <div class="aboutContent">
-              We persist to provide the best quality organic food 
-              to you. Our farm mainly produce green vegetables, 
-              potato, tomato, and apple. Sometimes, we offer our 
-              recommendation package for those who can’t 
-              decide what to eat too!
-          </div>
-      </div>
+        <div *ngIf="edit_mode" class="aboutContent">
+          <ion-textarea placeholder="{{user_info.about_intro}}" [(ngModel)]="edit_info.about_intro"></ion-textarea>
+        </div>
+        
+    </div>
     
-      <div class="button_session">
-        <div class="button submit">
-          Submit
-        </div>
-        <div class="button cancel" (click)="edit_mode = false" tappable>
-          Cancel
-        </div>
+    <div *ngIf="edit_mode" class="button_session">
+      <div class="button submit" (click)="onSubmit()" tappable>
+        Submit
       </div>
+      <div class="button cancel" (click)="edit_mode = false" tappable>
+        Cancel
+      </div>
+    </div>
 </ion-content>
