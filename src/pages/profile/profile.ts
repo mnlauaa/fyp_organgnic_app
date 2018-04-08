@@ -19,7 +19,7 @@ export class ProfilePage {
 
   personaliseProfile = BuyerPersonaliseProfilePage;
   tranHistory = TransactionHistoryPage;
-  favouriteFarmPage = FavouriteFarmPage
+  favouriteFarmPage = FavouriteFarmPage;
 
   constructor(
     private ev: Events,

@@ -34,13 +34,11 @@ export class TheMarketPage {
     public api: ApiService
   ) {
     this.keyword = navParams.get('keyword');
+    this.filter_list = navParams.get('filter_list') || { favourite: false,
+                                                         selection: [],
+                                                         price_below: null,
+                                                         price_above: null}
     this.getProductList();
-    this.filter_list = {
-      favourite: false,
-      selection: [],
-      price_below: null,
-      price_above: null
-    }
   }
 
   //update product list

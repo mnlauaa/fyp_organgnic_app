@@ -58,7 +58,7 @@ export class ApiService extends BaseService{
 
     if(filter){
       if(filter.selection)
-      params['brand'] = filter.selection
+        params['brand'] = filter.selection
       if(filter.price_below)
         params['price_below'] = filter.price_below
       if(filter.price_above)
