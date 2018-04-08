@@ -30,7 +30,6 @@ export class ProfilePage {
     this.ev.subscribe('user_info', (identity, display_name, profile_pic_url) => {
       this.display_name = display_name;
       this.profile_pic_url = profile_pic_url;
-
     });
 
     this.storage.get('user_info').then((user_info)=>{
@@ -52,9 +51,7 @@ export class ProfilePage {
   }
 
   pushPage(page) {
-    this.navCtrl.push(page,{
-      personal_info: this.personal_info
-    });
+    this.navCtrl.push(page);
   }
 
 }
