@@ -3,10 +3,11 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../../core/base-service';
 import { Events, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Config } from '../../config'
 
 @Injectable()
 export class ApiService extends BaseService{
-  protected api_prefix: string = 'http://localhost:3000';
+  protected api_prefix: string = Config.SERVER;
   private token = null;
   
 
@@ -14,7 +15,7 @@ export class ApiService extends BaseService{
     public http: HttpClient,
     private ev: Events,
     protected loadingCtrl: LoadingController,
-    private storage: Storage,
+    private storage: Storage
   ) {
     super(http, loadingCtrl);
     this.ev.subscribe('user:token', (token) => {
@@ -82,6 +83,17 @@ export class ApiService extends BaseService{
                                  .set('product_id', data.product_id)
                                  .set('qty', data.qty)
     return this.post('/me/shopping_cart', body, type, this.token)
+  }
+
+  public putMe(data, file){
+    var formData: FormData = new FormData();
+    if(file)
+      formData.append('icon', file, "icon.png")
+    formData.append('display_name', data.display_name)
+    formData.append('address', data.address)
+    formData.append('phone_number', data.phone_number)
+    
+    return this.put('/me', formData, this.token)
   }
 
 }

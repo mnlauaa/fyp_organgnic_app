@@ -39,12 +39,25 @@ export class BaseService {
         });
     }
 
-    // POST request, x-www-form-urlencoded
+    // POST request
     protected post(url, body: HttpParams = null, type = null, auth = null): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.post(url, body.toString(), {
                 headers: new HttpHeaders().set('Content-Type', type).set('Authorization', 'jwt ' + auth)
+            })
+            .subscribe(data => {
+                resolve(data);
+            }, err => reject(err));
+        });
+    }
+    
+    // PUT request
+    protected put(url, formData: FormData, auth = null): Promise<any>{
+        url = this.api_prefix + url;
+        return new Promise((resolve, reject) => {
+            this.http.put(url, formData, {
+                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth)
             })
             .subscribe(data => {
                 resolve(data);
