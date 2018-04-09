@@ -12,11 +12,10 @@ import { Component } from '@angular/core';
 })
 export class ProductChange {
 
-  text: string;
+  title = "Add product"
 
   constructor() {
     console.log('Hello ProductChangeComponent Component');
-    this.text = 'Hello World';
   }
 
 }

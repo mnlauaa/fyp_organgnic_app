@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, PopoverController, ActionSheetController } from 'ionic-angular';
-import { FilterBox } from '../../components/filter-box/filter-box'
-import { SortingBox } from '../../components/sorting-box/sorting-box'
+import { NavController, NavParams, PopoverController, ActionSheetController, ModalController } from 'ionic-angular';
 import { SingleProductPage } from '../single-product/single-product'
 import { ApiService } from '../../providers/api-service/api-service'
+
+import { ProductChange } from '../../components/product-change/product-change'
 
 @Component({
   selector: 'page-seller-personalise-products',
@@ -28,7 +28,8 @@ export class SellerPersonaliseProductsPage {
     public navParams: NavParams,
     public popoverCtrl: PopoverController,
     public api: ApiService,
-    public actionSheetCtrl: ActionSheetController
+    public actionSheetCtrl: ActionSheetController,
+    private modalCtrl: ModalController,
   ) {
     this.user_info = navParams.get('user_info');
     this.filter_list = { 
@@ -46,7 +47,10 @@ export class SellerPersonaliseProductsPage {
         {
           text: 'Edit',
           handler: () => {
-            console.log('Edit clicked');
+            let profileModal = this.modalCtrl.create(ProductChange, { product: p });
+            profileModal.onDidDismiss(data =>{
+            })
+            profileModal.present();
           }
         },
         {
