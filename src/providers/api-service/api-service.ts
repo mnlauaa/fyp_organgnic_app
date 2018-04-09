@@ -44,7 +44,7 @@ export class ApiService extends BaseService{
   }
 
   public getNews(){
-    return this.get('/news');
+    return this.get('/news/');
   }
 
   public getFarms(){
@@ -79,6 +79,17 @@ export class ApiService extends BaseService{
                                  .set('password', data.password);
 
     return this.post('/me/login', body, type, this.token);
+  }
+
+  public postNews(data){
+    let type = 'application/x-www-form-urlencoded';
+    const body = new HttpParams().set('datatime', data.datetime)
+                                 .set('farm_id', data.farm_id)
+                                 .set('title', data.title)
+                                 .set('description', data.description)
+                                 .set('image_url', data.image_url);
+                
+    return this.post('/news', body, type, this.token)
   }
 
   public postShopingCart(data){
