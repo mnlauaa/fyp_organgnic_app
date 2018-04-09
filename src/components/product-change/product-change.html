@@ -2,5 +2,39 @@
   <my-navbar [enable_shopping_button]="false" [enable_close]="true" [enable_menu]="false" [title]="title"></my-navbar>
 </ion-header>
 <ion-content>
+  <div class="page">
+      <div class="content">
+          <div class="photo">
+            <div class="uploadButton">
+              <div><ion-icon name="md-camera"></ion-icon></div>
+              <div>&nbsp;Upload</div>
+            </div>
+          </div>
+
+          <div class="editForm">
+            <div class="title">Product</div>
+            <div class="productLine"></div>
+            <br>
+            <div class="title">Product Category</div>
+            <div class="catDropDownList"></div><br>
+            <div class="title">Price</div>
+            <div class="priceRow">
+              <span>$</span>&nbsp;<div class="priceBox"></div>&nbsp; / &nbsp;<div class="priceBox"></div>&nbsp;<div class="unitDropDownList"></div>
+            </div><br>
+            <div class="specialOfferLine"><div class="checkBox"></div>&nbsp;&nbsp;<div class="specialOffer">Special Offer</div></div>
+            <div class="specialPriceRow">
+              <span>$</span>&nbsp;<div class="priceBox"></div>&nbsp; / &nbsp;<div class="priceBox"></div>&nbsp;<div class="unitDropDownList"></div>
+            </div><br>
+            <div class="soTitle">Offer Due Date</div>
+            <div class="chooseDate"></div><br>
+            <div class="soTitle">Description</div>
+            <div class="desBox"></div>
+          </div>
+      </div>
+
+      <div class="submit-button" tappable>
+          <div class="button-text">Submit</div>
+      </div>
+  </div>
 
 </ion-content>

@@ -1,3 +1,162 @@
 product-change {
+    .page{
+        background-color: #EEEEEE;
 
+        .content{
+            display: flex;
+            flex-direction: column;
+            flex: space-between;
+            border-radius: 2%;
+            margin: 7px; 
+            padding: 10px;
+            background-color: white;
+            position: relative;
+            height: 570px;
+            align-items: center;
+    
+            .photo{
+                width: 130px;
+                height: 130px;
+                background-color: rgb(228, 228, 228);
+                position: relative;
+
+                .uploadButton{
+                    width: 75px;
+                    height: 25px;
+                    display: flex;
+                    flex-direction: row;
+                    flex: space-between;
+                    border-radius: 2%;
+                    background-color: rgb(245, 245, 245);
+                    position: absolute;
+                    right: 0px;
+                    bottom: 0px;
+                    color: rgb(63, 63, 63);
+                    padding: 4px;
+                }
+            }
+
+            .editForm{
+                align-items: left;
+                display: flex;
+                flex-direction: column;
+                flex: space-between;
+                position: absolute;
+                left: 13px;
+                top: 150px;
+
+                .title{
+                    font-size: 16px;
+                    padding: 1px;
+                }
+
+                .productLine{
+                    width: 298px;
+                    height: 25px;
+                    border-bottom: solid 1px #808080;
+                }
+
+                .catDropDownList{
+                    height: 25px;
+                    width: 298px;
+                    background-color: rgb(177, 177, 177);
+                }
+
+                .priceRow{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .unitDropDownList{
+                        width: 70px;
+                        height: 25px;
+                        background-color: rgb(177, 177, 177);
+                    }
+    
+                    .priceBox{
+                        width: 80px;
+                        height: 25px;
+                        border-bottom: 1px #808080 solid;
+                    }
+                }
+
+                .specialOfferLine{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin-left: 2px;
+
+                    .specialOffer{
+                        color: #808080;
+                        font-size: 16px;
+                        padding: 1px;
+                    }
+                    
+                    .checkBox{
+                        width: 15px;
+                        height: 15px;
+                        border: 1px #808080 solid;
+                        border-radius: 1%;
+                    }
+                }
+
+                .specialPriceRow{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    color: #808080;
+                    padding-left: 25px;
+
+                    .unitDropDownList{
+                        width: 70px;
+                        height: 25px;
+                        background-color: rgb(177, 177, 177);
+                    }
+    
+                    .priceBox{
+                        width: 80px;
+                        height: 25px;
+                        border-bottom: 1px #808080 solid;
+                    }
+                }
+
+                .soTitle{
+                    color: #808080;
+                    padding-left: 25px;
+                }
+
+                .chooseDate{
+                    width: 270px;
+                    height: 25px;
+                    background-color: rgb(177, 177, 177);
+                    margin-left: 25px;
+                    margin-top: 2px;
+                }
+
+                .desBox{
+                    width: 270px;
+                    height: 80px;
+                    border: solid 1px #808080;
+                    margin-left: 25px;
+                    margin-top: 2px;
+                }
+                
+            }
+    }
+
+    .submit-button{
+        background-color: #027B73;
+        height: 50px;
+        margin: 7px; 
+        padding: 13px;        
+
+        .button-text{
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-align: center;
+        }
+    }
+
+    }
 }
