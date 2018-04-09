@@ -8,7 +8,14 @@ page-seller-operational-setting {
         padding: 10px;
         background-color: white;
         position: relative;
-        height: 83px;
+
+        .edit{
+            display: inline-block;
+            position: absolute;
+            padding: 5px;
+            right: 15px;
+            color: #027B73;
+        }
 
         .title{
             font-size: 19px;
@@ -18,11 +25,11 @@ page-seller-operational-setting {
         
         .listRow{
             display: flex;
-            flex-direction: row;
-            flex: flex-start;
+            justify-content: space-between;
             position: relative;
             align-items: center;
-            padding: 10px 0px 10px 0px;
+            min-height: 30px;
+            padding: 3px 0;
 
             .listItem{
                 padding-left: 10px;
@@ -37,12 +44,35 @@ page-seller-operational-setting {
             }
     
             .switch{
-                width: 41px;
-                height: 26px;
                 display: inline-block;
-                position: absolute;
-                right: 17px;
+                // position: absolute;
+                margin-right: 10px;
                 zoom: 0.8;
+            }
+
+            .cost{
+                color: #707070;
+                font-size: 14px;
+                margin-left: 20px;
+                padding-top: 3px;
+            }
+
+            .edit_cost{
+                display: flex;
+                padding-top: 3px;
+                font-size: 14px;
+                margin-left: 20px;
+                vertical-align: middle;
+
+                .doller{
+                    padding-top: 5px;
+                }
+
+                .text-input{
+                    margin: 5px;
+                    border-bottom: 1px solid #707070;
+                    width: 30px;
+                }
             }
         }
     }
@@ -56,7 +86,6 @@ page-seller-operational-setting {
         padding: 10px;
         background-color: white;
         position: relative;
-        height:150px;
 
         .titleLine{
             display: flex;
@@ -64,7 +93,7 @@ page-seller-operational-setting {
             flex: flex-start;
             position: relative;
             align-items: center;
-            padding: 10px 0px 10px 0px;
+            padding: 3px 0;
   
             .title{
                 font-size: 19px;
@@ -89,23 +118,55 @@ page-seller-operational-setting {
 
         .listRow{
             display: flex;
-            flex-direction: row;
-            flex: flex-start;
+            justify-content: space-between;
             position: relative;
             align-items: center;
-            padding: 15px 0px 15px 0px;
+            min-height: 30px;
+            padding: 3px 0;
 
             .pickUpPoint{
                 padding-left: 10px;
                 display: inline-block;
             }
+
+            .cost{
+                color: #707070;
+                font-size: 14px;
+                margin-left: 20px;
+                padding-top: 3px;
+            }
+
+            .edit_cost{
+                display: flex;
+                padding-top: 3px;
+                font-size: 14px;
+                margin-left: 20px;
+                vertical-align: middle;
+
+                .doller{
+                    padding-top: 5px;
+                }
+
+                .text-input{
+                    margin: 5px;
+                    border-bottom: 1px solid #707070;
+                    width: 30px;
+                }
+            }
+
+            .remove-button{
+                position: absolute;
+                left: 5px;
+                padding: 5px;
+                color: red;
+            }
     
             .switch{
-                width: 41px;
-                height: 26px;
+                // width: 41px;
+                // height: 26px;
                 display: inline-block;
-                position: absolute;
-                right: 17px;
+                // position: absolute;
+                right: 10px;
                 zoom: 0.8;
             }
 
@@ -113,6 +174,10 @@ page-seller-operational-setting {
                 padding-left: 10px;
                 display: inline-block;
             }
+        }
+
+        .editing{
+            padding-left: 25px;
         }
        
     }
@@ -162,8 +227,7 @@ page-seller-operational-setting {
 
         .listRow{
             display: flex;
-            flex-direction: row;
-            flex: flex-start;
+            justify-content: space-between;
             position: relative;
             align-items: center;
             padding: 15px 0px 15px 0px;
@@ -174,13 +238,37 @@ page-seller-operational-setting {
             }
     
             .switch{
-                width: 41px;
-                height: 26px;
+                // width: 41px;
+                // height: 26px;
                 display: inline-block;
-                position: absolute;
-                right: 17px;
+                // position: absolute;
+                margin-right: 10px;
                 zoom: 0.8;
             }
+        }
+    }
+
+    .button_session{
+        display: flex;
+        justify-content:space-between;
+        margin: 10px 7px;
+        
+        .button{
+            height: 30px;
+            width: 49%;
+            font-size: 18px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .submit{
+            background-color: #027B73;
+            color: #fff;
+        }
+
+        .cancel{
+            background-color: rgb(119, 119, 119);
+            color: #fff;
         }
     }
 }
