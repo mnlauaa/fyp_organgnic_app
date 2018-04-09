@@ -1,3 +1,137 @@
 page-seller-personalise-products {
+    .search-block{
+        height: 42px;
+        background-color: #00a69c;
+        .searchbar{
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            margin: 0 18px;
+            padding: 0 5px;
+
+            ion-icon {
+                font-size: 22px;
+                // line-height: 23px;
+                padding: 10px;
+                color: #027B73;
+            }
+
+            .text-input {
+                width: calc(100% - 8px - 8px);
+                padding-right: 0px;
+            }
+        }
+    }
+
+    .filter-area{
+        height: 50px;
+        padding: 7px 18px;
+        background-color: #00a69c;
+        color: #FFFFFF;
+        font-size: 16px;
+
+        .num-of-result{
+            display: inline-block;
+            line-height: 36px;
+            padding-left: 2px;        
+        }
+    }
+
+    .fixed-add-button{
+        position: fixed;
+        height: 60px;
+        width: 60px;
+        bottom: 20px;
+        right: 15px;
+        background: #027B73;
+        border-radius: 50%;
+        text-align: center;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+
+        .icon{
+            font-size: 40px;
+            line-height: 60px;
+            font-weight: bold;
+            color: white;
+            
+        }
+    }
+
+    .product-block{
+        position: relative;
+        display: flex;
+        background-color: #FFFFFF;
+        margin: 2px;
+        height: 143px;
+        padding: 8px;
+
+        img{
+            object-fit: cover;
+            height: 124px;
+            width: 124px;
+        }
+
+        .fixed-box{
+            position: absolute;
+            top: 0px;
+            right: 6px;
+            padding: 5px;
+            z-index: 2;
+            .icon{
+                font-size: 30px;
+                line-height: 20px;
+                font-weight: bold;
+                color: #027B73;
+            }
+        }
+
+        .product-info{
+            margin: 6px 15px;
+
+            .title{
+                font-size: 17px;
+                color: #000000;
+                white-space: nowrap;
+                overflow : hidden;
+                text-overflow : ellipsis;
+            }
+
+            .farm-name{
+                font-size: 12px;
+                color: #B9B7B7;
+                margin: 6px 0;
+            }
+
+            .price{
+                font-size: 15px;
+                padding: 10px 0;
+            }
+
+            .rating{
+                color: #FCA706;
+                font-size: 20px;
+            }
+        }
+
+        .detail-block{
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            float: right;
+            font-size: 11px;
+            color: #505050;
+
+
+            ion-icon{
+                padding-left: 8px;
+                line-height: 14px;
+            }
+        }
+
+    }
 
 }
