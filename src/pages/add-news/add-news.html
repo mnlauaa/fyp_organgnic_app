@@ -11,19 +11,19 @@
       Title
     </div>
     <div class="data-title">
-        <ion-input placeholder="Enter News Title"></ion-input>
+        <ion-input placeholder="Enter News Title" [(ngModel)]="news_info.title"></ion-input>
     </div>
   </div>
 
   <div class="description-block">
     <div class="des-title">Description</div>
     <div class="des-area">
-      <ion-textarea id =area placeholder="Enter Any Description"></ion-textarea>
+      <ion-textarea id =area placeholder="Enter Any Description" rows="11" [(ngModel)]="news_info.description"></ion-textarea>
     </div>  
   </div>
 
   <div class="photo-block">
-    <div class="upload-photo-area" tappable>
+    <div class="upload-photo-area" tappable (click)="presentActionSheet(1)">
       <div class="upload-icon">
           <ion-icon id="icon" name="ios-camera"></ion-icon>
       </div>
@@ -34,7 +34,7 @@
   </div>
 
   <div class=submit-block>
-    <div class="submit-button"  tappable>
+    <div class="submit-button" tappable (click)="OnSubmit()">
         <div class="button-text">Submit</div>
     </div>
   </div>  
