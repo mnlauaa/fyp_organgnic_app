@@ -1,3 +1,25 @@
 page-seller-personalise-news {
+    .button{
+        display: block;
+        width: 95%;
+        height: 54px;
+        background: white;
+        margin: 5px auto;
+        padding: 0 9px;
 
+        .container{
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 100%;
+
+            .button-text{
+                font-size: 16px;
+                font-family: "Arial";
+                color: #212121; 
+                padding-left: 15px;
+            }
+
+        }
+    }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AddNewsPage } from '../add-news/add-news';
 
 @Component({
   selector: 'page-seller-personalise-news',
@@ -14,4 +15,7 @@ export class SellerPersonaliseNewsPage {
     console.log('ionViewDidLoad SellerPersonaliseNewsPage');
   }
 
+  addnew(){
+    this.navCtrl.push(AddNewsPage);
+  }
 }
