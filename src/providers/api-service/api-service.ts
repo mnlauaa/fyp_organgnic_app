@@ -114,4 +114,8 @@ export class ApiService extends BaseService{
     return this.put('/me/farm', formData, this.token)
   }
 
+  public deleteMeFavourite(id){
+    return this.delete('/me/favourite/' + id, this.token);
+  }
+
 }
