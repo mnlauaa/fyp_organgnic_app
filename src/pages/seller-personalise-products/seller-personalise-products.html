@@ -1,9 +1,49 @@
-<ion-header>
-  <my-navbar [title]="title" [enable_shopping_button]="false" [enable_back]="true"></my-navbar>
+<ion-header no-border>
+    <my-navbar [title]="title" [enable_shopping_button]="false" [enable_back]="true"></my-navbar>
+  <div class="search-block">
+		<div class="searchbar">
+			<ion-icon class="icon" name="ios-search"></ion-icon>
+			<ion-input placeholder="{{keyword || 'What product are you looking for'}}" [(ngModel)]="search_bar"></ion-input>
+			<ion-icon class="icon" name="md-send" tappable (click)="getProductBykeyword()"></ion-icon>
+		</div>
+  </div>
+
+  <div class="filter-area">
+    <div class="num-of-result">{{result_num}} Results</div>
+  </div>
 </ion-header>
-  
 
-
-<ion-content>
+<ion-content >
+  <div class="fixed-add-button">
+    <ion-icon name="md-add"></ion-icon>
+  </div>
+  <span *ngFor="let p of productList" >
+    <div class="product-block" tappable>
+      <span>
+        <img [src]="p.image_url">
+      </span>
+      <div class="fixed-box" (click)="$event.preventDefault(); $event.stopPropagation(); presentActionSheet(p)" tappable>
+          <ion-icon name="ios-more"></ion-icon>
+      </div>
+      <div class="product-info">
+        <div class="title">{{p.name}}</div>
+        <div class="farm-name">by {{p.display_name}}</div>
+        <div class="price">${{p.price}}/ {{p.weight}}g</div>
+        <div class="rating">
+          <span *ngFor="let i of getFullStarNumber(p.rating)">
+              <ion-icon name="md-star"></ion-icon>
+          </span>
+          <span *ngIf="p.rating % 1 != 0">
+            <ion-icon name="md-star-half"></ion-icon>
+          </span>
+          <span *ngFor="let i of getOutlineStarNumber(p.rating)">
+              <ion-icon name="md-star-outline"></ion-icon>
+          </span>
+        </div>
+      </div>
+    </div>
+  </span>
 
 </ion-content>
+
+    
