@@ -13,6 +13,7 @@ import { MyNavbar } from '../components/my-navbar/my-navbar';
 import { FilterBox } from '../components/filter-box/filter-box'
 import { SortingBox } from '../components/sorting-box/sorting-box'
 import { ImageCropper } from '../components/image-cropper/image-cropper'
+import { ProductChange } from '../components/product-change/product-change' 
 
 
 // Pages
@@ -77,7 +78,8 @@ export const myComponets = [
   MyNavbar,
   FilterBox,
   SortingBox,
-  ImageCropper
+  ImageCropper,
+  ProductChange
 ];
 
 export const myProviders = [
