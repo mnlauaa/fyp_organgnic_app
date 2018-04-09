@@ -39,7 +39,7 @@ import { SellerPersonaliseProfilePage } from '../pages/seller-personalise-profil
 import { SellerPersonaliseProductsPage } from '../pages/seller-personalise-products/seller-personalise-products'
 import { SellerPersonaliseNewsPage } from '../pages/seller-personalise-news/seller-personalise-news'
 import { SellerOperationalSettingPage } from '../pages/seller-operational-setting/seller-operational-setting'
-
+import { AddNewsPage } from '../pages/add-news/add-news';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -71,7 +71,7 @@ export const myComponets = [
   SellerOperationalSettingPage,
   FavouriteFarmPage,
   FarmerProfilePage,
-  
+  AddNewsPage,
   
 	// components
   MyNavbar,

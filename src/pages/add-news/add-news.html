@@ -1,0 +1,42 @@
+<ion-header no-border>
+  <my-navbar [title]="title" [enable_shopping_button]="false" [enable_back]="true"></my-navbar>
+</ion-header>
+
+
+
+<ion-content padding>
+<div class="container">
+  <div class="title-block">
+    <div class="title">
+      Title
+    </div>
+    <div class="data-title">
+        <ion-input placeholder="Enter News Title"></ion-input>
+    </div>
+  </div>
+
+  <div class="description-block">
+    <div class="des-title">Description</div>
+    <div class="des-area">
+      <ion-textarea id =area placeholder="Enter Any Description"></ion-textarea>
+    </div>  
+  </div>
+
+  <div class="photo-block">
+    <div class="upload-photo-area" tappable>
+      <div class="upload-icon">
+          <ion-icon id="icon" name="ios-camera"></ion-icon>
+      </div>
+      <div class="upload-text">
+          <span>Add or take photo for news</span>
+      </div>
+    </div>
+  </div>
+
+  <div class=submit-block>
+    <div class="submit-button"  tappable>
+        <div class="button-text">Submit</div>
+    </div>
+  </div>  
+</div>
+</ion-content>
