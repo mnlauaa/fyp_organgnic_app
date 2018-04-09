@@ -64,4 +64,17 @@ export class BaseService {
             }, err => reject(err));
         });
     }
+
+    protected delete(url, auth = null, params = null): Promise<any> {
+        url = this.api_prefix + url;
+        return new Promise((resolve, reject) => {
+            this.http.delete(url, {
+                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth),  
+                params: params
+            })
+            .subscribe(data => {
+                resolve(data);
+            }, err => reject(err));
+        });
+    }
 }

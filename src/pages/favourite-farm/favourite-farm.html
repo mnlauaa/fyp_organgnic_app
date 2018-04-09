@@ -26,7 +26,9 @@
         </div>
       </div>
     </div>
-    <div class="del" tappable><ion-icon name="md-close"></ion-icon></div>
+    <div class="del" (click)="presentConfirm(f)" tappable>
+      <ion-icon name="md-close"></ion-icon>
+    </div>
     <div class="shopNow" (click)="onShop(f.farm_id)" tappable><b>Shop in this farm now</b></div>
   </div>
 
