@@ -7,8 +7,26 @@
 <ion-content>
   <div class="button" tappable (click)="addnew()">
     <div class="container">
+      <ion-icon id="icon" name="add-circle"></ion-icon>
       <div class="button-text">Add News</div>
     </div>
   </div>
+
+  <div *ngFor="let n of newsList" class="news-block">
+      <div class="title">{{n.title}}</div>
+      <div class="options">
+      </div>
+      <div class="info">
+        <div class="info-item">by {{n.display_name}}</div>
+        <div class="info-item">{{n.datetime}}</div>
+      </div>
+      <div class="img-box">
+        <img [src]="n.image_url">
+      </div>
+      <div class="bottom-part" >
+        <div class="description">{{n.description}}</div>
+        <div class="line-padding"><i id="line"></i></div>
+      </div>
+    </div>
 </ion-content>
   
