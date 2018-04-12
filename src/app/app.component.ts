@@ -71,6 +71,7 @@ export class MyApp {
 		]
 		
 		this.ev.subscribe('user_info', (user_info) => {
+			console.log("app", user_info);
 			this.user_info = user_info;
 			switch(Number(user_info.identity)){
 				case 0:

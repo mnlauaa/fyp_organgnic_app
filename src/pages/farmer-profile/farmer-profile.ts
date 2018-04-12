@@ -35,8 +35,7 @@ export class FarmerProfilePage {
     this.sellerNews = { component: SellerPersonaliseNewsPage};
     this.sellerSetting = { component: SellerOperationalSettingPage};
 
-
-    this.ev.subscribe('user_info', user_info => {
+    this.ev.subscribe('farm_info', user_info => {
       this.user_info = user_info
     });
 
@@ -44,7 +43,6 @@ export class FarmerProfilePage {
       this.api.getMeFarm()
     ]).then(data=>{
       this.user_info = data[0]
-      console.log(data[0])
     }), err=>{
 
     }

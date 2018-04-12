@@ -100,6 +100,12 @@ export class ApiService extends BaseService{
     return this.post('/me/shopping_cart', body, type, this.token)
   }
 
+  public postMeFarmPickup(location){
+    let type = 'application/x-www-form-urlencoded';
+    const body = new HttpParams().set('location', location)
+    return this.post('/me/farm/pickup', body, type, this.token)
+  }
+
   public putMe(data, file){
     var formData: FormData = new FormData();
     if(file)
@@ -123,6 +129,18 @@ export class ApiService extends BaseService{
     formData.append('about_intro', data.about_intro)
     
     return this.put('/me/farm', formData, this.token)
+  }
+
+  public putMeFarmSetting(type, value){
+    const body = new HttpParams().set('type', type)
+                                 .set('value', value)
+    return this.put('/me/farm/setting', body, this.token);
+  }
+
+  public putMeFarmPickup(type, value, id){
+    const body = new HttpParams().set('type', type)
+                                 .set('value', value)
+    return this.put('/me/farm/pickup/' + id, body, this.token);
   }
 
   public deleteMeFavourite(id){

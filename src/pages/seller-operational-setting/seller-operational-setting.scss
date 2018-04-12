@@ -125,8 +125,15 @@ page-seller-operational-setting {
             padding: 3px 0;
 
             .pickUpPoint{
-                padding-left: 10px;
                 display: inline-block;
+                padding: 5px 0;
+                padding-left: 10px;
+
+                .text-input{
+                    margin: 5px;
+                    border-bottom: 1px solid #707070;
+                    width: 250px;
+                }
             }
 
             .cost{
@@ -166,7 +173,7 @@ page-seller-operational-setting {
                 // height: 26px;
                 display: inline-block;
                 // position: absolute;
-                right: 10px;
+                margin-right: 10px;
                 zoom: 0.8;
             }
 
@@ -191,7 +198,6 @@ page-seller-operational-setting {
         padding: 10px;
         background-color: white;
         position: relative;
-        height:125px;
 
         .titleLine{
             display: flex;
@@ -230,7 +236,8 @@ page-seller-operational-setting {
             justify-content: space-between;
             position: relative;
             align-items: center;
-            padding: 15px 0px 15px 0px;
+            min-height: 30px;
+            padding: 3px 0;
 
             .payAfter{
                 padding-left: 10px;
@@ -245,30 +252,32 @@ page-seller-operational-setting {
                 margin-right: 10px;
                 zoom: 0.8;
             }
+
+            .cost{
+                color: #707070;
+                font-size: 14px;
+                margin-left: 20px;
+                padding-top: 3px;
+            }
+
+            .text-input{
+                margin: 5px;
+                border-bottom: 1px solid #707070;
+                width: 250px;
+            }
+
         }
     }
 
-    .button_session{
-        display: flex;
-        justify-content:space-between;
-        margin: 10px 7px;
-        
-        .button{
-            height: 30px;
-            width: 49%;
-            font-size: 18px;
-            text-align: center;
-            line-height: 30px;
-        }
-
-        .submit{
-            background-color: #027B73;
-            color: #fff;
-        }
-
-        .cancel{
-            background-color: rgb(119, 119, 119);
-            color: #fff;
-        }
+    .sumbit-button{
+        height: 30px;
+        width: 45px;
+        color: #fff;
+        background-color: #027B73;
+        text-align: center;
+        line-height: 30px; 
+        border-radius: 3px;
+        font-weight: bold;
     }
+
 }
