@@ -5,119 +5,161 @@
   
 
 <ion-content>
-  <div class="shipping">
-    <div>
-        <div class="title">Shipping</div>
-        <div class="edit" *ngIf="!shipping_edit" (click)="shipping_edit = true" tappable>
-            <ion-icon name="md-create"></ion-icon>
-        </div>
-    </div>
-    <div><hr></div>
-    <div class="listRow">
+    <div class="shipping">
         <div>
-            <div class="listItem">Shipping Cost: </div>
-            <div class="cost" *ngIf="!shipping_edit">${{settingInfo.shipping_cost}}</div>
-            <div class="edit_cost" *ngIf="shipping_edit">
-                <span class="doller">$</span>
-                <ion-input type="number" placeholder="{{settingInfo.shipping_cost}}" [(ngModel)]="shipping_edit_info.shipping_cost"></ion-input>
+            <div class="title">Shipping</div>
+            <div class="edit" *ngIf="!shipping_edit" (click)="shipping_edit = true" tappable>
+                <ion-icon name="md-create"></ion-icon>
+            </div>
+            <div class="edit" *ngIf="shipping_edit" (click)="shipping_edit = false" tappable>
+                Done
             </div>
         </div>
-    </div>
-    <div class="listRow">
-        <div>
-            <div class="listItem">Free Shipping Margin: </div>
-            <div class="cost" *ngIf="!shipping_edit">${{settingInfo.shipping_margin}}</div>
-            <div class="edit_cost" *ngIf="shipping_edit">
-                <span class="doller">$</span>
-                <ion-input type="number" placeholder="{{settingInfo.shipping_margin}}" [(ngModel)]="shipping_edit_info.shipping_margin"></ion-input>
-            </div>
-        </div>
-        <div class="switch">
-            <ion-toggle color="fyp" [(ngModel)]="settingInfo.margin_active"></ion-toggle>
-        </div>
-    </div>
-    <div class="listRow">
-        <div class="listItem">Shipping Coupon </div>
-        <div class="help" tappable>
-            <i class="fa fa-question-circle-o"></i>
-        </div>
-        <div class="switch">
-            <ion-toggle color="fyp" [(ngModel)]="settingInfo.coupon"></ion-toggle>
-        </div>
-    </div>
-    <div class="button_session" *ngIf="shipping_edit">
-        <div class="button submit" (click)="onSubmitShipping()" tappable>
-            Submit
-        </div>
-        <div class="button cancel" (click)="shipping_edit = false" tappable>
-            Cancel
-        </div>
-    </div>
-  </div>
+        <div><hr></div
+            >
+        <div class="listRow">
+            <div>
+                <div class="listItem">Shipping Cost: </div>
+                <div class="cost" *ngIf="!shipping_edit">${{user_info.shipping_cost}}</div>
 
-  <div class="delivery">
+                <div class="edit_cost" *ngIf="shipping_edit">
+                    <span class="doller">$</span>
+                    <ion-input type="number" placeholder="{{user_info.shipping_cost}}" 
+                            [(ngModel)]="edit_info.shipping_cost"></ion-input>
+                </div>
+            </div>
+            <!-- button group -->
+            <div class="switch" *ngIf="shipping_edit" (click)="submitFarmSetting('shipping_cost', edit_info.shipping_cost)" tappable>
+                <div class="sumbit-button">Send</div>
+            </div>
+        </div>
+
+        <div class="listRow">
+            <div>
+                <div class="listItem">Free Shipping Margin: </div>
+                <div class="cost" *ngIf="!shipping_edit">${{user_info.shipping_margin}}</div>
+                <div class="edit_cost" *ngIf="shipping_edit">
+                    <span class="doller">$</span>
+                    <ion-input type="number" placeholder="{{user_info.shipping_margin}}"
+                            [(ngModel)]="edit_info.shipping_margin"></ion-input>
+                </div>
+            </div>
+            <!-- button group -->
+            <div class="switch" *ngIf="!shipping_edit">
+                <ion-toggle color="fyp" [(ngModel)]="user_info.margin_on" (ionChange)="submitFarmSetting('margin_on', user_info.margin_on)"></ion-toggle>
+            </div>
+            <div class="switch" *ngIf="shipping_edit" (click)="submitFarmSetting('shipping_margin', edit_info.shipping_margin)" tappable>
+                <div class="sumbit-button">Send</div>
+            </div>
+        </div>
+        <div class="listRow">
+            <div class="listItem">Shipping Coupon </div>
+            <div class="help" tappable>
+                <i class="fa fa-question-circle-o"></i>
+            </div>
+            <div class="switch" *ngIf="!shipping_edit">
+                <ion-toggle color="fyp" [(ngModel)]="user_info.coupon_on" (ionChange)="submitFarmSetting('coupon_on', user_info.coupon_on)"></ion-toggle>
+            </div>
+        </div>
+    </div>
+
+    <div class="delivery">
         <div class="titleLine">
             <div class="title">Delivery Pick-up Points</div>
             <div class="help" tappable>
                 <i class="fa fa-question-circle-o" aria-hidden="true"></i>
             </div>
-            <div class="edit" (click)="delivery_edit = true" tappable>
-            <ion-icon name="md-create"></ion-icon>
+            <div class="edit" (click)="delivery_edit = true" *ngIf="!delivery_edit"tappable>
+                <ion-icon name="md-create"></ion-icon>
+            </div>
+            <div class="edit" *ngIf="delivery_edit" (click)="delivery_edit = false" tappable>
+                Done
             </div>
         </div>
         <div><hr></div>
         <div class="listRow">
-        <div>
-            <div class="homeDelivery">Home delivery dervice</div> 
-            <div class="cost" *ngIf="!delivery_edit">${{settingInfo.home_cost}}</div>
-            <div class="edit_cost" *ngIf="delivery_edit">
-                <span class="doller">$</span>
-                <ion-input type="number" placeholder="{{settingInfo.home_cost}}" [(ngModel)]="shipping_edit_info.home_cost"></ion-input>
+            <div>
+                <div class="homeDelivery">Home delivery dervice</div> 
+                <div class="cost" *ngIf="!delivery_edit">${{user_info.home_additional_cost}}</div>
+                <div class="edit_cost" *ngIf="delivery_edit">
+                    <span class="doller">$</span> 
+                    <ion-input type="number" placeholder="{{user_info.home_additional_cost}}" 
+                               [(ngModel)]="edit_info.home_additional_cost"></ion-input>
+                </div>
             </div>
-        </div>
-            <div class="switch">
-                <ion-toggle color="fyp"></ion-toggle>
+            <!-- button group -->
+            <div class="switch" *ngIf="!delivery_edit">
+                <ion-toggle color="fyp" [(ngModel)]="user_info.home_on" (ionChange)="submitFarmSetting('home_on', user_info.home_on)"></ion-toggle>
+            </div>
+            <div class="switch" *ngIf="delivery_edit" (click)="submitFarmSetting('home_additional_cost', edit_info.home_additional_cost)" tappable>
+                <div class="sumbit-button">Send</div>
             </div>
         </div>
 
-        <div class="listRow" [class.editing]="delivery_edit">
-            <div class="remove-button" *ngIf="delivery_edit">
+        <div class="listRow" *ngIf="delivery_edit" >
+            <div class="pickUpPoint" *ngIf="delivery_edit">
+                <ion-input placeholder="Add your new location" 
+                           [(ngModel)]="new_location">
+                </ion-input>
+            </div> 
+            <div class="switch" *ngIf="delivery_edit" (click)="addNewPickup(new_location)" tappable>
+                <div class="sumbit-button">Add</div>
+            </div>
+        </div>
+
+        <div *ngFor="let p of user_info.pickup; let i = index" class="listRow" [class.editing]="delivery_edit">
+            <div class="remove-button" *ngIf="delivery_edit" (click)="presentConfirm(p.id)" tappable>
                 <ion-icon name="md-remove-circle"></ion-icon>
             </div>
-            <div class="pickUpPoint">Mong Kok MTR Station</div> 
-            <div class="switch">
-                <ion-toggle color="fyp"></ion-toggle>
+            <div class="pickUpPoint" *ngIf="!delivery_edit">{{p.location}}</div>
+            <div class="pickUpPoint" *ngIf="delivery_edit">
+                <ion-input placeholder="{{p.location}}" 
+                           [(ngModel)]="edit_info.pickup[i].location">
+                </ion-input>
+            </div> 
+            <div class="switch" *ngIf="!delivery_edit">
+                <ion-toggle color="fyp" [(ngModel)]="p.func_on" (ionChange)="submitPickup('func_on', p.func_on, p.id)"></ion-toggle>
+            </div>
+            <div class="switch" *ngIf="delivery_edit" (click)="submitPickup('location', edit_info.pickup[i].location, p.id)" tappable>
+                <div class="sumbit-button">Send</div>
             </div>
         </div>
+    </div>
 
-        <div class="button_session" *ngIf="delivery_edit">
-            <div class="button submit" (click)="onSubmitShipping()" tappable>
-                Submit
+    <div class="charging">
+        <div class="titleLine">
+            <div class="title">Charging Method</div>
+            <div class="edit"  *ngIf="!charging_edit" (click)="charging_edit = true" tappable>
+                <ion-icon name="md-create"></ion-icon>
             </div>
-            <div class="button cancel" (click)="delivery_edit = false" tappable>
-                Cancel
+            <div class="edit" *ngIf="charging_edit" (click)="charging_edit = false" tappable>
+                Done
             </div>
         </div>
-  </div>
-
-  <div class="charging">
-      <div class="titleLine">
-          <div class="title">Charging Method</div>
-          <div class="edit" (click)="edit_mode = true" tappable>
-            <ion-icon name="md-create"></ion-icon>
-          </div>
-      </div>
-      <div><hr></div>
-
-      <div class="method">Direct deposit to</div> 
-      <div class="account">HSBC account: 123-456-789-000</div>
-
-      <div class="listRow">
-          <div class="payAfter">Allow payment after delivery</div> 
-          <div class="switch">
-              <ion-toggle color="fyp"></ion-toggle>
-          </div>
-      </div>
-  </div>
+        <div><hr></div>
+        <div class="listRow">
+            <div>
+                <div class="method">Direct deposit to</div> 
+                <div class="account" *ngIf="!charging_edit">{{user_info.bank_deposit_info}}</div>
+                <div class="account" *ngIf="charging_edit">
+                    <ion-input placeholder="{{user_info.bank_deposit_info}}" 
+                                [(ngModel)]="edit_info.bank_deposit_info"></ion-input>
+                </div>
+            </div>
+            <div class="switch" *ngIf="!charging_edit">
+                <ion-toggle color="fyp"  [(ngModel)]="user_info.bank_deposit_on" (ionChange)="submitFarmSetting('bank_deposit_on', user_info.bank_deposit_on)"></ion-toggle>
+            </div>
+            <div class="switch" *ngIf="charging_edit" (click)="submitFarmSetting('bank_deposit_info', edit_info.bank_deposit_info)" tappable>
+                <div class="sumbit-button">Send</div>
+            </div>
+        </div>
+     
+        <div class="listRow">
+            <div class="payAfter">Allow payment after delivery</div> 
+            <div class="switch" *ngIf="!charging_edit">
+                <ion-toggle color="fyp" [(ngModel)]="user_info.pay_after_on" (ionChange)="submitFarmSetting('pay_after_on', user_info.pay_after_on)"></ion-toggle>
+            </div>
+        </div>
+     </div>
 
 </ion-content>
