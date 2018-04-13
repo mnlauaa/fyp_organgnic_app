@@ -12,6 +12,16 @@
         </label>
     </div>
 </div>
+<div class="class-area">
+    <div class="title">Classification</div>
+    <div class="class-block">
+        <label *ngFor="let c of class" class="class">
+            <input type="checkbox" (change)="toggleClass(c.id)" [disabled]="favourite" [checked]="classSelect.indexOf(c.id) >= 0" tappable>
+            <span class="text">{{c.name}}</span>
+            <span class="checkmark"></span>
+        </label>
+    </div>
+</div>
 <div class="number-input">
     <span class="title">Price Below:</span>
     <ion-input type="number" placeholder="" [(ngModel)]="price_below"></ion-input>

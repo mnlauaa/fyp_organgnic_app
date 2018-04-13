@@ -46,16 +46,95 @@ page-single-product {
         }
     }
 
+    .bottom-session{
+        position: relative;
+        .title{
+            margin: 0 25px;
+            margin-top: 18px;
+            font-size: 17px; 
+        }
+
+        .scroll-sections{
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: calc( 100% - 50px );
+            margin: auto;
+            ::-webkit-scrollbar {
+                display: none;
+            }
+
+            .related-product{
+                display: table-cell;
+                text-align: center;
+                padding: 0 8px;
+                margin-top: 5px;
+                width: 120px;
+
+                .product-img{
+                    height: 120px;
+                    width: 120px;
+                    margin: 5px auto;
+                    text-align: center;
+
+                    img{
+                        object-fit: cover;
+                        height: 120px;
+                        width: 120px;
+                    }
+                }
+
+                .title{
+                    margin: 0px;
+                    font-size: 14px;
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .farm-name{
+                    font-size: 12px;
+                    color: #B9B7B7;
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+
+                .rating{
+                    color: #FCA706;
+                    font-size: 15px;
+                } 
+            }
+        }
+
+        .prev{
+            position: absolute;
+            left: 0;
+            font-size: 25px;
+            padding: 6px;
+            margin-top: 70px;
+    
+        }
+
+        .next{
+            position: absolute;
+            right: 0;
+            margin-top: 70px;
+            font-size: 25px;
+            padding: 6px;
+        }
+    }
+
     .product-img{
-        height: 260px;
+        height: 230px;
         // width: 260px;
         margin: 0 22px;
         margin-bottom: 18px;
         text-align: center;
         img{
             object-fit: cover;
-            height: 260px;
-            width: 260px;
+            height: 230px;
+            width: 230px;
         }
     }
 

@@ -57,7 +57,51 @@
     <div class="bottom-area">
         <i id="line"></i>
     </div>
-    
+    <div class="bottom-session" overflow-scroll="true">
+        <div class="title">Other related items</div>
+        <div class="prev"><ion-icon class="icon_arrow" [hidden]="maxLeft" name="ios-arrow-back"></ion-icon></div>
+	    <div class="next"><ion-icon class="icon_arrow" [hidden]="maxRight" name="ios-arrow-forward"></ion-icon></div>
+        <div class="scroll-sections" (scroll)="getPosition($event)" >
+            <div *ngFor="let rp of related_product" class="related-product" (click)="openProductDetail(rp)" tappable>
+                <div class="product-img">
+                    <img [src]="rp.image_url">
+                </div>
+                <div class="title">{{rp.name}}</div>
+                <div class="farm-name">by {{rp.display_name}}</div>
+                <div class="rating">
+                    <span *ngFor="let i of getFullStarNumber(rp.rating)">
+                        <ion-icon name="md-star"></ion-icon>
+                    </span>
+                    <span *ngIf="rp.rating % 1 != 0">
+                        <ion-icon name="md-star-half"></ion-icon>
+                    </span>
+                    <span *ngFor="let i of getOutlineStarNumber(rp.rating)">
+                        <ion-icon name="md-star-outline"></ion-icon>
+                    </span>
+                </div>
+            </div>
+        </div>
+       
+        <!-- <div class="title">{{product.name}}</div>
+        <div class="container">
+            <div class="sub-container">
+                <div class="farm-name">by {{product.display_name}}</div>
+                <i class="fa fa-building icon"></i>
+                <i class="fa fa-comments icon"></i>
+            </div>
+            <div class="rating">
+                <span *ngFor="let i of getFullStarNumber(product.rating)">
+                    <ion-icon name="md-star"></ion-icon>
+                </span>
+                <span *ngIf="product.rating % 1 != 0">
+                    <ion-icon name="md-star-half"></ion-icon>
+                </span>
+                <span *ngFor="let i of getOutlineStarNumber(product.rating)">
+                    <ion-icon name="md-star-outline"></ion-icon>
+                </span>
+            </div>
+        </div> -->
+    </div>
 
 
 </ion-content>
