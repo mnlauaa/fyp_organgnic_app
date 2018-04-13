@@ -80,7 +80,6 @@ filter-box {
         .disable{
             color: #B9B7B7;
             border-color: #B9B7B7;
-
         }
 
         .brand{
@@ -97,6 +96,40 @@ filter-box {
         }
     }
 
+    .class-area{
+        background: #FFFFFF;
+        margin: 1px;
+        padding : 12px 0;
+
+        .class-block{
+            max-height: 90px;
+            overflow-y: scroll;
+        }
+
+        .title{
+            font-size: 15px;
+            padding: 0 12px;
+            padding-bottom: 5px;
+        }
+
+        .disable{
+            color: #B9B7B7;
+            border-color: #B9B7B7;
+        }
+
+        .class{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 25px;
+            padding: 0 20px;
+            font-size: 12px;
+
+            .favourite{
+                font-size: 14px;
+            }
+        }
+    }
     
 
     .number-input{

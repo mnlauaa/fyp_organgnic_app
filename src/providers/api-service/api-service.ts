@@ -51,7 +51,6 @@ export class ApiService extends BaseService{
     return this.get('/users/farms');
   }
 
-
   public getMyFavourite(){
     return this.get('/me/favourite', this.token);
   }
@@ -64,6 +63,8 @@ export class ApiService extends BaseService{
     if(filter){
       if(filter.selection)
         params['brand'] = filter.selection
+      if(filter.classSelect)
+        params['class'] = filter.classSelect
       if(filter.price_below)
         params['price_below'] = filter.price_below
       if(filter.price_above)
@@ -71,6 +72,15 @@ export class ApiService extends BaseService{
     }
     console.log("get product api", params)
     return this.get('/products', null, params);
+  }
+
+  public getProductById(id){
+    return this.get('/products/' + id);
+  }
+
+  public getRelatedProduct(product_class, id){
+    let params = {product_class: product_class, id: id}
+    return this.get('/products/related', null, params);
   }
 
   public postMeLogin(data){

@@ -36,6 +36,7 @@ export class TheMarketPage {
     this.keyword = navParams.get('keyword');
     this.filter_list = navParams.get('filter_list') || { favourite: false,
                                                          selection: [],
+                                                         classSelect: [],
                                                          price_below: null,
                                                          price_above: null}
     this.getProductList();
@@ -107,7 +108,9 @@ export class TheMarketPage {
 
   openProductDetail(product_detail){
     console.log(product_detail);
-    this.navCtrl.push(SingleProductPage, {product_detail: product_detail});
+    this.navCtrl.push(SingleProductPage, 
+      { id: product_detail.id, 
+        classification: product_detail.classification });
   }
   
   getFullStarNumber(num){
