@@ -40,7 +40,7 @@ export class BaseService {
         });
     }
 
-    // POST request
+    // POST request normal
     protected post(url, body: HttpParams = null, type = null, auth = null): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
@@ -52,6 +52,19 @@ export class BaseService {
             }, err => reject(err));
         });
     }
+
+    protected post_file(url, formData: FormData = null, auth = null): Promise<any> {
+        url = this.api_prefix + url;
+        return new Promise((resolve, reject) => {
+            this.http.post(url, formData, {
+                headers: new HttpHeaders().set('Authorization', 'jwt ' + auth)
+            })
+            .subscribe(data => {
+                resolve(data);
+            }, err => reject(err));
+        });
+    }
+
     // PUT reqest normal
     protected put_normal(url, body: HttpParams = null, type = null, auth = null): Promise<any> {
         url = this.api_prefix + url;
@@ -66,7 +79,7 @@ export class BaseService {
     }
     
     // PUT request(with file)
-    protected put(url, formData: FormData, auth = null): Promise<any>{
+    protected put(url, formData: FormData = null, auth = null): Promise<any>{
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {
             this.http.put(url, formData, {

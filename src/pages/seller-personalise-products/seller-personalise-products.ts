@@ -47,10 +47,8 @@ export class SellerPersonaliseProductsPage {
         {
           text: 'Edit',
           handler: () => {
-            let profileModal = this.modalCtrl.create(ProductChange, { product: p });
-            profileModal.onDidDismiss(data =>{
-            })
-            profileModal.present();
+            this.openProductModal(p)
+
           }
         },
         {
@@ -71,6 +69,16 @@ export class SellerPersonaliseProductsPage {
     });
  
     actionSheet.present();
+  }
+
+  openProductModal(p = null){
+    let profileModal = this.modalCtrl.create(ProductChange, { 
+      product: p,
+    });
+    profileModal.onDidDismiss(()=>{
+      this.getProductList();
+    })
+    profileModal.present();
   }
 
 

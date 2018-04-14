@@ -91,6 +91,11 @@ export class ApiService extends BaseService{
     return this.post('/me/login', body, type, this.token);
   }
 
+  public postProducts(data){
+    console.log(data)
+    return this.post_file('/products/', data, this.token)
+  }
+
   public postNews(data){
     let type = 'application/x-www-form-urlencoded';
     const body = new HttpParams().set('datatime', data.datetime)
