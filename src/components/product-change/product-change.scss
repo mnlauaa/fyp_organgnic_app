@@ -1,162 +1,204 @@
 product-change {
-    .page{
-        background-color: #EEEEEE;
+    .form-content{
+        background-color: #fff;
+        min-height: calc(100% - 70px);
+        margin: 7px;
+        padding: 25px;
+        border-radius: 7px;
 
-        .content{
-            display: flex;
-            flex-direction: column;
-            flex: space-between;
-            border-radius: 2%;
-            margin: 7px; 
-            padding: 10px;
-            background-color: white;
+        .add-img-block, .edit-img-block{
             position: relative;
-            height: 570px;
-            align-items: center;
-    
-            .photo{
-                width: 130px;
-                height: 130px;
-                background-color: rgb(228, 228, 228);
-                position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
 
-                .uploadButton{
-                    width: 75px;
-                    height: 25px;
-                    display: flex;
-                    flex-direction: row;
-                    flex: space-between;
-                    border-radius: 2%;
-                    background-color: rgb(245, 245, 245);
-                    position: absolute;
-                    right: 0px;
-                    bottom: 0px;
-                    color: rgb(63, 63, 63);
-                    padding: 4px;
+        .add-img-block{
+            box-shadow: 0px 2px 5px 2px rgba(125,125,125,0.1);
+            padding: 41px 0;
+
+            .fix-content{
+                width: 120px;
+                margin: 0 auto;
+                text-align: center;
+
+                .icon{
+                    font-size: 40px;
+                    color: #027B73;
                 }
+
+                .text{
+                    font-size: 12px;
+                }
+
+            }
+        }
+
+        .edit-img-block{
+            img{
+                object-fit: cover;
+                height: 150px;
+                width: 150px;
             }
 
-            .editForm{
-                align-items: left;
-                display: flex;
-                flex-direction: column;
-                flex: space-between;
+            .img-flter{
                 position: absolute;
-                left: 13px;
-                top: 150px;
+                top: 0px;
+                height: 150px;
+                width: 150px;
+                background-color: rgba(209,209,209,0.6);
+            }
 
-                .title{
-                    font-size: 16px;
-                    padding: 1px;
+            .fix-content{
+                position: absolute;
+                background: rgba(209,209,209,0.8);
+                display: flex;
+                align-items: center;
+                height: 20px;
+                bottom: 0;
+                right: 0;
+                padding: 0 5px;
+                
+                .icon{
+                    font-size: 20px;
+                    padding-right: 3px;
+                }
+            }
+        }
+
+
+        .input-area{
+            margin: 10px 0;
+
+            .title{
+                font-size: 18px;
+            }
+
+            .input-line{
+                font-size: 16px;
+
+                .text-input{
+                    text-align: center;
+                    margin: 8px 8px 8px 0;
+                    border-bottom: 1px solid #707070;
+                    width: 100%;
                 }
 
-                .productLine{
-                    width: 298px;
-                    height: 25px;
-                    border-bottom: solid 1px #808080;
+                // select
+                .item-block, .select-text{
+                    min-height: auto;
+                    padding: 3px;
+                    font-size: 15px;
+                    text-align: center;
                 }
 
-                .catDropDownList{
-                    height: 25px;
-                    width: 298px;
-                    background-color: rgb(177, 177, 177);
-                }
-
-                .priceRow{
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-
-                    .unitDropDownList{
-                        width: 70px;
-                        height: 25px;
-                        background-color: rgb(177, 177, 177);
-                    }
-    
-                    .priceBox{
-                        width: 80px;
-                        height: 25px;
-                        border-bottom: 1px #808080 solid;
-                    }
-                }
-
-                .specialOfferLine{
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    margin-left: 2px;
-
-                    .specialOffer{
-                        color: #808080;
-                        font-size: 16px;
-                        padding: 1px;
-                    }
-                    
-                    .checkBox{
-                        width: 15px;
-                        height: 15px;
-                        border: 1px #808080 solid;
-                        border-radius: 1%;
-                    }
-                }
-
-                .specialPriceRow{
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    color: #808080;
-                    padding-left: 25px;
-
-                    .unitDropDownList{
-                        width: 70px;
-                        height: 25px;
-                        background-color: rgb(177, 177, 177);
-                    }
-    
-                    .priceBox{
-                        width: 80px;
-                        height: 25px;
-                        border-bottom: 1px #808080 solid;
-                    }
-                }
-
-                .soTitle{
-                    color: #808080;
-                    padding-left: 25px;
-                }
-
-                .chooseDate{
-                    width: 270px;
-                    height: 25px;
-                    background-color: rgb(177, 177, 177);
-                    margin-left: 25px;
-                    margin-top: 2px;
-                }
-
-                .desBox{
-                    width: 270px;
-                    height: 80px;
-                    border: solid 1px #808080;
-                    margin-left: 25px;
-                    margin-top: 2px;
+                .select-icon{
+                    height: auto;
                 }
                 
+                .item-inner{
+                    margin: 5px 0;
+                    padding-right: 0;
+                    border-bottom: none;
+                }
+
+                .select{
+                    width: 100%;
+                    max-width: none;
+                    padding: 0 8px;
+                    border: 1px solid;
+                }
+
+                 // checkbox
+
+                .checkbox-area{
+                    display: flex;
+                    align-items: center;
+                    color: #707070;
+
+                    input[type=checkbox]{
+                        position: absolute;
+                        opacity: 0;
+                    }
+                
+                    .checkmark {
+                        margin-right: 10px;
+                        height: 20px;
+                        width: 20px;
+                        border-radius: 50%;
+                        border: 1px solid #707070;
+                    }
+                
+                    .checkmark:after {
+                        content: "";
+                        display: none;
+                        margin: auto;
+                        margin-top: 10%;
+                        width: 2.5px;
+                        height: 10px;
+                        border: solid #000000;
+                        border-width: 0 2px 2px 0;
+                        transform: rotate(45deg);
+                    }
+                
+                    input:checked ~ .checkmark:after {
+                        display: block;
+                    }
+
+                    input:checked ~ .checkmark{
+                        border: 1px solid #000000;
+                    }
+                
+                    input:checked ~ .text{
+                        color: #000000;  
+                    }
+                }
+
             }
+
+            .short{
+                ion-input{
+                    display: inline-block;
+                    margin: 0 5px;
+                    width: 78px;
+                }
+            }
+
+            .special{
+                margin-left: 30px;
+                color: #707070;
+
+                ion-textarea{
+                    margin-top: 3px;
+                    border: 1px solid rgb(172, 172, 172);
+                    .text-input{
+                        text-align: left;
+                        margin: 8px;
+                        height: 150px;
+                        border-bottom: none;
+                    }
+                }
+
+                .datetime {
+                    padding: 11px 8px 3px 0;
+                    margin-bottom: 15px;
+                    border-bottom: 1px solid #707070;
+                    width: 103px;
+
+                }
+            }
+        }
+
     }
 
     .submit-button{
-        background-color: #027B73;
+        background: #027B73;
         height: 50px;
-        margin: 7px; 
-        padding: 13px;        
-
-        .button-text{
-            font-size: 18px;
-            font-weight: bold;
-            color: #FFFFFF;
-            text-align: center;
-        }
-    }
-
+        margin: 0 7px 7px 7px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 50px;
     }
 }

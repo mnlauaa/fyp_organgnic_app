@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content >
-  <div class="fixed-add-button">
+  <div class="fixed-add-button" (click)="openProductModal()" tappable>
     <ion-icon name="md-add"></ion-icon>
   </div>
   <span *ngFor="let p of productList" >
