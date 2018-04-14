@@ -11,7 +11,7 @@ import { ImageCropper } from '../../components/image-cropper/image-cropper'
 export class AddNewsPage {
   title = "Create News";
   imgURL = null;
-  user_info = {}
+  user_info:any = {}
   news_info ={ farm_id: null, datetime: null, title: null, description: null, image_url: null}
   constructor(
     public navCtrl: NavController, 
@@ -23,7 +23,6 @@ export class AddNewsPage {
     this.user_info = navParams.get('user_info');
     this.ev.subscribe('user_info', user_info => {
       this.user_info = user_info
-    console.log(this.user_info);
     });
   }
 
@@ -33,7 +32,7 @@ export class AddNewsPage {
 
   OnSubmit(){
     this.news_info.image_url = this.imgURL;
-    this.news_info.farm_id = this.user_info;
+    this.news_info.farm_id = this.user_info.farm_id;
     this.news_info.datetime = Date.now(); 
     this.api.startQueue([
       this.api.postNews(this.news_info)
