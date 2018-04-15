@@ -43,8 +43,12 @@ export class ApiService extends BaseService{
     return this.get('/me/shopping_cart', this.token);
   }
 
-  public getNews(){
-    return this.get('/news/');
+  public getNews(keyword){
+    let params = {}
+    if(keyword)
+      params['keyword'] = keyword;
+    console.log("get news api", params)
+    return this.get('/news/', null, params);
   }
 
   public getFarms(){
@@ -162,4 +166,7 @@ export class ApiService extends BaseService{
     return this.delete('/me/favourite/' + id, this.token);
   }
 
+  public deleteNews(id){
+    return this.delete('/news/' + id, this.token);
+  }
 }

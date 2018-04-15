@@ -1,4 +1,63 @@
 page-seller-personalise-news {
+
+    .search-block{
+        height: 42px;
+        background-color: #00a69c;
+        .searchbar{
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            margin: 0 18px;
+            padding: 0 5px;
+
+            ion-icon {
+                font-size: 22px;
+                // line-height: 23px;
+                padding: 10px;
+                color: #027B73;
+            }
+
+            .text-input {
+                width: calc(100% - 8px - 8px);
+                padding-right: 0px;
+            }
+        }
+    }
+
+    .filter-area{
+        height: 50px;
+        padding: 7px 18px;
+        background-color: #00a69c;
+        color: #FFFFFF;
+        font-size: 16px;
+
+        .num-of-result{
+            display: inline-block;
+            line-height: 36px;
+            padding-left: 2px;        
+        }
+    }
+
+    .fixed-add-button{
+        position: absolute;
+        height: 60px;
+        width: 60px;
+        right: 15px;
+        background: #027B73;
+        border-radius: 50%;
+        text-align: center;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+
+        .icon{
+            font-size: 40px;
+            line-height: 60px;
+            font-weight: bold;
+            color: white;
+            
+        }
+    }
+
     .button{
         display: block;
         width: 95%;
@@ -32,6 +91,8 @@ page-seller-personalise-news {
         margin: 7px; 
         padding: 10px 14px;
         background-color: #FFFFFF;
+        position: relative;
+
 
         .title{
             font-size: 17px;
@@ -41,11 +102,16 @@ page-seller-personalise-news {
             text-overflow : ellipsis;
             display: inline;
         }
-        .options{
-            padding-left: 60px;
+        .fixed-box{
             display: inline;
-            background: #FFFFFF;
-            max-height: 90px;
+            position: absolute;
+            right: 5px;
+            .icon{
+                font-size: 30px;
+                line-height: 20px;
+                font-weight: bold;
+                color: #027B73;
+            }
         }
 
         .img-box{

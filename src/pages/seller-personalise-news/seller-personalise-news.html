@@ -1,20 +1,26 @@
 <ion-header>
   <my-navbar [title]="title" [enable_shopping_button]="false" [enable_back]="true"></my-navbar>
+
+  <div class="search-block">
+      <div class="searchbar">
+        <ion-icon class="icon" name="ios-search"></ion-icon>
+        <ion-input placeholder="{{keyword || 'What news are you looking for'}}" [(ngModel)]="search_bar"></ion-input>
+        <ion-icon class="icon" name="md-send" tappable (click)="getNewsBykeyword()"></ion-icon>
+      </div>
+  </div>
+
+  <div class="filter-area">
+      <div class="num-of-result">{{result_num}} Results</div>
+  </div>
 </ion-header>
     
   
 
 <ion-content>
-  <div class="button" tappable (click)="addnew()">
-    <div class="container">
-      <ion-icon id="icon" name="add-circle"></ion-icon>
-      <div class="button-text">Add News</div>
-    </div>
-  </div>
-
   <div *ngFor="let n of newsList" class="news-block">
       <div class="title">{{n.title}}</div>
-      <div class="options">
+      <div class="fixed-box" (click)="$event.preventDefault(); $event.stopPropagation(); presentActionSheet(n)" tappable>
+          <ion-icon name="ios-more"></ion-icon>
       </div>
       <div class="info">
         <div class="info-item">by {{n.display_name}}</div>
@@ -27,6 +33,9 @@
         <div class="description">{{n.description}}</div>
         <div class="line-padding"><i id="line"></i></div>
       </div>
-    </div>
+  </div>
+  <div class="fixed-add-button" tappable (click)="addnew()">
+      <ion-icon name="md-add"></ion-icon>
+  </div>
 </ion-content>
   
