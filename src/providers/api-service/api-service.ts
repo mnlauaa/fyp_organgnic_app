@@ -99,7 +99,7 @@ export class ApiService extends BaseService{
 
   public postProducts(data){
     console.log(data)
-    return this.post_file('/products/', data, this.token)
+    return this.post('/products/', data, this.token)
   }
 
   public postNews(data){
