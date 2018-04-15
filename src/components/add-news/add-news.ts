@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, ModalController, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, Events, ModalController, ActionSheetController } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
 import { ImageCropper } from '../../components/image-cropper/image-cropper'
 
 
 @Component({
-  selector: 'page-add-news',
+  selector: 'add-news',
   templateUrl: 'add-news.html',
 })
-export class AddNewsPage {
+export class AddNewsComponent {
   title = "Create News";
   imgURL = null;
   user_info:any = {}
@@ -24,6 +24,7 @@ export class AddNewsPage {
     this.ev.subscribe('user_info', user_info => {
       this.user_info = user_info
     });
+    console.log(this.user_info);
   }
 
   ionViewDidLoad() {

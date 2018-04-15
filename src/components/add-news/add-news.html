@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <my-navbar [title]="title" [enable_shopping_button]="false" [enable_back]="true"></my-navbar>
+    <my-navbar [enable_shopping_button]="false" [enable_close]="true" [enable_menu]="false" [title]="title"></my-navbar>
 </ion-header>
 
 
@@ -8,7 +8,7 @@
 <div class="container">
   <div class="title-block">
     <div class="title">
-      Title {{user_info.farm_id}}
+      Title
     </div>
     <div class="data-title">
         <ion-input placeholder="Enter News Title" [(ngModel)]="news_info.title"></ion-input>
