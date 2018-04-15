@@ -13,6 +13,7 @@ export class ProductChange {
   action: any;
   imgFile: any;
   category: any;
+  special_edit: boolean = false;
 
   constructor(
     private params: NavParams,
@@ -52,6 +53,7 @@ export class ProductChange {
   onSubmit(){
     this.product.qty = this.product.qty / this.product.weight
     if(this.action == 1){
+      // add
       let formData: FormData = new FormData();
           formData.append('product', this.imgFile, 'product-' + Date.now() + '.png')
           formData.append('name', this.product.name)
@@ -67,6 +69,29 @@ export class ProductChange {
       }), err=>{
         console.log(err);
       }
+    } else {
+      // edit
+      let formData: FormData = new FormData();
+        if(this.imgFile)
+          formData.append('product', this.imgFile, 'product-' + Date.now() + '.png')
+        formData.append('name', this.product.name)
+        formData.append('classification', this.product.classification)
+        formData.append('qty', this.product.qty)
+        formData.append('price', this.product.price)
+        formData.append('weight', this.product.weight)
+        if(this.special_edit){
+          formData.append('special_price', this.product.special_price)
+          formData.append('special_weight', this.product.special_weight)
+          formData.append('special_expiry', this.product.special_expiry)
+        }
+        this.api.startQueue([
+          this.api.putProducts(formData, this.product.id)
+        ]).then(data =>{
+          console.log(data)
+          this.view.dismiss()
+        }), err=>{
+          console.log(err);
+        }
     }
   }
 

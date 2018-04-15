@@ -92,8 +92,7 @@ export class ApiService extends BaseService{
   }
 
   public postProducts(data){
-    console.log(data)
-    return this.post_file('/products/', data, this.token)
+    return this.post_file('/products', data, this.token)
   }
 
   public postNews(data){
@@ -156,6 +155,10 @@ export class ApiService extends BaseService{
     const body = new HttpParams().set('type', type)
                                  .set('value', value)
     return this.put('/me/farm/pickup/' + id, body, this.token);
+  }
+
+  public putProducts(data, id){
+    return this.put('/products/' + id, data, this.token)
   }
 
   public deleteMeFavourite(id){

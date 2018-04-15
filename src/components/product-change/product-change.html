@@ -70,38 +70,38 @@
     <div class="input-area" *ngIf="action == 0">
       <div class="input-line">
         <label class="checkbox-area">
-          <input type="checkbox">
+          <input type="checkbox" [(ngModel)]="special_edit">
           <span class="checkmark"></span>
           <span class="text">Special Offer:</span>
         </label>
           
-        <div class="input-area special">
+        <div class="input-area special" [class.active]="special_edit">
           <div class="input-line short">
               $
-              <ion-input type="number" placeholder="{{product.special_price}}" [(ngModel)]="product.special_price"></ion-input>
+              <ion-input [disabled]="!special_edit" type="number" placeholder="{{product.special_price}}" [(ngModel)]="product.special_price"></ion-input>
               /
-              <ion-input type="number" placeholder="{{product.special_weight}}" [(ngModel)]="product.special_weight"></ion-input>
+              <ion-input [disabled]="!special_edit" type="number" placeholder="{{product.special_weight}}" [(ngModel)]="product.special_weight"></ion-input>
               g
           </div>
         </div>
 
-        <div class="input-area special">
+        <div class="input-area special" [class.active]="special_edit">
           <div class="title">
             Expiry Date:
           </div>
           <div class="input-line">
             <ion-item>
-              <ion-datetime displayFormat="DD MMMM YYYY" [(ngModel)]="product.special_expiry"></ion-datetime>
+              <ion-datetime [disabled]="!special_edit" displayFormat="DD MMMM YYYY" [(ngModel)]="product.special_expiry" min="2018" max="2022-12-31"></ion-datetime>
             </ion-item>
           </div>
         </div>
 
-        <div class="input-area special">
+        <div class="input-area special" [class.active]="special_edit">
           <div class="title">
             Description:
           </div>
           <div class="input-line">
-            <ion-textarea placeholder="Input your description" ></ion-textarea>
+            <ion-textarea [disabled]="!special_edit" placeholder="Input your description" ></ion-textarea>
           </div>
         </div>
 
