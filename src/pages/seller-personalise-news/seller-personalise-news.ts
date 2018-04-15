@@ -71,13 +71,13 @@ export class SellerPersonaliseNewsPage {
           text: 'Delete',
           role: 'destructive',
           handler: () => {
-            this.api.startQueue([
-              this.api.deleteNews(n.id)
-              //this.getNewsBykeyword();
-            ]).then(data =>{
-            }), err=>{
-              console.log(err)
-            }
+            // this.api.startQueue([
+            //   this.api.deleteNews(n.id)
+            //   //this.getNewsBykeyword();
+            // ]).then(data =>{
+            // }), err=>{
+            //   console.log(err)
+            // }
             console.log('Destructive clicked');
           }
         },
@@ -97,14 +97,12 @@ export class SellerPersonaliseNewsPage {
   getNewsBykeyword(){
     this.keyword = this.search_bar;
     this.search_bar = null;
-    if(!this.keyword)
-      this.keyword =null;
     this.api.startQueue([
       this.api.getNews(this.keyword)
     ]).then(data => {
       console.log(data);
-      this.newsList = data[0];
-      this.result_num = data[0].length;
+      this.newsList = data[0].news_list;
+      this.result_num = data[0].result_num;
       console.log(this.newsList);
     },err=> {
       console.log(err)

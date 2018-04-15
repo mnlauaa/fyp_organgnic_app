@@ -44,7 +44,9 @@ export class ApiService extends BaseService{
   }
 
   public getNews(keyword){
-    let params = {keyword : keyword}
+    let params = {}
+    if(keyword)
+      params['keyword'] = keyword;
     console.log("get news api", params)
     return this.get('/news/', null, params);
   }

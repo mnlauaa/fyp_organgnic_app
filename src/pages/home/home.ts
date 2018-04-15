@@ -22,8 +22,8 @@ export class HomePage {
     this.api.startQueue([
       this.api.getNews(this.search_bar)
     ]).then(data => {
-      data[0].map(n=>n.datetime = moment(n.datetime).fromNow());
-      this.newsList = data[0];
+      data[0].news_list.map(n=>n.datetime = moment(n.datetime).fromNow());
+      this.newsList = data[0].news_list;
       console.log(this.newsList);
     }, err => {
       console.log(err)
