@@ -35,12 +35,12 @@
         <div class="non-empty-cart-block">
           <div class="list-title">
             <ion-icon name="ios-arrow-back" (click)="slideButtonClick(1)" [class.hidden]="hiddenCheck(1)" tappable></ion-icon>
-            <div class="list-title-text">List {{i+1}} - {{o[0].display_name}}</div>
+            <div class="list-title-text">List {{i + 1}} - {{o.farm.display_name}}</div>
             <ion-icon name="ios-arrow-forward" (click)="slideButtonClick(0)" [class.hidden]="hiddenCheck(0)" tappable></ion-icon>
           </div>
 
           <i id="line"></i>
-          <div *ngFor="let p of o">
+          <div *ngFor="let p of o.productList">
             <div class="product-block">
               <span><img [src]="p.image_url"></span>
               <div class="product-info">
@@ -53,7 +53,7 @@
                     <ion-icon name="md-add" (click)="productBuyerQtyEdit(p, 1)" tappable></ion-icon>
                   </div>
               </div>
-              <div class="delete" (click)="buttonClick()"><ion-icon name="md-close"></ion-icon></div>
+              <div class="delete" (click)="presentConfirm(p.transaction_id)"><ion-icon name="md-close"></ion-icon></div>
             </div>
           <i id="line"></i>
           </div>
@@ -64,27 +64,28 @@
           </div>
 
           <div class="delivery-block">
-            <label class="radio-label">
-              <input type="radio" name="pick-up-way">
+            <label class="radio-label" *ngIf="o.farm.pickup.length != 0">
+              <input type="radio" value="point" [(ngModel)]="o.farm.pickup_way" (change)="calculateShipping(o)">
               <span class="checkmark"></span>
               <span class="text">Free shipping pick-up point:</span>
             </label>
 
-            <ion-item>
-              <ion-select [(ngModel)]="gender" placeholder=" - Please Select - ">
-                <ion-option value="f">Female</ion-option>
-                <ion-option value="m">Male</ion-option>
+            <ion-item *ngIf="o.farm.pickup.length != 0">
+              <ion-select [(ngModel)]="o.farm.pickup_location" placeholder=" - Please Select - ">
+                <span *ngFor="let p of o.farm.pickup">
+                    <ion-option *ngIf="p.func_on" [value]="p.id">{{p.location}}</ion-option>
+                </span>
               </ion-select>
             </ion-item>
 
             <label class="radio-label">
-              <input type="radio" name="pick-up-way">
+              <input type="radio" value="home" [(ngModel)]="o.farm.pickup_way" (change)="calculateShipping(o)">
               <span class="checkmark"></span>
               <span class="text">Delivery to your preset address:</span>
             </label>
 
             <div class="address">
-              <span>10/F, 123 ABC Street, Choi Hung</span>
+              <span>{{user_info.address}}</span>
             </div>
           </div>
 
@@ -93,9 +94,9 @@
         <div class="counting-block">
           <table class="counting-table">
             <tr><td class="text">Subtotal</td><td class="price text">${{o.sum}}</td></tr>
-            <tr><td class="text">Shipping Cost</td><td class="price text">$</td></tr>
+            <tr><td class="text">Shipping Cost</td><td class="price text">${{o.farm.shipping}}</td></tr>
             <tr><td colspan="2"><hr></td></tr>
-            <tr><td class="bold-text">Total Cost</td><td class="price text">$96</td></tr>
+            <tr><td class="bold-text">Total Cost</td><td class="price text">${{o.farm.shipping + o.sum}}</td></tr>
           </table>
         </div>
 

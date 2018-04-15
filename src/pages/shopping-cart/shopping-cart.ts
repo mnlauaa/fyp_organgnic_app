@@ -1,5 +1,5 @@
 import { Component, ViewChild  } from '@angular/core';
-import { NavController, NavParams, Slides, MenuController } from 'ionic-angular';
+import { NavController, NavParams, Slides, MenuController, AlertController  } from 'ionic-angular';
 import { TheMarketPage } from '../the-market/the-market';
 import { CheckOutPage } from '../check-out/check-out';
 import { ApiService } from '../../providers/api-service/api-service'
@@ -11,6 +11,7 @@ import { ApiService } from '../../providers/api-service/api-service'
 export class ShoppingCartPage {
   @ViewChild(Slides) slides: Slides;
   title = 'Shopping Cart';
+  user_info: any;
   enable_back = false;
   allOrder = null;
 
@@ -19,19 +20,44 @@ export class ShoppingCartPage {
     public navParams: NavParams,
     protected api: ApiService,
     private menu: MenuController,
+    private alertCtrl: AlertController
   ) {
+    this.user_info = navParams.get('user_info');
+    this.enable_back = navParams.get('enable_back') || false;
+    this.update()
+  }
+
+  update(){
     this.api.startQueue([
       this.api.getShopingCart()
     ]).then(data => {
-      console.log("shop", data)
+      console.log("shop", data[0])
       this.allOrder = data[0];
       if(this.allOrder[0])
-        this.calculateTotal();
+        this.calculateSubTotal();
+      this.allOrder.map((o)=>{
+        if(o.farm.pickup.length != 0)
+          o.farm.pickup_way = "point"
+        else
+          o.farm.pickup_way = "home"
+        o.farm.shipping = 0;
+        this.calculateShipping(o)
+      })
     }, err => {
       console.log(err)
     });
+  }
 
-    this.enable_back = navParams.get('enable_back') || false;
+
+
+  deleteTransition(id){
+    this.api.startQueue([
+      this.api.deleteTransition(id)
+    ]).then(data => {
+      this.update()
+    }, err => {
+      console.log(err)
+    });
   }
 
   productBuyerQtyEdit(p, button){
@@ -42,19 +68,54 @@ export class ShoppingCartPage {
       if(p.qty > 1)
         p.qty--
     }
-    this.calculateTotal();
+    this.calculateSubTotal();
   }
 
-  calculateTotal(){
+  calculateShipping(o){
+    if(o.farm){
+      o.farm.shipping = 0
+      if( !o.farm.margin_on || (o.farm.margin_on && o.farm.shipping_margin > o.sum) ){
+        o.farm.shipping += o.farm.shipping_cost
+      }
+      if( o.farm.home_on && o.farm.pickup_way == "home")
+        o.farm.shipping +=  o.farm.home_additional_cost
+    }
+  }
+
+  calculateSubTotal(){
     this.allOrder.map((order)=>{
       let sum = 0;
-      order.map((p)=>{
+      order.productList.map((p)=>{
         sum += p.price * p.qty
       })
       order.sum = sum;
     })
     return true;
   }
+
+  presentConfirm(id) {
+    let alert = this.alertCtrl.create({
+      title: 'Remove Product',
+      message: 'Do you want to remove this product?',
+      buttons: [
+        {
+          text: 'Remove',
+          handler: () => { this.deleteTransition(id) }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {}
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
+
+
+  // 
 
   hiddenCheck(button){
     if(button){

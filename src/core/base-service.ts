@@ -91,6 +91,7 @@ export class BaseService {
         });
     }
 
+    // DELETE request
     protected delete(url, auth = null, params = null): Promise<any> {
         url = this.api_prefix + url;
         return new Promise((resolve, reject) => {

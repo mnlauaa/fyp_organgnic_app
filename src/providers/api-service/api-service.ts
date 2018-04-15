@@ -55,6 +55,10 @@ export class ApiService extends BaseService{
     return this.get('/users/farms');
   }
 
+  public getFarmsById(id){
+    return this.get('/users/' + id + '/farms');
+  }
+
   public getMyFavourite(){
     return this.get('/me/favourite', this.token);
   }
@@ -175,5 +179,9 @@ export class ApiService extends BaseService{
 
   public deleteNews(id){
     return this.delete('/news/' + id, this.token);
+  }
+
+  public deleteTransition(id){
+    return this.delete('/orders/translation/' + id, this.token);
   }
 }

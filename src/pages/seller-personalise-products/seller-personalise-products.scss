@@ -72,6 +72,14 @@ page-seller-personalise-products {
             width: 124px;
         }
 
+        
+        .special{
+            position: absolute;
+            top: 6px;
+            right: 40px;
+            color: #EB5537;
+        }
+
         .fixed-box{
             position: absolute;
             top: 0px;
@@ -103,9 +111,22 @@ page-seller-personalise-products {
                 margin: 6px 0;
             }
 
-            .price{
+            .special_price{
+                display: inline-block;
                 font-size: 15px;
                 padding: 10px 0;
+            }
+
+            .price{
+                display: inline-block;
+                font-size: 15px;
+                padding: 10px 0;
+            }
+
+            .delete{
+                text-decoration: line-through;
+                font-size: 13px;
+                color: #B9B7B7;
             }
 
             .rating{
