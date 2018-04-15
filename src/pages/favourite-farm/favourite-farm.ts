@@ -62,7 +62,8 @@ export class FavouriteFarmPage {
       selection: [id],
       classSelect: [],
       price_below: null,
-      price_above: null
+      price_above: null,
+      special: null
     }
     this.navCtrl.setRoot(TheMarketPage, {filter_list: filter_list});
   }

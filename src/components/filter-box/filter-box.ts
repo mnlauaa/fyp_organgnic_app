@@ -25,6 +25,7 @@ export class FilterBox {
   classSelect: any = [];
   price_below: Number = null;
   price_above: Number = null;
+  special: any = false;
   constructor(
     public navParams: NavParams,
     public viewCtrl: ViewController,
@@ -50,6 +51,8 @@ export class FilterBox {
     this.classSelect = this.parent.filter_list.classSelect;
     this.price_below = this.parent.filter_list.price_below || null;
     this.price_above = this.parent.filter_list.price_above || null;
+    this.special = this.parent.filter_list.special || null;
+
 
     this.class = [
       { name: "Bulbs", id: 0 },
@@ -97,6 +100,7 @@ export class FilterBox {
     this.parent.filter_list.classSelect = this.classSelect;
     this.parent.filter_list.price_below = Number(this.price_below);
     this.parent.filter_list.price_above = Number(this.price_above);
+    this.parent.filter_list.special = this.special;
     this.callback();
   }
 

@@ -69,6 +69,8 @@ export class ApiService extends BaseService{
         params['price_below'] = filter.price_below
       if(filter.price_above)
         params['price_above'] = filter.price_above
+      if(filter.special)
+        params['special'] = filter.special
     }
     console.log("get product api", params)
     return this.get('/products', null, params);
