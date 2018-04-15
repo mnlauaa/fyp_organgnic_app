@@ -20,7 +20,9 @@ export class FilterBox {
 
   //local
   favourite: Boolean;
+  class: any = [];
   selection: any = [];
+  classSelect: any = [];
   price_below: Number = null;
   price_above: Number = null;
   constructor(
@@ -45,8 +47,21 @@ export class FilterBox {
 
     this.favourite = this.parent.filter_list.favourite;
     this.selection = this.parent.filter_list.selection;
+    this.classSelect = this.parent.filter_list.classSelect;
     this.price_below = this.parent.filter_list.price_below || null;
     this.price_above = this.parent.filter_list.price_above || null;
+
+    this.class = [
+      { name: "Bulbs", id: 0 },
+      { name: "Flowers", id: 1 },
+      { name: "Fruits", id: 2 },
+      { name: "Fungi", id: 3 },
+      { name: "Leaves", id: 4 },
+      { name: "Roots", id: 5 },
+      { name: "Seeds", id: 6 },
+      { name: "Stems", id: 7 },
+      { name: "Tubers", id: 8 }
+    ]
 
     viewCtrl.onWillDismiss(()=>{
       navParams.data.filterBoxWillClose();
@@ -61,6 +76,14 @@ export class FilterBox {
       this.selection.push(id)
   }
 
+  toggleClass(id){
+    let idx = this.classSelect.indexOf(id);
+    if(idx >= 0)
+      this.classSelect.splice(idx, 1)
+    else
+      this.classSelect.push(id)
+  }
+
   submit(){
     if(this.favourite){
       this.parent.filter_list.favourite = true;
@@ -69,7 +92,9 @@ export class FilterBox {
         this.selection.push(item.farm_id)
       })
     }
+    console.log( this.classSelect);
     this.parent.filter_list.selection = this.selection;
+    this.parent.filter_list.classSelect = this.classSelect;
     this.parent.filter_list.price_below = Number(this.price_below);
     this.parent.filter_list.price_above = Number(this.price_above);
     this.callback();

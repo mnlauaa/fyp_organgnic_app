@@ -2,39 +2,112 @@
   <my-navbar [enable_shopping_button]="false" [enable_close]="true" [enable_menu]="false" [title]="title"></my-navbar>
 </ion-header>
 <ion-content>
-  <div class="page">
-      <div class="content">
-          <div class="photo">
-            <div class="uploadButton">
-              <div><ion-icon name="md-camera"></ion-icon></div>
-              <div>&nbsp;Upload</div>
-            </div>
-          </div>
-
-          <div class="editForm">
-            <div class="title">Product</div>
-            <div class="productLine"></div>
-            <br>
-            <div class="title">Product Category</div>
-            <div class="catDropDownList"></div><br>
-            <div class="title">Price</div>
-            <div class="priceRow">
-              <span>$</span>&nbsp;<div class="priceBox"></div>&nbsp; / &nbsp;<div class="priceBox"></div>&nbsp;<div class="unitDropDownList"></div>
-            </div><br>
-            <div class="specialOfferLine"><div class="checkBox"></div>&nbsp;&nbsp;<div class="specialOffer">Special Offer</div></div>
-            <div class="specialPriceRow">
-              <span>$</span>&nbsp;<div class="priceBox"></div>&nbsp; / &nbsp;<div class="priceBox"></div>&nbsp;<div class="unitDropDownList"></div>
-            </div><br>
-            <div class="soTitle">Offer Due Date</div>
-            <div class="chooseDate"></div><br>
-            <div class="soTitle">Description</div>
-            <div class="desBox"></div>
-          </div>
+  <div class="form-content">
+    <!-- add product -->
+    <div *ngIf="!product.image_url" class="add-img-block" (click)="presentActionSheet()" tappable>
+      <div class="fix-content">
+        <ion-icon name="md-camera"></ion-icon>
+        <div class="text">Add or take photo of the product</div>
       </div>
+    </div>
 
-      <div class="submit-button" tappable>
-          <div class="button-text">Submit</div>
+    <!-- edit product -->
+    <div *ngIf="product.image_url" class='edit-img-block' (click)="presentActionSheet()" tappable>
+      <img [src]="product.image_url">
+      <div class="img-flter"></div>
+      <div class="fix-content">
+        <ion-icon name="md-camera"></ion-icon>
+        Upload
       </div>
+    </div>
+    
+    <!-- img finish -->
+    <div class="input-area">
+      <div class="title">
+        Product
+      </div>
+      <div class="input-line">
+        <ion-input placeholder="{{product.name}}" [(ngModel)]="product.name"></ion-input>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="title">
+        Product Category
+      </div>
+      <div class="input-line">
+        <ion-item>
+          <ion-select [(ngModel)]="product.classification" placeholder=" - Please Select - ">
+            <ion-option *ngFor="let c of category" [value]="c.id">{{c.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="title">
+        Price
+      </div>
+      <div class="input-line short">
+        $
+        <ion-input type="number" placeholder="{{product.price}}" [(ngModel)]="product.price"></ion-input>
+        /
+        <ion-input type="number" placeholder="{{product.weight}}" [(ngModel)]="product.weight"></ion-input>
+        g
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="title">
+        Quantity
+      </div>
+      <div class="input-line short">
+        <ion-input type="number" placeholder="{{product.qty}}" [(ngModel)]="product.qty"></ion-input>
+        g
+      </div>
+    </div>
+
+    <div class="input-area" *ngIf="action == 0">
+      <div class="input-line">
+        <label class="checkbox-area">
+          <input type="checkbox">
+          <span class="checkmark"></span>
+          <span class="text">Special Offer:</span>
+        </label>
+          
+        <div class="input-area special">
+          <div class="input-line short">
+              $
+              <ion-input type="number" placeholder="{{product.special_price}}" [(ngModel)]="product.special_price"></ion-input>
+              /
+              <ion-input type="number" placeholder="{{product.special_weight}}" [(ngModel)]="product.special_weight"></ion-input>
+              g
+          </div>
+        </div>
+
+        <div class="input-area special">
+          <div class="title">
+            Expiry Date:
+          </div>
+          <div class="input-line">
+            <ion-item>
+              <ion-datetime displayFormat="DD MMMM YYYY" [(ngModel)]="product.special_expiry"></ion-datetime>
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="input-area special">
+          <div class="title">
+            Description:
+          </div>
+          <div class="input-line">
+            <ion-textarea placeholder="Input your description" ></ion-textarea>
+          </div>
+        </div>
+
+      </div> 
+    </div>
+
   </div>
-
+  <div class="submit-button" (click)="onSubmit()">Submit</div>
 </ion-content>

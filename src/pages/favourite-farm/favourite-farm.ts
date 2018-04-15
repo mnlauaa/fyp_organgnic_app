@@ -60,6 +60,7 @@ export class FavouriteFarmPage {
     let filter_list = {
       favourite: false,
       selection: [id],
+      classSelect: [],
       price_below: null,
       price_above: null
     }

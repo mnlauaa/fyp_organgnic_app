@@ -55,7 +55,6 @@ export class ApiService extends BaseService{
     return this.get('/users/farms');
   }
 
-
   public getMyFavourite(){
     return this.get('/me/favourite', this.token);
   }
@@ -96,6 +95,11 @@ export class ApiService extends BaseService{
                                  .set('password', data.password);
 
     return this.post('/me/login', body, type, this.token);
+  }
+
+  public postProducts(data){
+    console.log(data)
+    return this.post_file('/products/', data, this.token)
   }
 
   public postNews(data){
