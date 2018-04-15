@@ -10,6 +10,7 @@ import * as moment from 'moment';
 })
 export class SingleProductPage {
   product: any = {};
+  now: Date;
   related_product: any = [];
   buyyer_qty: any;
 
@@ -28,6 +29,7 @@ export class SingleProductPage {
   ) {
     let product_id = navParams.get('id');
     let classification =  navParams.get('classification');
+    this.now = new Date();
     this.buyyer_qty = 1;
     this.api.startQueue([
       this.api.getProductById(product_id),
@@ -36,6 +38,9 @@ export class SingleProductPage {
       this.product = data[0];
       this.product.rating = Math.ceil(this.product.rating*2)/2;
       this.product.last_update = moment(this.product.last_update).format("D MMM, YYYY");
+      if(this.product.special_expiry )
+        this.product.special_expiry = new Date(this.product.special_expiry)
+
       this.related_product = data[1];
       this.related_product.map(product=>product.rating = Math.ceil(product.rating*2)/2)
       if(this.related_product.length < 3){

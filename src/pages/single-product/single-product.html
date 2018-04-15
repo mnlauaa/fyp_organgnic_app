@@ -37,7 +37,10 @@
         </tr>
         <tr>
             <th>Price:</th>
-            <td>${{product.price}}/ {{product.weight}}g</td>
+            <td>
+                <span *ngIf="product.special_expiry >= now">${{product.special_price}}/ {{product.special_weight}}g</span>
+                <span [class.delete]="product.special_expiry >= now">${{product.price}}/ {{product.weight}}g</span>
+            </td>
         </tr>
         <tr>
             <th>Quanty:</th>

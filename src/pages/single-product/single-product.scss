@@ -151,6 +151,12 @@ page-single-product {
             padding-right: 5px;
         }
 
+        .delete{
+            text-decoration: line-through;
+            font-size: 13px;
+            color: #B9B7B7;
+        }
+
         .qty-input{
             display: flex;
             align-items: center;

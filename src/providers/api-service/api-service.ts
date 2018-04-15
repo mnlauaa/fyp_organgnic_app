@@ -73,6 +73,8 @@ export class ApiService extends BaseService{
         params['price_below'] = filter.price_below
       if(filter.price_above)
         params['price_above'] = filter.price_above
+      if(filter.special)
+        params['special'] = filter.special
     }
     console.log("get product api", params)
     return this.get('/products', null, params);
@@ -98,8 +100,7 @@ export class ApiService extends BaseService{
   }
 
   public postProducts(data){
-    console.log(data)
-    return this.post('/products/', data, this.token)
+    return this.post_file('/products', data, this.token)
   }
 
   public postNews(data){
@@ -162,6 +163,10 @@ export class ApiService extends BaseService{
     const body = new HttpParams().set('type', type)
                                  .set('value', value)
     return this.put('/me/farm/pickup/' + id, body, this.token);
+  }
+
+  public putProducts(data, id){
+    return this.put('/products/' + id, data, this.token)
   }
 
   public deleteMeFavourite(id){

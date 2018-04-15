@@ -72,6 +72,13 @@ page-the-market {
             width: 124px;
         }
 
+        .special{
+            position: absolute;
+            top: 12px;
+            right: 8px;
+            color: #EB5537;
+        }
+
         .product-info{
             margin: 6px 15px;
 
@@ -89,9 +96,22 @@ page-the-market {
                 margin: 6px 0;
             }
 
-            .price{
+            .special_price{
+                display: inline-block;
                 font-size: 15px;
                 padding: 10px 0;
+            }
+
+            .price{
+                display: inline-block;
+                font-size: 15px;
+                padding: 10px 0;
+            }
+
+            .delete{
+                text-decoration: line-through;
+                font-size: 13px;
+                color: #B9B7B7;
             }
 
             .rating{
@@ -110,7 +130,7 @@ page-the-market {
             float: right;
             font-size: 11px;
             color: #505050;
-
+            font-weight: bold;
 
             ion-icon{
                 padding-left: 8px;

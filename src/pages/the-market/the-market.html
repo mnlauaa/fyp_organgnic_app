@@ -29,11 +29,14 @@
       <span>
         <img [src]="p.image_url">
       </span>
+
+      <div *ngIf="p.special_expiry >= now" class="special">Special Offer!</div>
     
       <div class="product-info">
         <div class="title">{{p.name}}</div>
         <div class="farm-name">by {{p.display_name}}</div>
-        <div class="price">${{p.price}}/ {{p.weight}}g</div>
+        <div *ngIf="p.special_expiry >= now" class="special_price">${{p.special_price}}/ {{p.special_weight}}g</div>
+        <div class="price" [class.delete]="p.special_expiry >= now">${{p.price}}/ {{p.weight}}g</div>
         <div class="rating">
           <span *ngFor="let i of getFullStarNumber(p.rating)">
               <ion-icon name="md-star"></ion-icon>

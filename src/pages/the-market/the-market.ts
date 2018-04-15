@@ -11,6 +11,7 @@ import { ApiService } from '../../providers/api-service/api-service'
 })
 export class TheMarketPage {
   title = 'The Market';
+  now: Date;
   
   productList: any;
   result_num:any = 0;
@@ -33,12 +34,14 @@ export class TheMarketPage {
     public popoverCtrl: PopoverController,
     public api: ApiService
   ) {
+    this.now = new Date();
     this.keyword = navParams.get('keyword');
     this.filter_list = navParams.get('filter_list') || { favourite: false,
                                                          selection: [],
                                                          classSelect: [],
                                                          price_below: null,
-                                                         price_above: null}
+                                                         price_above: null,
+                                                         special: null}
     this.getProductList();
   }
 
@@ -49,7 +52,11 @@ export class TheMarketPage {
     ]).then(data => {
       this.productList = data[0].product_list;
       this.result_num = data[0].result_num;
-      this.productList.map(product=>product.rating = Math.ceil(product.rating*2)/2)
+      this.productList.map(product=>{
+        product.rating = Math.ceil(product.rating*2)/2
+        if(product.special_expiry )
+          product.special_expiry = new Date(product.special_expiry)
+      })
       console.log(this.productList);
     }, err => {
       console.log(err)
