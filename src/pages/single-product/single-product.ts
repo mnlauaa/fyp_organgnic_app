@@ -9,8 +9,16 @@ import * as moment from 'moment';
   templateUrl: 'single-product.html',
 })
 export class SingleProductPage {
-  product: any;
+  product: any = {};
+  related_product: any = [];
   buyyer_qty: any;
+
+  //postition
+  maxPosition: any;
+	currentPosition: any = null;
+	maxLeft: boolean = true;
+  maxRight: boolean = false;
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -18,10 +26,25 @@ export class SingleProductPage {
     private menu: MenuController,
     private toastCtrl: ToastController
   ) {
-    this.product = navParams.get('product_detail');
-    this.product.last_update = moment(this.product.last_update).format("D MMM, YYYY")
+    let product_id = navParams.get('id');
+    let classification =  navParams.get('classification');
     this.buyyer_qty = 1;
-
+    this.api.startQueue([
+      this.api.getProductById(product_id),
+      this.api.getRelatedProduct(classification, product_id)
+    ]).then(data =>{
+      this.product = data[0];
+      this.product.rating = Math.ceil(this.product.rating*2)/2;
+      this.product.last_update = moment(this.product.last_update).format("D MMM, YYYY");
+      this.related_product = data[1];
+      this.related_product.map(product=>product.rating = Math.ceil(product.rating*2)/2)
+      if(this.related_product.length < 3){
+        this.maxRight = true
+      }
+      console.log(this.product);
+    }),err =>{
+      console.log(err);
+    }
   }
 
   controlQty(add){
@@ -53,16 +76,33 @@ export class SingleProductPage {
       console.log(err)
     });
 
-    
   }
 
+  getPosition(event) {
+		this.currentPosition = event.srcElement.scrollLeft;
+		this.maxPosition = event.srcElement.scrollWidth - event.srcElement.offsetWidth;
+        if(this.currentPosition==0){
+            this.maxLeft = true;
+        } else if(this.currentPosition==this.maxPosition){
+            this.maxRight = true;
+        } else{
+            this.maxRight = false;
+            this.maxLeft = false;
+        }
+  }
+  
+  openProductDetail(product_detail){
+    console.log("open",product_detail);
+    this.navCtrl.push(SingleProductPage, 
+      { id: product_detail.id, 
+        classification: product_detail.classification });
+  }
 
-    
-  getFullStarNumber(num){
+  getFullStarNumber(num = 1){
     return new Array(Math.floor(num));
   }
 
-  getOutlineStarNumber(num){
+  getOutlineStarNumber(num = 1){
     return new Array(Math.floor(5-num));
   }
 

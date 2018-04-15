@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Camera, CameraOptions  } from '@ionic-native/camera';
 import { NavParams, Platform, ViewController } from 'ionic-angular';
-import { ApiService } from '../../providers/api-service/api-service'
+import { ApiService } from '../../providers/api-service/api-service';
 import Cropper from 'cropperjs';
 
 @Component({
