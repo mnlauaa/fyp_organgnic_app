@@ -87,6 +87,8 @@ export class ApiService extends BaseService{
     return this.get('/products/related', null, params);
   }
 
+
+
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';
     const body = new HttpParams().set('username', data.username)
@@ -97,7 +99,7 @@ export class ApiService extends BaseService{
 
   public postProducts(data){
     console.log(data)
-    return this.post_file('/products/', data, this.token)
+    return this.post('/products/', data, this.token)
   }
 
   public postNews(data){

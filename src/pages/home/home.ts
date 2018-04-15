@@ -20,7 +20,7 @@ export class HomePage {
     // private storage: Storage
   ) {
     this.api.startQueue([
-      this.api.getNews(this.search_bar)
+      this.api.getNews(null)
     ]).then(data => {
       data[0].news_list.map(n=>n.datetime = moment(n.datetime).fromNow());
       this.newsList = data[0].news_list;
