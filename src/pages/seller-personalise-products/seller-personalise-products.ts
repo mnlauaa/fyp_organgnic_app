@@ -11,6 +11,7 @@ import { ProductChange } from '../../components/product-change/product-change'
 })
 export class SellerPersonaliseProductsPage {
   title = "Your Products";
+  now: Date;
   
   user_info: any;
   productList: any;
@@ -38,6 +39,7 @@ export class SellerPersonaliseProductsPage {
       price_below: null,
       price_above: null
     }
+    this.now = new Date();
     this.getProductList();
   }
 
@@ -89,7 +91,11 @@ export class SellerPersonaliseProductsPage {
     ]).then(data => {
       this.productList = data[0].product_list;
       this.result_num = data[0].result_num;
-      this.productList.map(product=>product.rating = Math.ceil(product.rating*2)/2)
+      this.productList.map((product) => {
+        product.rating = Math.ceil(product.rating*2)/2
+        if(product.special_expiry )
+          product.special_expiry = new Date(product.special_expiry)
+      })
       console.log(this.productList);
     }, err => {
       console.log(err)
