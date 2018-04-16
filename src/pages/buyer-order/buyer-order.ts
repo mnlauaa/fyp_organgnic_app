@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
+import { SingleOrderPage } from '../single-order/single-order'
 
 @Component({
   selector: 'page-buyer-order',
@@ -16,6 +17,15 @@ export class BuyerOrderPage {
     public navParams: NavParams,
     public api: ApiService
   ) {
+    // this.update()
+  }
+
+  ionViewWillEnter(){
+    this.update()
+  }
+
+  update(){
+    this.wishList = [];
     this.api.startQueue([
       this.api.getBuyerOrdwes()
     ]).then(data=>{
@@ -27,6 +37,12 @@ export class BuyerOrderPage {
     }), err=>{
       console.log(err)
     }
+  }
+
+  openSingleOrder(order){
+    this.navCtrl.push(SingleOrderPage, { 
+      order: order
+    });
   }
 
 

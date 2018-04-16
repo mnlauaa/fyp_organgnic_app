@@ -197,6 +197,10 @@ export class ApiService extends BaseService{
     return this.delete('/news/' + id, this.token);
   }
 
+  public deleteOrder(id){
+    return this.delete('/orders/' + id, this.token);
+  }
+
   public deleteTransition(id){
     return this.delete('/orders/translation/' + id, this.token);
   }

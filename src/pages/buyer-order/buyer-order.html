@@ -13,7 +13,7 @@
 
 		<!-- end top session -->
 		<div *ngFor="let o of wishList">
-			<div class="order-area" *ngIf="wish_list_open">
+			<div class="order-area" *ngIf="wish_list_open" (click)="$event.preventDefault(); $event.stopPropagation(); openSingleOrder(o)" tappable>
 				<i id="line"></i>
 				<div class="order-block">
 					<div class="image">

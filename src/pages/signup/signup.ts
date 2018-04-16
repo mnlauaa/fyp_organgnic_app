@@ -23,7 +23,7 @@ export class SignupPage {
   }
 
   ionViewWillLeave() {
-    this.menu.swipeEnable(true)]
+    this.menu.swipeEnable(true)
   } 
 
   ionViewDidLoad() {
