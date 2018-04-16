@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, ModalController, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, Events, ViewController, ModalController, ActionSheetController } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
 import { ImageCropper } from '../../components/image-cropper/image-cropper'
 
@@ -10,12 +10,13 @@ import { ImageCropper } from '../../components/image-cropper/image-cropper'
 })
 export class AddNewsComponent {
   title = "Create News";
-  imgURL = null;
+  imgFile: any;
   user_info:any = {}
-  news_info ={ farm_id: null, datetime: null, title: null, description: null, image_url: null}
+  news: any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
+    public  view: ViewController,
     protected api: ApiService, 
     private ev: Events,
     private actionSheetCtrl: ActionSheetController,
@@ -32,30 +33,31 @@ export class AddNewsComponent {
   }
 
   OnSubmit(){
-    this.news_info.image_url = this.imgURL;
-    this.news_info.farm_id = this.user_info.farm_id;
-    this.news_info.datetime = Date.now(); 
+    let formData : FormData = new FormData();
+      formData.append('news', this.imgFile, 'news-' + Date.now() + '.png')
+      formData.append('title', this.news.title)
+      formData.append('description', this.news.description) 
     this.api.startQueue([
-      this.api.postNews(this.news_info)
-    ]).then(data=>{},err=>{
+      this.api.postNews(formData)
+    ]).then(data=>{
+      console.log(data)
+      this.view.dismiss()
+    },err=>{
         console.log(err)
       })
   }
 
-  presentActionSheet(type) {
+  presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       buttons: [
         {
           text: 'Take Photo',
           handler: () => {
-            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 0, type: type});
+            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 0, type: 0 });
             profileModal.onDidDismiss(data =>{
               if(data){
-                if(type == 0){
-                  this.imgURL = data.imageURL;
-                } else {
-                  this.imgURL = data.imageURL;
-                }
+                this.news.image_url = data.imageURL;
+                this.imgFile = data.file;
               }
             })
             profileModal.present();
@@ -64,14 +66,11 @@ export class AddNewsComponent {
         {
           text: 'Pick Image',
           handler: () => {
-            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 1, type: type});
+            let profileModal = this.modalCtrl.create(ImageCropper, { pickMethod: 1, type: 0 });
             profileModal.onDidDismiss(data =>{
               if(data){
-                if(type == 0){
-                  this.imgURL = data.imageURL;
-                } else {
-                  this.imgURL = data.imageURL;
-                }
+                this.news.image_url = data.imageURL;
+                this.imgFile = data.file;
               }
             })
             profileModal.present();

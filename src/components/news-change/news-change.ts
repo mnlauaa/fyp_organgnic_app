@@ -22,7 +22,7 @@ export class NewsChangeComponent {
     public api: ApiService
   ) {
     this.news = params.get('news');
-    console.log(this.news);
+    console.log(this.news.image_url);
     console.log('Hello NewsChangeComponent Component');
   }
 
@@ -36,9 +36,10 @@ export class NewsChangeComponent {
       this.api.putNews(formData, this.news.id)
     ]).then(data =>{
       console.log(data)
-      this.view.dismiss()
+      this.view.dismiss();
     }), err=>{
       console.log(err);
+      this.view.dismiss();
     }
   }
 
