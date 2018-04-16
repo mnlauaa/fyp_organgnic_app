@@ -15,6 +15,7 @@ import { SortingBox } from '../components/sorting-box/sorting-box'
 import { ImageCropper } from '../components/image-cropper/image-cropper'
 import { ProductChange } from '../components/product-change/product-change' 
 import { AddNewsComponent } from '../components/add-news/add-news'
+import { NewsChangeComponent } from '../components/news-change/news-change';
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -79,7 +80,8 @@ export const myComponets = [
   SortingBox,
   ImageCropper,
   ProductChange,
-  AddNewsComponent
+  AddNewsComponent,
+  NewsChangeComponent
 ];
 
 export const myProviders = [

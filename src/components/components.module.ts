@@ -5,19 +5,22 @@ import { SortingBox } from './sorting-box/sorting-box';
 import { ImageCropper } from './image-cropper/image-cropper';
 import { ProductChange } from './product-change/product-change';
 import { AddNewsComponent } from './add-news/add-news';
+import { NewsChangeComponent } from './news-change/news-change';
 @NgModule({
 	declarations: [MyNavbar,
     FilterBox,
     SortingBox,
     ImageCropper,
     ProductChange,
-    AddNewsComponent],
+    AddNewsComponent,
+    NewsChangeComponent],
 	imports: [],
 	exports: [MyNavbar,
     FilterBox,
     SortingBox,
     ImageCropper,
     ProductChange,
-    AddNewsComponent]
+    AddNewsComponent,
+    NewsChangeComponent]
 })
 export class ComponentsModule {}

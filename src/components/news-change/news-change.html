@@ -1,0 +1,44 @@
+<ion-header>
+    <my-navbar [enable_shopping_button]="false" [enable_close]="true" [enable_menu]="false" [title]="title"></my-navbar>
+  </ion-header>
+  <ion-content>
+    <div class="form-content">
+      <!-- add product -->
+      <div *ngIf="!news.image_url" class="add-img-block" (click)="presentActionSheet()" tappable>
+        <div class="fix-content">
+          <ion-icon name="md-camera"></ion-icon>
+          <div class="text">Add or take photo of the product</div>
+        </div>
+      </div>
+  
+      <!-- edit product -->
+      <div *ngIf="news.image_url" class='edit-img-block' (click)="presentActionSheet()" tappable>
+        <img [src]="news.image_url">
+        <div class="img-flter"></div>
+        <div class="fix-content">
+          <ion-icon name="md-camera"></ion-icon>
+          Upload
+        </div>
+      </div>
+      
+      <!-- img finish -->
+      <div class="input-area">
+        <div class="title">
+          Title
+        </div>
+        <div class="input-line">
+          <ion-input placeholder="{{news.title}}" [(ngModel)]="news.title"></ion-input>
+        </div>
+      </div>
+  
+      <div class="input-area">
+        <div class="title">
+          Description:
+        </div>
+        <div>
+          <ion-textarea placeholder="{{news.description}}" [(ngModel)]="news.description"></ion-textarea>
+        </div>
+      </div>
+    </div>
+    <div class="submit-button" (click)="onSubmit()">Submit</div>
+  </ion-content>
