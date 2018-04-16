@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { BuyerOrderPage } from '../buyer-order/buyer-order'
 import * as moment from 'moment';
 
 @Component({
@@ -41,7 +42,7 @@ export class ConfirmOrderPage {
   }
 
   onFinish(){
-    
+    this.navCtrl.setRoot(BuyerOrderPage);
   }
 
 }

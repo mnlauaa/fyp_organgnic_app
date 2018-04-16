@@ -93,7 +93,9 @@ export class ApiService extends BaseService{
     return this.get('/products/related', null, params);
   }
 
-
+  public getBuyerOrdwes(){
+    return this.get('/orders/buyer', this.token);
+  }
 
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';

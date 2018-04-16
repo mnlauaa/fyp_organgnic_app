@@ -16,13 +16,10 @@ export class BaseService {
             return Promise.all(promises).then(data => {
                 loading.dismiss();
                 return data;
-            }, err => {
-                console.log(err.status)
-                loading.dismiss();
-                return Promise.reject(err);
-            });   
+            })
         }).catch((err)=>{
             loading.dismiss();
+            return Promise.reject(err);
         })
     }
 

@@ -77,7 +77,8 @@ export class LoginPage {
           })
         })
       }, err => {
-        this.storage.clear()
+        if(err.status == 401)
+          console.log('hello')
         console.log(err);
       })
     }
