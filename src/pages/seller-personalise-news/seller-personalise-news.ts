@@ -50,7 +50,8 @@ export class SellerPersonaliseNewsPage {
 
   addnew(){
     let newsModal = this.modalCtrl.create(AddNewsComponent,{user_info: this.user_info});
-            newsModal.onDidDismiss(data =>{
+            newsModal.onDidDismiss(() =>{
+              this.getNewsBykeyword();
             })
             newsModal.present();
   }
@@ -61,11 +62,8 @@ export class SellerPersonaliseNewsPage {
         {
           text: 'Edit',
           handler: () => {
-            let newsModal = this.modalCtrl.create(NewsChangeComponent,{news: n});
-            newsModal.onDidDismiss(data =>{
-            })
-            newsModal.present();
-            console.log(n.id);
+            this.editNews(n);
+            console.log(this.newsList);
 
           }
         },
@@ -73,7 +71,7 @@ export class SellerPersonaliseNewsPage {
           text: 'Delete',
           role: 'destructive',
           handler: () => {
-              this.deleteNews(n)
+              this.deleteNews(n);
               console.log('Destructive clicked');
           }
         },
@@ -87,6 +85,14 @@ export class SellerPersonaliseNewsPage {
       ]
     });
     actionSheet.present();
+  }
+
+  editNews(n){
+    let newsModal = this.modalCtrl.create(NewsChangeComponent,{news: n});
+    newsModal.onDidDismiss(() =>{
+      this.getNewsBykeyword();
+    })
+    newsModal.present();
   }
 
   getNewsBykeyword(){
