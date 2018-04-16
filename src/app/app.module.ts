@@ -16,6 +16,7 @@ import { ImageCropper } from '../components/image-cropper/image-cropper'
 import { ProductChange } from '../components/product-change/product-change' 
 import { AddNewsComponent } from '../components/add-news/add-news'
 import { PhotoPopup } from '../components/photo-popup/photo-popup'
+import { NewsChangeComponent } from '../components/news-change/news-change';
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -81,7 +82,8 @@ export const myComponets = [
   ImageCropper,
   ProductChange,
   AddNewsComponent,
-  PhotoPopup
+  PhotoPopup,
+  NewsChangeComponent
 ];
 
 export const myProviders = [

@@ -1,53 +1,46 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, ViewController, ModalController, ActionSheetController } from 'ionic-angular';
-import { ApiService } from '../../providers/api-service/api-service'
-import { ImageCropper } from '../../components/image-cropper/image-cropper'
+import { NavParams, Platform, ViewController, ActionSheetController, ModalController } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service/api-service';
+import { ImageCropper } from '../image-cropper/image-cropper'
 
 
 @Component({
-  selector: 'add-news',
-  templateUrl: 'add-news.html',
+  selector: 'news-change',
+  templateUrl: 'news-change.html'
 })
-export class AddNewsComponent {
-  imgFile: any;
-  user_info:any = {}
+export class NewsChangeComponent {
+
+  title = 'Edit News';
   news: any;
-  title :String;
+  imgFile: any;
+
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public  view: ViewController,
-    protected api: ApiService, 
-    private ev: Events,
+    private params: NavParams,
     private actionSheetCtrl: ActionSheetController,
-    private modalCtrl: ModalController) {
-    this.title = "Create News";
-    this.user_info = navParams.get('user_info');
-    this.ev.subscribe('user_info', user_info => {
-      this.user_info = user_info
-    });
-    this.news ={};
-    console.log(this.user_info);
+    private modalCtrl: ModalController,
+    public  view: ViewController,
+    public api: ApiService
+  ) {
+    this.news = params.get('news');
+    console.log(this.news.image_url);
+    console.log('Hello NewsChangeComponent Component');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddNewsPage');
-  }
-
-  OnSubmit(){
-    let formData : FormData = new FormData();
-      formData.append('news', this.imgFile, 'news-' + Date.now() + '.png')
+  onSubmit(){
+    let formData: FormData = new FormData();
+      if(this.imgFile)
+        formData.append('news', this.imgFile, 'product-' + Date.now() + '.png')
       formData.append('title', this.news.title)
-      formData.append('description', this.news.description) 
+      formData.append('description', this.news.description)
     this.api.startQueue([
-      this.api.postNews(formData)
-    ]).then(data=>{
+      this.api.putNews(formData, this.news.id)
+    ]).then(data =>{
       console.log(data)
-      this.view.dismiss()
-    }),err=>{
-        console.log(err)
-        this.view.dismiss();
-      }
+      this.view.dismiss();
+    }), err=>{
+      console.log(err);
+      this.view.dismiss();
+    }
   }
 
   presentActionSheet() {
@@ -89,4 +82,5 @@ export class AddNewsComponent {
  
     actionSheet.present();
   }
+
 }

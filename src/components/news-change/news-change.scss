@@ -1,0 +1,222 @@
+news-change {
+    .form-content{
+        background-color: #fff;
+        min-height: calc(100% - 70px);
+        margin: 7px;
+        padding: 25px;
+        border-radius: 7px;
+
+        .add-img-block, .edit-img-block{
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+
+        .add-img-block{
+            box-shadow: 0px 2px 5px 2px rgba(125,125,125,0.1);
+            padding: 41px 0;
+
+            .fix-content{
+                width: 120px;
+                margin: 0 auto;
+                text-align: center;
+
+                .icon{
+                    font-size: 40px;
+                    color: #027B73;
+                }
+
+                .text{
+                    font-size: 12px;
+                }
+
+            }
+        }
+
+        .edit-img-block{
+            img{
+                object-fit: cover;
+                height: 150px;
+                width: 150px;
+            }
+
+            .img-flter{
+                position: absolute;
+                top: 0px;
+                height: 150px;
+                width: 150px;
+                background-color: rgba(209,209,209,0.6);
+            }
+
+            .fix-content{
+                position: absolute;
+                background: rgba(209,209,209,0.8);
+                display: flex;
+                align-items: center;
+                height: 20px;
+                bottom: 0;
+                right: 0;
+                padding: 0 5px;
+                
+                .icon{
+                    font-size: 20px;
+                    padding-right: 3px;
+                }
+            }
+        }
+
+
+        .input-area{
+            margin: 10px 0;
+
+            .title{
+                font-size: 18px;
+            }
+
+            .input-line{
+                font-size: 16px;
+
+                .text-input{
+                    text-align: center;
+                    margin: 8px 8px 8px 0;
+                    border-bottom: 1px solid #707070;
+                    width: 100%;
+                }
+
+                // select
+                .item-block, .select-text{
+                    min-height: auto;
+                    padding: 3px;
+                    font-size: 15px;
+                    text-align: center;
+                }
+
+                .select-icon{
+                    height: auto;
+                }
+                
+                .item-inner{
+                    margin: 5px 0;
+                    padding-right: 0;
+                    border-bottom: none;
+                }
+
+                .select{
+                    width: 100%;
+                    max-width: none;
+                    padding: 0 8px;
+                    border: 1px solid;
+                }
+
+                 // checkbox
+
+                .checkbox-area{
+                    display: flex;
+                    align-items: center;
+                    color: #000000;
+
+                    input[type=checkbox]{
+                        position: absolute;
+                        opacity: 0;
+                    }
+                
+                    .checkmark {
+                        margin-right: 10px;
+                        height: 20px;
+                        width: 20px;
+                        border-radius: 50%;
+                        border: 1px solid #000000;
+                    }
+                
+                    .checkmark:after {
+                        content: "";
+                        display: none;
+                        margin: auto;
+                        margin-top: 10%;
+                        width: 2.5px;
+                        height: 10px;
+                        border: solid #000000;
+                        border-width: 0 2px 2px 0;
+                        transform: rotate(45deg);
+                    }
+                
+                    input:checked ~ .checkmark:after {
+                        display: block;
+                    }
+
+                    input:checked ~ .checkmark{
+                        border: 1px solid #000000;
+                    }
+                
+                    input:checked ~ .text{
+                        color: #000000;  
+                    }
+                }
+
+            }
+            ion-textarea{
+                margin-top: 3px;
+                border: 1px solid #dad8d8;
+                .text-input{
+                    text-align: left;
+                    margin: 8px;
+                    height: 150px;
+                    border-bottom: none;
+                }
+            }
+            .short{
+                ion-input{
+                    display: inline-block;
+                    margin: 0 5px;
+                    width: 78px;
+                }
+            }
+
+            .special{
+                margin-left: 30px;
+                color: #dad8d8;
+
+                ion-textarea{
+                    margin-top: 3px;
+                    border: 1px solid #dad8d8;
+                    .text-input{
+                        text-align: left;
+                        margin: 8px;
+                        height: 150px;
+                        border-bottom: none;
+                    }
+                }
+
+                .datetime {
+                    padding: 11px 8px 3px 0;
+                    margin-bottom: 15px;
+                    border-bottom: 1px solid #000;
+                    width: 103px;
+
+                }
+            }
+
+            .active{
+                color: #000 !important;
+                ion-textarea{
+                    border-color: #000000;
+                }
+            }
+        }
+
+
+
+    }
+
+    .submit-button{
+        background: #027B73;
+        height: 50px;
+        margin: 0 7px 7px 7px;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 50px;
+    }
+}
