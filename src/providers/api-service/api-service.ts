@@ -127,6 +127,15 @@ export class ApiService extends BaseService{
     return this.post('/me/farm/pickup', body, type, this.token)
   }
 
+  public postSignIn(data){
+    let type = 'application/x-www-form-urlencoded';
+    const body = new HttpParams().set('username', data.username)
+                                 .set('password', data.password)
+                                 .set('display_name', data.display_name)
+                                 .set('phone_number', data.phone)
+                                 .set('address', data.address)
+    return this.post('/auth', body, type, this.token)
+  }
   public putMe(data, file){
     var formData: FormData = new FormData();
     if(file)

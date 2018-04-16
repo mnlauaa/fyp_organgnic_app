@@ -1,24 +1,21 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { ToastController, IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service/api-service'
 
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-
+  user:any;
   constructor(
     public navCtrl: NavController, 
+    private toastCtrl: ToastController,
     public navParams: NavParams,
+    protected api: ApiService,
     private menu: MenuController) {
+      this.user = {};
   }
 
   ionViewDidEnter() {
@@ -26,11 +23,51 @@ export class SignupPage {
   }
 
   ionViewWillLeave() {
-    this.menu.swipeEnable(true);
+    this.menu.swipeEnable(true)]
   } 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
 
+
+ 
+
+  onSubmit(){
+    if(!this.user.username||!this.user.display_name
+      ||!this.user.password||!this.user.repassword)
+      {
+        let toast = this.toastCtrl.create({
+          message: 'You have required field(s) missing!',
+          duration: 3000,
+          position: 'bottom'
+        });
+      
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+      
+        toast.present();
+        return
+      }
+    if(this.user.password!=this.user.repassword)
+    {
+      let toast = this.toastCtrl.create({
+        message: 'Password and retype password do not matched!',
+        duration: 3000,
+        position: 'bottom'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+      return
+    }
+    this.api.startQueue([ 
+      this.api.postSignIn(this.user)
+    ]).then(data => {})
+
+  }
 }

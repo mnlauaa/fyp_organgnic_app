@@ -22,42 +22,42 @@
             <div class="input-block">
                 <span class="star">*</span>
                 <ion-icon name="md-person"></ion-icon>
-                <ion-input placeholder="Nickname"></ion-input>
+                <ion-input placeholder="Nickname" [(ngModel)]="user.display_name"></ion-input>
             </div>
     
             <div class="input-block">
                 <span class="star">*</span>
                 <ion-icon name="md-person"></ion-icon>
-                <ion-input placeholder="User name"></ion-input>
+                <ion-input placeholder="User name" [(ngModel)]="user.username"></ion-input>
             </div>
     
             <div class="input-block">
                 <span class="star">*</span>
                 <ion-icon name="md-key"></ion-icon>
-                <ion-input placeholder="Password"></ion-input>
+                <ion-input placeholder="Password" type="password" [(ngModel)]="user.password"></ion-input>
             </div>
     
             <div class="input-block">
                 <span class="star">*</span>
                 <ion-icon name="md-key"></ion-icon>
-                <ion-input placeholder="Retype Password"></ion-input>
+                <ion-input placeholder="Retype Password" type="password" [(ngModel)]="user.repassword"></ion-input>
             </div>
     
             <div class="input-block">
                 <ion-icon class="non-required-field" name="md-call"></ion-icon>
-                <ion-input placeholder="Contact number"></ion-input>
+                <ion-input placeholder="Contact number" [(ngModel)]="user.phone"></ion-input>
             </div>
     
             <div class="input-block">
                 <ion-icon class="non-required-field" name="md-pin"></ion-icon>
-                <ion-input placeholder="Address"></ion-input>
+                <ion-input placeholder="Address" [(ngModel)]="user.address"></ion-input>
             </div>
 
             <div>
                     <span class="text">* Required Field</span>
             </div>
 
-            <div class="signup-button">
+            <div class="signup-button" tapple (click)="onSubmit()">
                     <div class="button-text">Sign up</div>
             </div>
         </div>
