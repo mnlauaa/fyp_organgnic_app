@@ -74,9 +74,9 @@
             </label>
 
             <ion-item *ngIf="o.farm.pickup.length != 0">
-              <ion-select [(ngModel)]="o.farm.pickup_location" placeholder=" - Please Select - " [disabled]="o.farm.pickup_way != point">
+              <ion-select [(ngModel)]="o.farm.pickup_location" placeholder=" - Please Select - " [disabled]="o.farm.pickup_way != 'point'">
                 <span *ngFor="let p of o.farm.pickup">
-                    <ion-option *ngIf="p.func_on" [value]="p.id">{{p.location}}</ion-option>
+                    <ion-option *ngIf="p.func_on" [value]="p.location">{{p.location}}</ion-option>
                 </span>
               </ion-select>
             </ion-item>

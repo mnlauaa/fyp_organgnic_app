@@ -12,6 +12,7 @@ import { PhotoPopup } from '../../components/photo-popup/photo-popup'
 export class CheckOutPage {
   title = 'Payment';
   order: any;
+  user_info: any;
   list_num: any;
   payment_way: any;
   deposite_way: any;
@@ -28,6 +29,7 @@ export class CheckOutPage {
   ) {
     this.order = navParams.get('order');
     this.list_num = navParams.get('list_num');
+    this.user_info = navParams.get('user_info');
     console.log(this.order);
     console.log(this.list_num);
     this.payment_way = 0;
@@ -43,30 +45,53 @@ export class CheckOutPage {
       }); 
       toast.present();
     } else {
-      // var formData: FormData = new FormData();
-      // formData.append('payment_method', this.payment_way)
-      // if(this.payment_way == 1){
-      //   formData.append('deposite_method', this.deposite_way)
-      //   if(this.deposite_way == 0)
-      //     formData.append('receipt', this.imgFile, 'receipt-' + Date.now() + '.png')
-      // }
-      // formData.append('status', this.order.productList[0].status)
-      // this.api.startQueue([
-      //   this.api.putOrder(formData, this.order.productList[0].order_id)
-      // ]).then(()=>{
-      //   this.navCtrl.push(ConfirmOrderPage, {
-      //     order: this.order,
-      //     payment_way: this.payment_way,
-      //     deposite_way: this.deposite_way
-      //   });
-      // }),err=>{
+      let location;
+      if(this.order.farm.pickup_way == 'point')
+        location = this.order.farm.pickup_location
+      else
+        location = this.user_info.address;
+      var formData: FormData = new FormData();
+      formData.append('payment_method', this.payment_way)
+      if(this.order.farm.pickup_way == 'home'){
+        formData.append('pickup_method', '0')
+        formData.append('pickup_location', this.user_info.address)
+      }
+      else{
+        formData.append('pickup_method', '1')
+        formData.append('pickup_location', this.order.farm.pickup_location)
+      }
+    
+      if(this.payment_way == 1){
+        formData.append('deposite_method', this.deposite_way)
+        if(this.deposite_way == 0)
+          formData.append('receipt', this.imgFile, 'receipt-' + Date.now() + '.png')
+      }
+      formData.append('status', this.order.productList[0].status)
+      this.api.startQueue([
+        this.api.putOrder(formData, this.order.productList[0].order_id)
+      ]).then(()=>{
+        this.navCtrl.push(ConfirmOrderPage, {
+          order: this.order,
+          payment_way: this.payment_way,
+          deposite_way: this.deposite_way,
+          location: location,
+          time: new Date()
+        });
+      }),err=>{
 
-      // }
-      this.navCtrl.push(ConfirmOrderPage, {
-        order: this.order,
-        payment_way: this.payment_way,
-        deposite_way: this.deposite_way
-      });
+      }
+      
+      // if(this.order.farm.pickup_way == 'point')
+      //   location = this.order.farm.pickup_location
+      // else
+      //   location = this.user_info.address;
+      // this.navCtrl.push(ConfirmOrderPage, {
+      //   order: this.order,
+      //   payment_way: this.payment_way,
+      //   deposite_way: this.deposite_way,
+      //   location: location,
+      //   time: new Date()
+      // });
     }
   }
 

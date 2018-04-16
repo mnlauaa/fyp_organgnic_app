@@ -162,10 +162,6 @@ export class ShoppingCartPage {
       return this.slides.slideNext();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ShoppingCartPage');
-  }
-
   MarketOpenPage() {
     this.navCtrl.push(TheMarketPage);
   }
@@ -173,7 +169,8 @@ export class ShoppingCartPage {
   checkOutOpenPage(order, list_num){
     this.navCtrl.push(CheckOutPage, {
       order: order,
-      list_num: list_num + 1
+      list_num: list_num + 1,
+      user_info: this.user_info
     });
   }
 
