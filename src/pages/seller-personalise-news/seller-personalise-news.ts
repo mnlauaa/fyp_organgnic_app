@@ -48,7 +48,7 @@ export class SellerPersonaliseNewsPage {
     console.log('ionViewDidLoad SellerPersonaliseNewsPage');
   }
 
-  addnew(){
+  addNews(){
     let newsModal = this.modalCtrl.create(AddNewsComponent,{user_info: this.user_info});
             newsModal.onDidDismiss(() =>{
               this.getNewsBykeyword();
