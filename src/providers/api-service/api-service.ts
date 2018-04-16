@@ -166,6 +166,14 @@ export class ApiService extends BaseService{
     return this.put('/products/' + id, data, this.token)
   }
 
+  public putOrder(data, id){
+    return this.put('/orders/' + id, data, this.token)
+  }
+
+  public putTransition(data, id){
+    return this.put('/orders/translation/' + id, data, this.token)
+  }
+  
   public putNews(data, id){
     return this.put('/news/' + id, data, this.token)
   }

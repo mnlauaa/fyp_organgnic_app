@@ -3,25 +3,65 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
     <div class="payment-block">
       <div class="list-title">
-          <span >List 1 - HEALTHY FARM</span>
+          <span>List {{list_num}} - {{order.farm.display_name}}</span>
       </div>
-      <div class="line-padding"><i id="line"></i></div>
+      <i id="line"></i>
       <div class="payment-title">
           <span >Payment Method:</span>
       </div>
       <div class="payment-method">
-        <input type="radio" name="cash"> Cash on delivery<br>
-        <input type="radio" name="cash"> Direct deposite to HSBC ccount: 123-456-789-000<br>
-        <div class="deposite-method">
-            <input type="radio" name="prior-after"> Payment prior to order confirmation<br>
-            <input type="radio" name="prior-after"> Payment after order confirmation<br>
+        <label class="radio-label">
+            <input type="radio" name="payment" [value]="0" [(ngModel)]="payment_way" tappable>
+            <span class="checkmark"></span>
+            <span class="text"> Cash on delivery</span>
+        </label>
+        <div *ngIf="order.farm.bank_deposit_on">
+            <label class="radio-label">
+                <input type="radio" name="payment" [value]="1" [(ngModel)]="payment_way" tappable>
+                <span class="checkmark"></span>
+                <span class="text">
+                    Direct deposite to <br>
+                    {{order.farm.bank_deposit_info}}
+                </span>
+            </label>
+            <div class="deposite-method" *ngIf="payment_way == 1">
+                <label class="radio-label">
+                    <input type="radio" name="prior-after" [value]="0" [(ngModel)]="deposite_way" tappable>
+                    <span class="checkmark"></span>
+                    <span class="text">Payment prior to order confirmation</span>
+                </label>
+                <label class="radio-label" *ngIf="order.farm.pay_after_on">
+                    <input type="radio" name="prior-after" [value]="1" [(ngModel)]="deposite_way"  tappable>
+                    <span class="checkmark"></span>
+                    <span class="text">Payment after order confirmation</span>
+                </label>
+            </div>
         </div>
       </div>
     </div>
+    <div *ngIf="payment_way == 1 && deposite_way == 0">   
+        <div class="receipt" *ngIf="!imgURL" (click)="presentActionSheet()" tappable>
+            <div class="add-image">
+                <div><ion-icon name="md-camera"></ion-icon></div>
+                <span class="text">Add or take photo of payment receipt</span>
+            </div>
+        </div>
+
+        <div class="receipt" *ngIf="imgURL">
+            <div class="edit-image" (click)="presentActionSheet()" tappable>
+                <ion-icon name="md-checkmark-circle"></ion-icon>
+                <div class="text">Receipt uploaded successfully</div>
+                <div class="sub-text">Reupload ?</div>
+            </div>
+            <img [src]="imgURL" (click)="openPhotoPopup()" tappable>
+        </div>
+    </div>
+
+
     <div class="confirm-button">
-        <div class="button-text" tappable (click)="ConfirmOpenPage()">Confirm</div>
+        <div class="button-text" tappable (click)="onSubmit()">Confirm</div>
     </div>
 </ion-content>

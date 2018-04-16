@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, ViewChild  } from '@angular/core';
 import { NavController, NavParams, Slides, MenuController, AlertController  } from 'ionic-angular';
 import { TheMarketPage } from '../the-market/the-market';
@@ -11,6 +12,7 @@ import { ApiService } from '../../providers/api-service/api-service'
 export class ShoppingCartPage {
   @ViewChild(Slides) slides: Slides;
   title = 'Shopping Cart';
+  now: Date;
   user_info: any;
   enable_back = false;
   allOrder = null;
@@ -22,6 +24,7 @@ export class ShoppingCartPage {
     private menu: MenuController,
     private alertCtrl: AlertController
   ) {
+    this.now = new Date();
     this.user_info = navParams.get('user_info');
     this.enable_back = navParams.get('enable_back') || false;
     this.update()
@@ -42,6 +45,12 @@ export class ShoppingCartPage {
           o.farm.pickup_way = "home"
         o.farm.shipping = 0;
         this.calculateShipping(o)
+
+        o.productList.map((p)=>{
+          if(p.special_expiry)
+            p.special_expiry = new Date(p.special_expiry)
+        });
+        this.calculateSubTotal();
       })
     }, err => {
       console.log(err)
@@ -60,15 +69,33 @@ export class ShoppingCartPage {
     });
   }
 
-  productBuyerQtyEdit(p, button){
+  productBuyerQtyEdit(o, p, button){
     if(button){
-      if(p.qty < p.products_left)
-        p.qty++
+      if(p.qty < p.products_left){
+        p.qty++ 
+        const data = new HttpParams().set('qty', p.qty)
+        this.api.startQueue([
+          this.api.putTransition(data, p.transaction_id)
+        ]).then((date)=>{
+          console.log(date)
+        }), err=>{
+          console.log(err)
+        }
+      }
     } else {
       if(p.qty > 1)
         p.qty--
+        const data = new HttpParams().set('qty', p.qty)
+        this.api.startQueue([
+          this.api.putTransition(data, p.transaction_id)
+        ]).then((date)=>{
+          console.log(date)
+        }), err=>{
+          console.log(err)
+        }
     }
     this.calculateSubTotal();
+    this.calculateShipping(o);
   }
 
   calculateShipping(o){
@@ -86,7 +113,10 @@ export class ShoppingCartPage {
     this.allOrder.map((order)=>{
       let sum = 0;
       order.productList.map((p)=>{
-        sum += p.price * p.qty
+        if(p.special_expiry > this.now)
+          sum += p.special_price * p.qty
+        else
+          sum += p.price * p.qty
       })
       order.sum = sum;
     })
@@ -132,16 +162,16 @@ export class ShoppingCartPage {
       return this.slides.slideNext();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ShoppingCartPage');
-  }
-
   MarketOpenPage() {
     this.navCtrl.push(TheMarketPage);
   }
 
-  checkOutOpenPage(){
-    this.navCtrl.push(CheckOutPage);
+  checkOutOpenPage(order, list_num){
+    this.navCtrl.push(CheckOutPage, {
+      order: order,
+      list_num: list_num + 1,
+      user_info: this.user_info
+    });
   }
 
   ionViewDidEnter() {

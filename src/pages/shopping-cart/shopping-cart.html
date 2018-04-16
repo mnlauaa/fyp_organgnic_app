@@ -46,11 +46,14 @@
               <div class="product-info">
                   <div class="title">{{p.name}}</div>
                   <div class="farm-name">by {{p.display_name}}</div>
-                  <div class="price">${{p.price*p.qty}}</div>
+                  <div *ngIf="!(p.special_expiry > now)"  class="price">${{p.price*p.qty}}</div>
+                  <div *ngIf="p.special_expiry > now" class="price">${{p.special_price*p.qty}}</div>
                   <div class="quantity">
-                    <ion-icon name="md-remove" (click)="productBuyerQtyEdit(p, 0)" tappable></ion-icon>
-                    &nbsp;&nbsp;{{p.qty*p.weight}}g&nbsp;&nbsp;
-                    <ion-icon name="md-add" (click)="productBuyerQtyEdit(p, 1)" tappable></ion-icon>
+                    <ion-icon name="md-remove" (click)="productBuyerQtyEdit(o, p, 0)" tappable></ion-icon>
+                    <span *ngIf="!(p.special_expiry > now)">&nbsp;&nbsp;{{p.qty*p.weight}}g&nbsp;&nbsp;</span>
+                    <span *ngIf="p.special_expiry > now">&nbsp;&nbsp;{{p.qty*p.special_weight}}g&nbsp;&nbsp;</span>
+
+                    <ion-icon name="md-add" (click)="productBuyerQtyEdit(o, p, 1)" tappable></ion-icon>
                   </div>
               </div>
               <div class="delete" (click)="presentConfirm(p.transaction_id)"><ion-icon name="md-close"></ion-icon></div>
@@ -71,15 +74,15 @@
             </label>
 
             <ion-item *ngIf="o.farm.pickup.length != 0">
-              <ion-select [(ngModel)]="o.farm.pickup_location" placeholder=" - Please Select - ">
+              <ion-select [(ngModel)]="o.farm.pickup_location" placeholder=" - Please Select - " [disabled]="o.farm.pickup_way != 'point'">
                 <span *ngFor="let p of o.farm.pickup">
-                    <ion-option *ngIf="p.func_on" [value]="p.id">{{p.location}}</ion-option>
+                    <ion-option *ngIf="p.func_on" [value]="p.location">{{p.location}}</ion-option>
                 </span>
               </ion-select>
             </ion-item>
 
             <label class="radio-label">
-              <input type="radio" value="home" [(ngModel)]="o.farm.pickup_way" (change)="calculateShipping(o)">
+              <input type="radio" [value]="'home'" [(ngModel)]="o.farm.pickup_way" (change)="calculateShipping(o)">
               <span class="checkmark"></span>
               <span class="text">Delivery to your preset address:</span>
             </label>
@@ -100,7 +103,7 @@
           </table>
         </div>
 
-        <div class="checkout-button" (click)="checkOutOpenPage()" tappable>
+        <div class="checkout-button" (click)="checkOutOpenPage(o, i)" tappable>
           <div class="button-text">Check Out This List</div>
         </div>
       </ion-slide>

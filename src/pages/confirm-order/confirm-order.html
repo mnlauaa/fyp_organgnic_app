@@ -1,57 +1,72 @@
-<!--
-  Generated template for the ConfirmOrderPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header no-border>
   <my-navbar [enable_shopping_button]="false" [enable_back]="true" [title]="title"></my-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <div class="confirm-block">
     <div class="firm-title">
-      <span>HEALTHY FARM</span>
+      <span>{{order.farm.display_name}}</span>
       <ion-icon class="icon" name="md-chatbubbles"></ion-icon>
     </div>
-    <div class="line-padding"><i id="line"></i></div>
+    <i id="line"></i>
     <div class="order-info">
       <div class="info-title">Submission date:</div>
       <div class="date">
-        <span>5 Jan, 2018</span>
+        <span>{{date}}</span>
       </div>
       <div class="info-title">Submission time:</div>
       <div class="time">
-        <span>14:00</span>
+        <span>{{time}}</span>
       </div>
       <div class="info-title">Order No. :</div>
       <div class="order-no.">
-        <span>H1234</span>
+        <span>{{order_id}}</span>
       </div>
       <div class="info-title">Items:</div>
       <div class="items">
-        <span>Purple Potato X 600g</span><br>
-        <span>Sweet Potato X 600g</span>
+        <div *ngFor="let p of order.productList">{{p.name}} X {{p.qty*p.weight}}g</div>
       </div>
       <div class="info-title">Amount:</div>
       <div class="amount">
-        <span>$96</span>
+        <span>${{order.farm.shipping + order.sum}}</span>
       </div>
       <div class="info-title">Delivery:</div>
       <div class="address">
-        <span>Free shipping pick-up point: Mong Kok MTR</span>
+        <div *ngIf="order.farm.pickup_way == 'point'">
+          <div>shipping pick-up point:</div>
+          <div>{{location}}</div>
+        </div>
+
+        <div *ngIf="order.farm.pickup_way == 'home'">
+          <div>Deliver to your preset address:</div>
+          <div>{{location}}</div>
+        </div>
       </div>
       <div class="info-title">Payment Method:</div>
       <div class="payment">
-        <span>Direct Deposite To HSBC account: 123-456-789-000</span>
-        <span>*Payment after order confirmation</span>
+        <div *ngIf="payment_way == 0">
+          <div>Cash on delivery</div>
+        </div>
+        <div *ngIf="payment_way == 1">
+          <div>Direct Deposite To</div>
+          <div>{{order.farm.bank_deposit_info}}</div>
+        </div>
+        <div *ngIf="deposite_way == 0">
+          *Already submit the payment receive
+        </div>
+        <div *ngIf="deposite_way == 1">
+          *Payment after order confirmation
+        </div>
       </div>
     </div>
   </div>
   
   <div class="status-block">
     <div class="status-title">Status:</div>
-    <div class="status">pending for farmer to receive</div>
+    <div class="status">This order has been added to <i><b>Wish List</b></i> and sent to farmer.</div>
+  </div>
+  <div class="confirm-button">
+      <div class="button-text" tappable (click)="onFinish()">Finish</div>
   </div>
 </ion-content>

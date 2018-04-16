@@ -91,10 +91,12 @@ export class ImageCropper{
     let aspectRatio: number;
     if(this.aspectRatioType == 0)
       aspectRatio = 1 / 1
-    else
+    if(this.aspectRatioType == 1)
       aspectRatio = 16.0 / 9.0;
+    if(this.aspectRatioType == 2)
+    aspectRatio = null;
     this.cropperInstance = new Cropper(this.imageElement.nativeElement, {
-        aspectRatio: aspectRatio, // square
+        aspectRatio: aspectRatio,
         modal: true,
         guides: false,
         highlight: false,
@@ -112,9 +114,14 @@ export class ImageCropper{
     if(this.aspectRatioType == 0){
       width = 260;
       height = 260;
-    } else {
+    }
+    if(this.aspectRatioType == 1){
       width = 462;
       height = 260;
+    }
+    if(this.aspectRatioType == 2){
+      width = null;
+      height = null;
     }
     this.cropperInstance.getCroppedCanvas({ width: width, height: height}).toBlob((blob)=>{
       this.croppedImg = this.cropperInstance.getCroppedCanvas({ width: width, height: height}).toDataURL('image/jpeg');

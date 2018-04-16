@@ -5,6 +5,7 @@ import { SortingBox } from './sorting-box/sorting-box';
 import { ImageCropper } from './image-cropper/image-cropper';
 import { ProductChange } from './product-change/product-change';
 import { AddNewsComponent } from './add-news/add-news';
+import { PhotoPopup } from './photo-popup/photo-popup';
 import { NewsChangeComponent } from './news-change/news-change';
 @NgModule({
 	declarations: [MyNavbar,
@@ -13,6 +14,7 @@ import { NewsChangeComponent } from './news-change/news-change';
     ImageCropper,
     ProductChange,
     AddNewsComponent,
+    PhotoPopup,
     NewsChangeComponent],
 	imports: [],
 	exports: [MyNavbar,
@@ -21,6 +23,7 @@ import { NewsChangeComponent } from './news-change/news-change';
     ImageCropper,
     ProductChange,
     AddNewsComponent,
+    PhotoPopup,
     NewsChangeComponent]
 })
 export class ComponentsModule {}
