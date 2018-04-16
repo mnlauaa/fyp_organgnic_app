@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { ApiService } from '../../providers/api-service/api-service'
 import * as moment from 'moment';
 import { AddNewsComponent } from '../../components/add-news/add-news';
+import { NewsChangeComponent } from '../../components/news-change/news-change';
 
 @Component({
   selector: 'page-seller-personalise-news',
@@ -48,10 +49,10 @@ export class SellerPersonaliseNewsPage {
   }
 
   addnew(){
-    let profileModal = this.modalCtrl.create(AddNewsComponent,{user_info: this.user_info});
-            profileModal.onDidDismiss(data =>{
+    let newsModal = this.modalCtrl.create(AddNewsComponent,{user_info: this.user_info});
+            newsModal.onDidDismiss(data =>{
             })
-            profileModal.present();
+            newsModal.present();
   }
 
   presentActionSheet(n) {
@@ -60,25 +61,20 @@ export class SellerPersonaliseNewsPage {
         {
           text: 'Edit',
           handler: () => {
-            console.log(n.id);
-            let profileModal = this.modalCtrl.create(AddNewsComponent, {news: n});
-            profileModal.onDidDismiss(data =>{
+            let newsModal = this.modalCtrl.create(NewsChangeComponent,{news: n});
+            newsModal.onDidDismiss(data =>{
             })
-            profileModal.present();
+            newsModal.present();
+            console.log(n.id);
+
           }
         },
         {
           text: 'Delete',
           role: 'destructive',
           handler: () => {
-            // this.api.startQueue([
-            //   this.api.deleteNews(n.id)
-            //   //this.getNewsBykeyword();
-            // ]).then(data =>{
-            // }), err=>{
-            //   console.log(err)
-            // }
-            console.log('Destructive clicked');
+              this.deleteNews(n)
+              console.log('Destructive clicked');
           }
         },
         {
@@ -90,7 +86,6 @@ export class SellerPersonaliseNewsPage {
         }
       ]
     });
- 
     actionSheet.present();
   }
 
@@ -100,12 +95,23 @@ export class SellerPersonaliseNewsPage {
     this.api.startQueue([
       this.api.getNews(this.keyword)
     ]).then(data => {
-      console.log(data);
       this.newsList = data[0].news_list;
       this.result_num = data[0].result_num;
       console.log(this.newsList);
     },err=> {
       console.log(err)
     });
+  }
+
+  deleteNews(n){
+    this.api.startQueue([
+      this.api.deleteNews(n.id)
+    ]).then(data =>{
+      this.newsList.splice(this.newsList.indexOf(n), 1);
+      this.result_num -= 1;
+      console.log(this.newsList);
+    }), err=>{
+      console.log(err)
+    }
   }
 }

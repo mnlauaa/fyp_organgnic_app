@@ -173,6 +173,10 @@ export class ApiService extends BaseService{
     return this.put('/products/' + id, data, this.token)
   }
 
+  public putNews(data, id){
+    return this.put('/news/' + id, data, this.token)
+  }
+
   public deleteMeFavourite(id){
     return this.delete('/me/favourite/' + id, this.token);
   }
