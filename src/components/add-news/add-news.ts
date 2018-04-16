@@ -9,10 +9,10 @@ import { ImageCropper } from '../../components/image-cropper/image-cropper'
   templateUrl: 'add-news.html',
 })
 export class AddNewsComponent {
-  title = "Create News";
   imgFile: any;
   user_info:any = {}
   news: any;
+  title :String;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -21,10 +21,12 @@ export class AddNewsComponent {
     private ev: Events,
     private actionSheetCtrl: ActionSheetController,
     private modalCtrl: ModalController) {
+    this.title = "Create News";
     this.user_info = navParams.get('user_info');
     this.ev.subscribe('user_info', user_info => {
       this.user_info = user_info
     });
+    this.news ={};
     console.log(this.user_info);
   }
 
@@ -42,9 +44,10 @@ export class AddNewsComponent {
     ]).then(data=>{
       console.log(data)
       this.view.dismiss()
-    },err=>{
+    }),err=>{
         console.log(err)
-      })
+        this.view.dismiss();
+      }
   }
 
   presentActionSheet() {
