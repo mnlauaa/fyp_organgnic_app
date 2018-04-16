@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ConfirmOrderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
+import { NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-confirm-order',
   templateUrl: 'confirm-order.html',
 })
 export class ConfirmOrderPage {
   title = 'Confirmed Order';
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  order: any;
+  payment_way: any;
+  deposite_way: any;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams
+  ) {
+    this.order = navParams.get('order');
+    this.payment_way = navParams.get('payment_way');
+    this.deposite_way = navParams.get('deposite_way')
+    console.log(this.order)
+    console.log(this.payment_way)
+    console.log(this.deposite_way)
   }
 
   ionViewDidLoad() {

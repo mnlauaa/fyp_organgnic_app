@@ -1,17 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage,
-         NavController,
-         NavParams,
-         ModalController,
-         ActionSheetController,
-         Events  } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ActionSheetController, Events  } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ApiService } from '../../providers/api-service/api-service'
 import { ImageCropper } from '../../components/image-cropper/image-cropper'
 
-
-@IonicPage()
 @Component({
   selector: 'page-buyer-personalise-profile',
   templateUrl: 'buyer-personalise-profile.html',
