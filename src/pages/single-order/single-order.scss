@@ -1,0 +1,134 @@
+page-single-order {
+    .confirm-block{
+        border-radius: 7px;
+        margin: 6px;
+        padding: 15px;
+        // min-height: calc(100% - 100px);
+        background-color: #FFFFFF;
+
+        .firm-title{
+            position: relative;
+            text-align: center;
+            font-size: 18px;
+            padding-bottom: 10px;
+
+            .icon{
+                top: 2px;
+                position: absolute;
+                color: #027B73;
+                padding: 0px 10px;
+            }
+        }
+        #line{
+            display: block;
+            height: 1px;
+            border: 0.5px solid #B5B5B5;
+            margin: auto;
+            margin-bottom: 5px;
+        }
+
+        .order-info{
+            text-align: center;
+            font-size: 17px;
+            .info-title{
+                margin-top: 10px;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .receipt{
+        position: relative;
+        min-height: 120px;
+        background: #FFFFFF;
+        border-radius: 3px;
+        text-align: center;
+        padding: 10px;
+        margin: 6px;
+
+        .add-image{
+            position: relative;
+            padding-top: 20px;
+            margin: auto;
+            text-align: center;
+
+            .icon{
+                color: #027B73;
+                font-size: 40px;
+            }
+        }
+
+        img{
+            border-radius: 3px;
+            object-fit: cover;
+            height: 100px;
+            width: 100%;
+        }
+
+        .edit-image{
+            position: relative;
+            top: 25%;
+            text-align: center;
+            margin-bottom: 10px;
+
+            .icon{
+                color: #027B73;
+                font-size: 40px;
+            }
+
+            .sub-text{
+                font-size: 13px;
+                color: #B5B5B5;
+            }
+        }
+    }
+
+    .confirm-button{
+        background-color: #027B73;
+        border-radius: 3px;
+        height: 40px;
+        margin: 6px;      
+
+        .button-text{
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFFFFF;
+            line-height: 40px;
+            text-align: center;
+        }
+    }
+
+    .button_session{
+        display: flex;
+        justify-content:space-between;
+        margin: 0 5px;
+        
+        .button{
+            height: 45px;
+            width: 49.5%;
+            font-size: 20px;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 3px;
+            margin: 1px;
+        }
+
+        .submit{
+            background-color: #027B73;
+            color: #fff;
+        }
+
+        .cancel{
+            background-color: #939393;
+            color: #fff;
+        }
+    }
+
+    .cancel{
+        background-color: #939393;
+        height: 50px;
+        .button-text{
+            line-height: 50px;
+        }
+    }
+}

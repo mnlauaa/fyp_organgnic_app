@@ -1,0 +1,132 @@
+edit-order {
+    .edit-block{
+        background-color: #FFFFFF;
+        min-height: calc(100% - 125px);
+        margin: 6px;
+        border-radius: 7px;
+        padding: 15px;
+    }
+
+    .add-product{
+        margin: 10px 0;
+        border-radius: 7px;
+        height: 100px;
+        border: 3px dashed #027B73;
+        text-align: center;
+        color: #027B73;
+        padding: 13px;
+        font-size: 17px;
+        .icon{
+            font-size: 40px;
+        }
+    }
+
+    .product-block{
+        position: relative;
+        display: flex;
+        background-color: #FFFFFF;
+        margin: 10px 2px;
+        height: 117px;
+       
+        img{
+            object-fit: cover;
+            height: 116px;
+            width: 116px;
+        }
+
+        .img_button{
+            position: absolute;
+            height: 116px;
+            width: 116px;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+            line-height: 116px;
+            background-color: rgba(255, 255, 255, 0.5)
+        }
+
+        .product-info{
+            margin: 6px;
+            padding-left: 13px;
+
+            .title{
+                font-size: 20px;
+                color: #000000;
+            }
+
+            .price{
+                font-size: 30px;
+                padding: 30px 0px; 
+            }
+
+            .quantity{
+                position: absolute;
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+                right: 5px;
+                bottom: 20px;
+                
+                .icon{
+                    padding: 5px;
+                }
+            } 
+        }
+        .delete{
+            position: absolute;
+            right: 5px;
+            padding: 5px;
+            padding-top: 0px;
+            font-size: 15px;
+            padding-left: 15px;
+        }
+    }
+
+    #line{
+        display: block;
+        height: 1px;
+        border: 0.51px solid #B5B5B5;
+        margin: auto;
+    }
+
+    .confirm-button{
+        background-color: #027B73;
+        border-radius: 3px;
+        height: 40;
+        margin: 6px;
+
+        .button-text{
+            font-size: 17px;
+            color: #FFFFFF;
+            line-height: 40px;
+            text-align: center;
+        }
+    }
+
+    ion-input{
+        text-align: center;
+        display: inline;
+    }
+    .text-input{
+        text-align: center;
+        margin: 5px;
+        border-bottom: 1px solid #707070;
+        width: 60px;
+    }
+
+    .sup{
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+
+    .amount-block{
+        background-color: #FFFFFF;
+        margin: 6px;
+        border-radius: 7px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        font-size: 17px;
+        justify-content: space-between;
+    }
+}

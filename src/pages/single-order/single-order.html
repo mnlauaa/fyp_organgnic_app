@@ -1,0 +1,90 @@
+<ion-header>
+    <my-navbar [logo_url]="'assets/imgs/app-logo.png'" [enable_back]="true"></my-navbar>
+</ion-header>
+
+<ion-content >
+    <div class="confirm-block">
+        <div class="firm-title">
+            <span>{{order.display_name}}</span>
+            <ion-icon class="icon" name="md-chatbubbles"></ion-icon>
+        </div>
+        <i id="line"></i>
+        <div class="order-info">
+            <div class="info-title">Submission date:</div>
+            <div class="date">
+                <span>{{date}}</span>
+            </div>
+            <div class="info-title">Submission time:</div>
+            <div class="time">
+                <span>{{time}}</span>
+            </div>
+            <div class="info-title">Order No. :</div>
+            <div class="order-no.">
+                <span>{{order_id}}</span>
+            </div>
+            <div class="info-title">Items:</div>
+            <div class="items">
+                <div *ngFor="let t of order.transaction">{{t.name}} X {{t.qty*t.weight}}g</div>
+            </div>
+            <div class="info-title">Amount:</div>
+            <div class="amount">
+                <span>${{order.amount}}</span>
+            </div>
+            <div class="info-title">Delivery:</div>
+            <div class="address">
+                <div *ngIf="order.pickup_method == 1">
+                    <div>shipping pick-up point:</div>
+                    <div>{{order.pickup_location}}</div>
+                </div>
+
+                <div *ngIf="order.pickup_method == 0">
+                    <div>Deliver to your preset address:</div>
+                    <div>{{order.pickup_location}}</div>
+                </div>
+            </div>
+            <div class="info-title">Payment Method:</div>
+            <div class="payment">
+                <div *ngIf="order.payment_method == 0">
+                    <div>Cash on delivery</div>
+                </div>
+                <div *ngIf="order.payment_method == 1">
+                    <div>Direct Deposite To</div>
+                    <div>{{order.bank_deposit_info}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="order.payment_method == 1"> 
+        <div class="receipt" *ngIf="!order.receipt_url" (click)="presentActionSheet()" tappable>
+            <div class="add-image">
+                <div><ion-icon name="md-camera"></ion-icon></div>
+                <span class="text">Add or take photo of payment receipt</span>
+            </div>
+        </div>
+
+        <div class="receipt" *ngIf="order.receipt_url">
+            <div class="edit-image" (click)="presentActionSheet()" tappable>
+                <ion-icon name="md-checkmark-circle"></ion-icon>
+                <div class="text">Receipt uploaded successfully</div>
+                <div class="sub-text">Reupload ?</div>
+            </div>
+            <img [src]="order.receipt_url" (click)="openPhotoPopup()" tappable>
+            <div class="confirm-button" *ngIf="imgFile">
+                <div class="button-text" tappable (click)="onSubmit()">Submit</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirm-button cancel" *ngIf="order.status == 1">
+        <div class="button-text" tappable (click)="presentConfirm()">Remove Order</div>
+    </div>
+    <div class="button_session"  *ngIf="order.status == 2">
+        <div class="button submit" tappable (click)="accept()" tappable>
+            Accept
+        </div>
+        <div class="button cancel"  tappable>
+            Decline
+        </div>
+    </div>
+</ion-content>

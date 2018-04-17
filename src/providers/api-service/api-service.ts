@@ -63,7 +63,7 @@ export class ApiService extends BaseService{
     return this.get('/me/favourite', this.token);
   }
 
-  public getProducts(sorting, keyword, filter){
+  public getProducts(sorting, keyword=null, filter=null){
     let params = {sorting: sorting}
     if(keyword)
       params['keyword'] = keyword;
@@ -93,7 +93,17 @@ export class ApiService extends BaseService{
     return this.get('/products/related', null, params);
   }
 
+  public getBuyerOrdwes(){
+    return this.get('/orders/buyer', this.token);
+  }
 
+  public getSellerOrdwes(){
+    return this.get('/orders/seller', this.token);
+  }
+
+  public getOrderById(id){
+    return this.get('/orders/' + id, this.token);
+  }
 
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';
@@ -136,6 +146,12 @@ export class ApiService extends BaseService{
     // console.log(data);
     // return this.post_file('/me', data, this.token)
   }
+
+  public postTransition(data, id){
+    let type = 'application/x-www-form-urlencoded';
+    return this.post('/orders/' + id + '/translation', data, type, this.token)
+  }
+
   public putMe(data, file){
     var formData: FormData = new FormData();
     if(file)
@@ -195,6 +211,10 @@ export class ApiService extends BaseService{
 
   public deleteNews(id){
     return this.delete('/news/' + id, this.token);
+  }
+
+  public deleteOrder(id){
+    return this.delete('/orders/' + id, this.token);
   }
 
   public deleteTransition(id){

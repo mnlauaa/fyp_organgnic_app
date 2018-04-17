@@ -51,6 +51,7 @@ export class CheckOutPage {
       else
         location = this.user_info.address;
       var formData: FormData = new FormData();
+      formData.append('amount', this.order.sum + this.order.farm.shipping)
       formData.append('payment_method', this.payment_way)
       if(this.order.farm.pickup_way == 'home'){
         formData.append('pickup_method', '0')

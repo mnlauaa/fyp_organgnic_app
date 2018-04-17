@@ -1,0 +1,44 @@
+<ion-header>
+    <my-navbar [title]="title"></my-navbar>
+  </ion-header>
+  
+  <ion-content >
+    <div *ngFor="let l of AllList" >
+      <div class="list" (click)="l.control = !l.control" *ngIf="l.list.length > 0">
+        <div class="list_title">
+          <b>{{l.name}} ({{l.list.length}})</b>
+        </div>
+        <div *ngIf="!l.control" class="list_description">{{l.discretion}}</div>
+        <div *ngIf="!l.control" class="list_switch"><ion-icon name="ios-arrow-down"></ion-icon></div>
+        <div *ngIf="l.control" class="list_switch open"><ion-icon name="ios-arrow-up"></ion-icon></div>
+      
+        <!-- end top session -->
+        <div *ngFor="let o of l.list">
+          <div class="order-area" *ngIf="l.control" (click)="$event.preventDefault(); $event.stopPropagation(); openSingleOrder(o)" tappable>
+            <i id="line"></i>
+            <div class="order-block">
+              <div class="image">
+                <img [src]="o.profile_pic_url">
+              </div>
+              <div class="order-info">
+                <div class="farm-name">{{o.display_name}}</div>
+                <div class="row"><span class="title">Item:</span>{{o.transaction.length}}</div>
+                <div class="row"><span class="title">Amount:</span>${{o.amount}}</div>
+                <div class="row">
+                  <span class="title">Payment mrthod:</span>
+                  <span *ngIf="o.payment_method == 1">Direct Deposit</span>
+                  <span *ngIf="o.payment_method == 0">Cash on Delivery</span>
+                </div>
+                <div class="row"><span class="title">Satatus:</span>Pending for farmer to comfirm</div>
+                <div class="row">
+                  <span class="status out">Outstanding payment</span>
+                </div>
+              </div>
+              <div class="detail-tab">Check details <ion-icon name="ios-arrow-forward"></ion-icon></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  

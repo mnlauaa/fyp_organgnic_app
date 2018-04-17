@@ -3,57 +3,41 @@
 </ion-header>
 
 <ion-content >
-    <div class="yourOrder">
-        <ion-icon name="md-document"></ion-icon>
-        <span>Your Order</span>
-    </div>
+	<div *ngFor="let l of AllList" >
+		<div class="list" (click)="l.control = !l.control" *ngIf="l.list.length > 0">
+			<div class="list_title">
+				<b>{{l.name}} ({{l.list.length}})</b>
+			</div>
+			<div *ngIf="!l.control" class="list_description">{{l.discretion}}</div>
+			<div *ngIf="!l.control" class="list_switch"><ion-icon name="ios-arrow-down"></ion-icon></div>
+			<div *ngIf="l.control" class="list_switch open"><ion-icon name="ios-arrow-up"></ion-icon></div>
 
-    <div class="outstandingDebts">
-        <div>
-          <div class="bulb"><ion-icon name="md-bulb"></ion-icon></div>
-          <div class="title">&nbsp;&nbsp;Outstanding Debts</div>
-        </div>
-        
-        <div class="description">
-            You are not allowed to shop in the market with 
-            outstanding debts.
-        </div>
-
-        <div class="debt">
-          <div class="farm">
-            YUMMY FARM
-          </div>
-          <div class="details">
-              <b>Order no.:</b> Y1200<br>
-              <b>Items:</b> 2<br>
-              <b>Amount:</b> $96<br>
-              <b>Payment method:</b> Direct Deposit<br>
-              <div class="outstanding"><b>Outstanding payment</b></div>
-          </div>
-          <div class="updateStatus">
-            <b>Update status ></b>
-          </div>
-        </div>
-    </div>
-
-    <div class="confirmedOrders">
-      <div class="title">Confirmed Orders</div>
-      <hr>
-      <div class="order">
-      <div class="farm">
-          HEALTHY FARM
-      </div>
-      <div class="details">
-          <b>Order no.:</b> H1234<br>
-          <b>Items:</b> 2<br>
-          <b>Amount:</b> $96<br>
-          <b>Payment method:</b> Direct Deposit<br>
-          <b>Status:</b> Products are being delivered<br>
-          <div class="outstanding"><b>Outstanding payment</b></div>
-      </div>
-      <div class="checkDetails">
-        <b>Check details ></b>
-      </div>
-      </div>
-    </div>
+			<!-- end top session -->
+			<div *ngFor="let o of l.list">
+				<div class="order-area" *ngIf="l.control" (click)="$event.preventDefault(); $event.stopPropagation(); openSingleOrder(o)" tappable>
+					<i id="line"></i>
+					<div class="order-block">
+						<div class="image">
+							<img [src]="o.profile_pic_url">
+						</div>
+						<div class="order-info">
+							<div class="farm-name">{{o.display_name}}</div>
+							<div class="row"><span class="title">Item:</span>{{o.transaction.length}}</div>
+							<div class="row"><span class="title">Amount:</span>${{o.amount}}</div>
+							<div class="row">
+								<span class="title">Payment mrthod:</span>
+								<span *ngIf="o.payment_method == 1">Direct Deposit</span>
+								<span *ngIf="o.payment_method == 0">Cash on Delivery</span>
+							</div>
+							<div class="row"><span class="title">Satatus:</span>Pending for farmer to comfirm</div>
+							<div class="row">
+								<span class="status out">Outstanding payment</span>
+							</div>
+						</div>
+						<div class="detail-tab">Check details <ion-icon name="ios-arrow-forward"></ion-icon></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </ion-content>
