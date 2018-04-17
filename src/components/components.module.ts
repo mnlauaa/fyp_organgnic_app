@@ -7,6 +7,7 @@ import { ProductChange } from './product-change/product-change';
 import { AddNewsComponent } from './add-news/add-news';
 import { PhotoPopup } from './photo-popup/photo-popup';
 import { NewsChangeComponent } from './news-change/news-change';
+import { EditOrder } from './edit-order/edit-order';
 @NgModule({
 	declarations: [MyNavbar,
     FilterBox,
@@ -15,7 +16,9 @@ import { NewsChangeComponent } from './news-change/news-change';
     ProductChange,
     AddNewsComponent,
     PhotoPopup,
-    NewsChangeComponent],
+    NewsChangeComponent,
+    EditOrder],
+    
 	imports: [],
 	exports: [MyNavbar,
     FilterBox,
@@ -24,6 +27,7 @@ import { NewsChangeComponent } from './news-change/news-change';
     ProductChange,
     AddNewsComponent,
     PhotoPopup,
-    NewsChangeComponent]
+    NewsChangeComponent,
+    EditOrder]
 })
 export class ComponentsModule {}

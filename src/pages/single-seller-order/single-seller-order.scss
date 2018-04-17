@@ -1,9 +1,9 @@
-page-single-order {
+page-single-seller-order {
     .confirm-block{
         border-radius: 7px;
         margin: 6px;
         padding: 15px;
-        // min-height: calc(100% - 100px);
+        min-height: calc(100% - 185px);
         background-color: #FFFFFF;
 
         .firm-title{
@@ -64,23 +64,6 @@ page-single-order {
             height: 100px;
             width: 100%;
         }
-
-        .edit-image{
-            position: relative;
-            top: 25%;
-            text-align: center;
-            margin-bottom: 10px;
-
-            .icon{
-                color: #027B73;
-                font-size: 40px;
-            }
-
-            .sub-text{
-                font-size: 13px;
-                color: #B5B5B5;
-            }
-        }
     }
 
     .confirm-button{
@@ -97,12 +80,14 @@ page-single-order {
             text-align: center;
         }
     }
-
-    .cancel{
-        background-color: #939393;
-        height: 50px;
-        .button-text{
-            line-height: 50px;
-        }
+    .sub{
+        margin-top: 15px;
+        background-color: #EB5537;
     }
+
+    .end{
+        position: relative;
+        bottom: 0px;
+    }
+
 }

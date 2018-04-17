@@ -16,6 +16,7 @@ import { MessagePage } from '../pages/message/message';
 import { AboutUsPage } from '../pages/about-us/about-us';
 import { PartnersPage } from '../pages/partners/partners';
 import { LoginPage } from '../pages/login/login';
+import { SellerOrderPage } from '../pages/seller-order/seller-order'
 
 
 
@@ -52,7 +53,7 @@ export class MyApp {
 		let seller_pages = [
 			{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
 			{ title: 'Manage Business', component: FarmerProfilePage, icon: 'fa fa-briefcase fa-fw fa-lg'},
-			{ title: 'Orders Received', component: BuyerOrderPage, icon: 'fa fa-clipboard fa-fw fa-lg'},
+			{ title: 'Orders Received', component: SellerOrderPage, icon: 'fa fa-clipboard fa-fw fa-lg'},
 			{ title: 'Message', component: MessagePage, icon: 'fa fa-comments fa-fw fa-lg'}
 		]
 

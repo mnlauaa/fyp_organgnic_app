@@ -17,6 +17,7 @@ import { ProductChange } from '../components/product-change/product-change'
 import { AddNewsComponent } from '../components/add-news/add-news'
 import { PhotoPopup } from '../components/photo-popup/photo-popup'
 import { NewsChangeComponent } from '../components/news-change/news-change';
+import { EditOrder } from '../components/edit-order/edit-order';
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -43,6 +44,8 @@ import { SellerPersonaliseProductsPage } from '../pages/seller-personalise-produ
 import { SellerPersonaliseNewsPage } from '../pages/seller-personalise-news/seller-personalise-news'
 import { SellerOperationalSettingPage } from '../pages/seller-operational-setting/seller-operational-setting'
 import { SingleOrderPage } from '../pages/single-order/single-order'
+import { SellerOrderPage } from '../pages/seller-order/seller-order'
+import { SingleSellerOrderPage } from '../pages/single-seller-order/single-seller-order'
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -76,6 +79,8 @@ export const myComponets = [
   FavouriteFarmPage,
   FarmerProfilePage,
   SingleOrderPage,
+  SellerOrderPage,
+  SingleSellerOrderPage,
   
 	// components
   MyNavbar,
@@ -85,7 +90,8 @@ export const myComponets = [
   ProductChange,
   AddNewsComponent,
   PhotoPopup,
-  NewsChangeComponent
+  NewsChangeComponent,
+  EditOrder
 ];
 
 export const myProviders = [

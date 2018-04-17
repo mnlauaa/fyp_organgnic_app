@@ -1,0 +1,99 @@
+page-seller-order {
+    .list{
+        position: relative;
+        background-color: #fff;
+        margin: 6px;
+        border-radius: 7px;
+        padding: 15px;
+
+        .list_title{
+            padding-bottom: 5px;
+        }
+        .list_description{
+            padding-top: 10px;
+        }
+
+        .list_switch{
+            position: absolute;
+            font-size: 15px;
+            padding: 5px;
+            padding-right: 10px;
+            right: 0;
+            top: 30%;
+        }
+
+        .open{
+            top: 8px !important;
+        }
+    }
+
+    .order-block{
+        display: flex;
+        position: relative;
+        padding-bottom: 18px;
+
+        .image{
+            display: inline-block;
+            width: 90px;
+        }
+
+        img{
+            object-fit: cover;
+            height: 90px;
+            width: 90px;
+            border-radius: 2px;
+            margin-top: 3px;
+        }
+
+        .order-info{
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .farm-name{
+            margin: 3px 0;
+        }
+
+        .row{
+            height: 20px;;
+            .title{
+                font-weight: bold;
+                padding-right: 5px
+            }
+
+            .status{
+                font-weight: bold;
+            }
+
+            .out{
+                color: #EB5537;
+            }
+
+            .setted{
+                color: #00A69C;
+            }
+        }
+        
+        .detail-tab{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            color: rgb(153, 153, 153);
+            font-size: 12px;
+            bottom: 0;
+            right: 0;
+            .icon{
+                padding-left: 3px;
+            }
+        }
+    }
+
+    #line{
+        display: block;
+        height: 1px;
+        border: 1px solid rgb(204, 204, 204);
+        margin: auto;
+        margin: 5px 0;
+        margin-bottom: 8px;
+    }
+}

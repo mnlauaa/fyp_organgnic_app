@@ -25,7 +25,6 @@ export class SingleOrderPage {
   ) {
     this.order = navParams.get('order');
     this.order.date = new Date(this.order.date);
-    this.order.receipt_url = "https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg"
     console.log(this.order);
 
     let str = "" + this.order.id
@@ -33,7 +32,6 @@ export class SingleOrderPage {
     this.order_id = pad.substring(0, pad.length - str.length) + str
     this.time = this.order.date.getHours() + ':' + this.order.date.getMinutes()
     this.date = moment(this.order.date).format( "D MMM, YYYY")
-    
   }
 
   onSubmit(){

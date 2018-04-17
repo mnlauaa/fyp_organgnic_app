@@ -1,0 +1,42 @@
+<ion-header>
+    <my-navbar [title]="title"></my-navbar>
+  </ion-header>
+  
+  <ion-content >
+    <div class="list" (click)="wish_list_open = !wish_list_open">
+      <div class="list_title">
+        <b>Orders Waiting for Confirmation ({{newReceive.length}})</b>
+      </div>
+      <div *ngIf="!wish_list_open" class="list_description">List of items with outstanding payment</div>
+      <div *ngIf="!wish_list_open" class="list_switch"><ion-icon name="ios-arrow-down"></ion-icon></div>
+      <div *ngIf="wish_list_open" class="list_switch open"><ion-icon name="ios-arrow-up"></ion-icon></div>
+  
+      <!-- end top session -->
+      <div *ngFor="let o of newReceive">
+        <div class="order-area" *ngIf="wish_list_open" (click)="$event.preventDefault(); $event.stopPropagation(); openSingleOrder(o)" tappable>
+          <i id="line"></i>
+          <div class="order-block">
+            <div class="image">
+              <img [src]="o.profile_pic_url">
+            </div>
+            <div class="order-info">
+              <div class="farm-name">{{o.display_name}}</div>
+              <div class="row"><span class="title">Item:</span>{{o.transaction.length}}</div>
+              <div class="row"><span class="title">Amount:</span>${{o.amount}}</div>
+              <div class="row">
+                <span class="title">Payment mrthod:</span>
+                <span *ngIf="o.payment_method == 1">Direct Deposit</span>
+                <span *ngIf="o.payment_method == 0">Cash on Delivery</span>
+              </div>
+              <div class="row"><span class="title">Satatus:</span>Pending for farmer to comfirm</div>
+              <div class="row">
+                <span class="status out">Outstanding payment</span>
+              </div>
+            </div>
+            <div class="detail-tab">Check details <ion-icon name="ios-arrow-forward"></ion-icon></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  

@@ -1,0 +1,40 @@
+<ion-header>
+  <my-navbar [enable_shopping_button]="false" [enable_close]="true" [enable_menu]="false" [title]="title"></my-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="edit-block"> 
+      <i id="line"></i>
+      <div *ngFor="let p of order.transaction; let i = index">
+        <div class="product-block">
+          <span><img [src]="p.image_url"></span>
+          <div class="img_button" tappable (click)="presentPrompt(p)">Change Product</div>
+          <div class="product-info">
+              <div class="title">{{p.name}}</div>
+              <div class="price">${{p.price*p.qty}}</div>
+              <div class="quantity">
+                <ion-icon name="md-remove" (click)="productBuyerQtyEdit(p, 0)" tappable></ion-icon>
+                <span *ngIf="!(p.special_expiry > now)">&nbsp;&nbsp;{{p.qty*p.weight}}g&nbsp;&nbsp;</span>
+                <ion-icon name="md-add" (click)="productBuyerQtyEdit(p, 1)" tappable></ion-icon>
+              </div>
+          </div>
+          <div class="delete" (click)="presentConfirm(p.transaction_id, i)"><ion-icon name="md-close"></ion-icon></div>
+        </div>
+        <i id="line"></i>
+      </div>
+      <div class="add-product" (click)="addPrompt()" tappable>
+        <ion-icon name="md-add-circle"></ion-icon>
+        <div>Add Product</div>
+      </div>
+  </div>
+  <div class="amount-block">
+    <div>Amount: </div>
+    <div>
+      $
+      <ion-input type="number" placeholder="{{this.order.amount}}" [(ngModel)]="this.order.amount"></ion-input>
+    </div>
+  </div>
+  <div class="confirm-button">
+    <div class="button-text" tappable (click)="updateOrder()">Submit</div>
+  </div>
+</ion-content>
