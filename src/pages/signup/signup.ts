@@ -16,7 +16,6 @@ export class SignupPage {
     protected api: ApiService,
     private menu: MenuController) {
       this.user = {};
-      console.log(!null)
   }
 
   ionViewDidEnter() {
@@ -35,7 +34,36 @@ export class SignupPage {
  
 
   onSubmit(){
-    console.log(this.user)
+    if(!this.user.username||!this.user.password||!this.user.repassword||!this.user.repassword){
+      let toast = this.toastCtrl.create({
+        message:  'missing information',
+        duration: 3000,
+        position: 'bottom'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+      return
+    }
+
+    if(this.user.password != this.user.repassword){
+      let toast = this.toastCtrl.create({
+        message:  'mismatched password',
+        duration: 3000,
+        position: 'bottom'
+      });
+    
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+    
+      toast.present();
+      return
+    }
+
     this.api.startQueue([ 
       this.api.postSignIn(this.user)   
     ]).then(data=>{
