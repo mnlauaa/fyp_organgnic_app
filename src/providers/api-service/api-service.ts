@@ -132,7 +132,9 @@ export class ApiService extends BaseService{
                                  .set('display_name', data.display_name)
                                  .set('phone_number', data.phone)
                                  .set('address', data.address)
-    return this.post('/auth', body, type, this.token)
+    return this.post('/me', body, type, this.token)
+    // console.log(data);
+    // return this.post_file('/me', data, this.token)
   }
   public putMe(data, file){
     var formData: FormData = new FormData();
