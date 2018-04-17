@@ -11,10 +11,6 @@
         </div>
         <i id="line"></i>
         <div class="order-info">
-            <div class="confirm-button sub" *ngIf="order.status == 1">
-                <div class="button-text" tappable (click)="editOrder()">Edit Order</div>
-            </div>
-
             <div class="info-title">Submission date:</div>
             <div class="date">
                 <span>{{date}}</span>
@@ -65,16 +61,29 @@
 		<div class="receipt" *ngIf="!order.receipt_url">
 			<div class="add-image">
 				<div><ion-icon name="md-close-circle"></ion-icon></div>
-				<span class="text">Buyer not yet upload the receipt</span>
+				<span class="text">Buyer has not yet uploaded the bank deposit slip</span>
 			</div>
 		</div>
 
 		<div class="receipt" *ngIf="order.receipt_url">
 			<img [src]="order.receipt_url" (click)="openPhotoPopup()" tappable>
 		</div>
-	</div>
+    </div>
 
-	<div class="confirm-button end" *ngIf="order.status == 1">
-		<div class="button-text" tappable (click)="onSubmit()">Confirm Order</div>
-	</div>
+    <div class="button_session"  *ngIf="order.status == 1">
+        <div class="button submit" tappable (click)="onSubmit()" tappable>
+            Confirm Order
+        </div>
+        <div class="button cancel" tappable (click)="editOrder()">
+            Edit Order
+        </div>
+    </div>
+    
+    <div class="confirm-button end" *ngIf="order.status == 3">
+        <div class="button-text" tappable (click)="onSubmit()">Ship Order</div>
+    </div>
+
+    <div class="confirm-button end" *ngIf="order.status == 4">
+        <div class="button-text" tappable (click)="onSubmit()">Product Arrived</div>
+    </div>
 </ion-content>

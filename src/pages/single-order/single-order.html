@@ -79,4 +79,12 @@
     <div class="confirm-button cancel" *ngIf="order.status == 1">
         <div class="button-text" tappable (click)="presentConfirm()">Remove Order</div>
     </div>
+    <div class="button_session"  *ngIf="order.status == 2">
+        <div class="button submit" tappable (click)="accept()" tappable>
+            Accept
+        </div>
+        <div class="button cancel"  tappable>
+            Decline
+        </div>
+    </div>
 </ion-content>

@@ -3,7 +3,7 @@ page-single-seller-order {
         border-radius: 7px;
         margin: 6px;
         padding: 15px;
-        min-height: calc(100% - 185px);
+        min-height: calc(100% - 250px);
         background-color: #FFFFFF;
 
         .firm-title{
@@ -80,14 +80,31 @@ page-single-seller-order {
             text-align: center;
         }
     }
-    .sub{
-        margin-top: 15px;
-        background-color: #EB5537;
-    }
+    
+    .button_session{
+        display: flex;
+        justify-content:space-between;
+        margin: 0 5px;
+        
+        .button{
+            height: 45px;
+            width: 49.5%;
+            font-size: 20px;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 3px;
+            margin: 1px;
+        }
 
-    .end{
-        position: relative;
-        bottom: 0px;
+        .submit{
+            background-color: #027B73;
+            color: #fff;
+        }
+
+        .cancel{
+            background-color: #939393;
+            color: #fff;
+        }
     }
 
 }

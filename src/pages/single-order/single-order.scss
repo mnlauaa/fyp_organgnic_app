@@ -98,6 +98,32 @@ page-single-order {
         }
     }
 
+    .button_session{
+        display: flex;
+        justify-content:space-between;
+        margin: 0 5px;
+        
+        .button{
+            height: 45px;
+            width: 49.5%;
+            font-size: 20px;
+            text-align: center;
+            line-height: 45px;
+            border-radius: 3px;
+            margin: 1px;
+        }
+
+        .submit{
+            background-color: #027B73;
+            color: #fff;
+        }
+
+        .cancel{
+            background-color: #939393;
+            color: #fff;
+        }
+    }
+
     .cancel{
         background-color: #939393;
         height: 50px;

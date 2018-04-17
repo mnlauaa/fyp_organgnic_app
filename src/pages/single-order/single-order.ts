@@ -37,7 +37,8 @@ export class SingleOrderPage {
   onSubmit(){
     var formData: FormData = new FormData();
     formData.append('status', this.order.status)
-    formData.append('receipt', this.imgFile, 'receipt-' + Date.now() + '.png')
+    if(this.imgFile)
+      formData.append('receipt', this.imgFile, 'receipt-' + Date.now() + '.png')
     this.api.startQueue([
       this.api.putOrder(formData, this.order.id)
     ]).then(data=>{
@@ -46,6 +47,20 @@ export class SingleOrderPage {
       console.log(err)
     }
   }
+
+  accept(){
+    var formData: FormData = new FormData();
+    formData.append('status', this.order.status)
+    this.api.startQueue([
+      this.api.putOrder(formData, this.order.id)
+    ]).then((data)=>{
+      console.log(data);
+      this.navCtrl.pop();
+    }), err=>{
+      console.log(err)
+    }
+  }
+
 
   openPhotoPopup() {
     let modal = this.modalCtrl.create(PhotoPopup, {

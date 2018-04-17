@@ -67,7 +67,7 @@ export class EditOrder {
                                          .set('qty', add.qty)
             return this.api.postTransition(body, this.order.id)
           })).then(()=>{
-            
+            this.navCtrl.setRoot(SellerOrderPage);
           })
         })
 

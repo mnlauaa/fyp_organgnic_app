@@ -3,6 +3,8 @@ import { NavController, NavParams, ModalController, ActionSheetController, Alert
 import { ApiService } from '../../providers/api-service/api-service'
 import { EditOrder } from '../../components/edit-order/edit-order'
 import { PhotoPopup } from '../../components/photo-popup/photo-popup'
+
+import { SellerOrderPage } from '../seller-order/seller-order'
 import * as moment from 'moment';
 
 @Component({
@@ -70,7 +72,7 @@ export class SingleSellerOrderPage {
       this.api.putOrder(formData, this.order.id)
     ]).then(data=>{
       console.log(data[0])
-      this.navCtrl.pop();
+      this.navCtrl.setRoot(SellerOrderPage);
     }), err=>{
       console.log(err)
     }
