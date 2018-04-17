@@ -16,7 +16,7 @@ export class BaseService {
             return Promise.all(promises).then(data => {
                 loading.dismiss();
                 return data;
-            })
+            })  
         }).catch((err)=>{
             loading.dismiss();
             return Promise.reject(err);
