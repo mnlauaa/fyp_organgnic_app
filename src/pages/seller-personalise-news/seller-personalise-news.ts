@@ -5,6 +5,7 @@ import { ApiService } from '../../providers/api-service/api-service'
 import * as moment from 'moment';
 import { AddNewsComponent } from '../../components/add-news/add-news';
 import { NewsChangeComponent } from '../../components/news-change/news-change';
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-seller-personalise-news',
@@ -31,16 +32,6 @@ export class SellerPersonaliseNewsPage {
       this.ev.subscribe('user_info', user_info => {
         this.user_info = user_info
       });
-      // this.api.startQueue([
-      //   this.api.getNews(this.keyword)
-      // ]).then(data => {
-      //   this.result_num = data[0].length;
-      //   data[0].map(n=>n.datetime = moment(n.datetime).fromNow());
-      //   this.newsList = data[0];
-      //   console.log(this.newsList);
-      // }, err => {
-      //   console.log(err)
-      // });
       this.getNewsBykeyword();
   }
 
@@ -103,6 +94,7 @@ export class SellerPersonaliseNewsPage {
     ]).then(data => {
       this.newsList = data[0].news_list;
       this.result_num = data[0].result_num;
+      this.newsList.map(n=>n.datetime = moment(n.datetime).fromNow());
       console.log(this.newsList);
     },err=> {
       console.log(err)

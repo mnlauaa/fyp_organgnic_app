@@ -136,8 +136,8 @@ export class MyApp {
 			this.storage.clear();
 			this.ev.publish('user_info', null);
 			this.ev.publish('user:token', null);
-			this.nav.setRoot(HomePage);
 			this.menu.close();
+			this.nav.setRoot(HomePage);
 		}
 	}
 
