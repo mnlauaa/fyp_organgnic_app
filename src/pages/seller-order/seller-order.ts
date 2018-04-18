@@ -29,6 +29,13 @@ export class SellerOrderPage {
     ]
   }
 
+  getOrderId(id){
+    let str = "" + id
+    let pad = "00000"
+    let text_id = pad.substring(0, pad.length - str.length) + str
+    return text_id;
+  }
+
   openSingleOrder(order){
     this.navCtrl.push(SingleSellerOrderPage, { 
       order: order

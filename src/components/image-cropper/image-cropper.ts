@@ -120,7 +120,7 @@ export class ImageCropper{
       height = 260;
     }
     if(this.aspectRatioType == 2){
-      width = null;
+      width = 500;
       height = null;
     }
     this.cropperInstance.getCroppedCanvas({ width: width, height: height}).toBlob((blob)=>{

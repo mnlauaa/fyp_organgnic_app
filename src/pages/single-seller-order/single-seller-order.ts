@@ -34,8 +34,8 @@ export class SingleSellerOrderPage {
     let str = "" + this.order.id
     let pad = "00000"
     this.order_id = pad.substring(0, pad.length - str.length) + str
-    this.time = this.order.date.getHours() + ':' + this.order.date.getMinutes()
-    this.date = moment(this.order.date).format( "D MMM, YYYY")
+    this.time = moment(this.order.date).format("HH:mm");
+    this.date = moment(this.order.date).format("D MMM, YYYY")
   }
 
   reload(){

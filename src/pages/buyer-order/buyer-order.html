@@ -20,10 +20,11 @@
 					</div>
 					<div class="order-info">
 						<div class="farm-name">{{o.display_name}}</div>
+						<div class="row"><span class="title">Order Number:</span>{{getOrderId(o.id)}}</div>
 						<div class="row"><span class="title">Item:</span>{{o.transaction.length}}</div>
 						<div class="row"><span class="title">Amount:</span>${{o.amount}}</div>
 						<div class="row">
-							<span class="title">Payment mrthod:</span>
+							<span class="title">Payment method:</span>
 							<span *ngIf="o.payment_method == 1">Direct Deposit</span>
 							<span *ngIf="o.payment_method == 0">Cash on Delivery</span>
 						</div>

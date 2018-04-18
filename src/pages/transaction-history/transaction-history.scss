@@ -1,57 +1,79 @@
 page-transaction-history {        
+    #line{
+        display: block;
+        height: 1px;
+        border: 0.5px solid #B5B5B5;
+    }
+    
     .contentBlock{
-        padding-left: 13px;
-        padding-right: 13px;
-        height: 96%;
+        padding: 18px;
+        min-height: calc(100% - 20px);
         border-radius: 7px;     
         background: white;
         margin: 10px;
 
+        .title{
+            font-size: 17px;
+            font-weight: bold;
+            color: #212121;
+            padding-bottom: 12px;
+        }
+
         .container{
+            position: relative;
             padding: 10px;
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
             align-items: center;
 
-            .title{
-                font-size: 17px;
-                font-weight: bold;
-                color: #212121;
-            }
-
             .farmIcon{
-                width: 50px;
-                height: 50px;
+                width: 70px;
+                height: 70px;
                 border-radius: 50%;     
                 border: 1px solid #707070;
+
+                img{
+                    object-fit: cover;
+                    border-radius: 50%;  
+                    height: 70px;
+                    width: 70px;
+                }
             }
 
-            .farmName{
-                padding-right: 25px;
-                font-family: "Lantinghei SC";
-                font-size: 14px;
-                font-style: "extralight";
-            }
-
-            .product{
-                padding-right: 25px;
-                font-size: 13px;
-                color: #212121;
+            .transactionInfo{
+                display: inline-block;
+                padding-left: 20px;
+                .farmName{
+                    font-size: 17px;
+                    display: inline-block;
+                }
+                .product-block{
+                    display: inline-block;
+                    padding: 8px 0 0 5px;;
+                    .product{
+                        font-size: 14px;
+                        padding: 1px;
+                        color: #212121;
+                    }
+                }
             }
 
             .amount{
-                text-align: right;
-                font-size: 19px;
-                font-weight: bold;
-                color: #212121;
+                position: absolute;
+                right: 10px;
+                .price{
+                    text-align: right;
+                    font-size: 19px;
+                    font-weight: bold;
+                    color: #212121;
+                }
+                .time{
+                    text-align: right;
+                    font-size: 14px;
+                    color: #8C8C8C;
+                }
             }
 
-            .time{
-                text-align: right;
-                font-size: 14px;
-                color: #8C8C8C;
-            }
+
         }
 
 

@@ -33,6 +33,13 @@ export class BuyerOrderPage {
       ]
   }
 
+  getOrderId(id){
+    let str = "" + id
+    let pad = "00000"
+    let text_id = pad.substring(0, pad.length - str.length) + str
+    return text_id;
+  }
+  
   ionViewWillEnter(){
     this.update()
   }
