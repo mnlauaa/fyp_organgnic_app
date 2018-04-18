@@ -13,6 +13,7 @@ export class ProductChange {
   action: any;
   imgFile: any;
   category: any;
+  description: any;
   special_edit: boolean = false;
 
   constructor(
@@ -87,7 +88,20 @@ export class ProductChange {
         this.api.startQueue([
           this.api.putProducts(formData, this.product.id)
         ]).then(data =>{
-          console.log(data)
+          if(this.special_edit){
+            let news_formData: FormData = new FormData();
+            if(this.imgFile)
+              news_formData.append('news', this.imgFile, 'product-' + Date.now() + '.png')
+            else
+              news_formData.append('img_url', this.product.image_url)
+            let newsTitle = this.product.name + " have a " +   Math.ceil((this.product.special_price/this.product.price) * 100) +
+                            "% off!"
+            news_formData.append('title', newsTitle)
+            news_formData.append('description', this.description)
+            this.api.postNews(news_formData).then((data)=>{
+              console.log(data)
+            })
+          }
           this.view.dismiss()
         }), err=>{
           console.log(err);

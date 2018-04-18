@@ -183,8 +183,10 @@ product-change {
                     padding: 11px 8px 3px 0;
                     margin-bottom: 15px;
                     border-bottom: 1px solid #000;
-                    width: 103px;
-
+                    width: 120px;
+                    .text-input{
+                        text-align: center;
+                    }
                 }
             }
 
