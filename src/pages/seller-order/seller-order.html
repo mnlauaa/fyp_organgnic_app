@@ -22,16 +22,23 @@
               </div>
               <div class="order-info">
                 <div class="farm-name">{{o.display_name}}</div>
+                <div class="row"><span class="title">Order Number:</span>{{getOrderId(o.id)}}</div>
                 <div class="row"><span class="title">Item:</span>{{o.transaction.length}}</div>
                 <div class="row"><span class="title">Amount:</span>${{o.amount}}</div>
                 <div class="row">
-                  <span class="title">Payment mrthod:</span>
+                  <span class="title">Payment method:</span>
                   <span *ngIf="o.payment_method == 1">Direct Deposit</span>
                   <span *ngIf="o.payment_method == 0">Cash on Delivery</span>
                 </div>
-                <div class="row"><span class="title">Satatus:</span>Pending for farmer to comfirm</div>
+                <div class="row"><span class="title">Satatus:</span>
+                  <span *ngIf="o.status == 1">Pending for you to comfirm</span>
+                  <span *ngIf="o.status == 3">Pending for product delivery</span>
+                  <span *ngIf="o.status == 4">Products are being delivered</span>
+                  <span *ngIf="o.status == 5">Pending for buyer to settled debt</span>
+                </div>
                 <div class="row">
-                  <span class="status out">Outstanding payment</span>
+                  <span class="status out" *ngIf="o.status < 3 || !o.receipt_url">Outstanding payment</span>
+                  <span class="status setted" *ngIf="o.status >= 3 && o.receipt_url">Settled payment</span>
                 </div>
               </div>
               <div class="detail-tab">Check details <ion-icon name="ios-arrow-forward"></ion-icon></div>

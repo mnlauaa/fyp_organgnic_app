@@ -67,7 +67,19 @@
 
 		<div class="receipt" *ngIf="order.receipt_url">
 			<img [src]="order.receipt_url" (click)="openPhotoPopup()" tappable>
-		</div>
+        </div>
+        <div class="confirm-button" *ngIf="order.receipt_url && order.status == 5" >
+            <div class="button-text" tappable (click)="onSubmit()">Accept Payment</div>
+        </div>
+    </div>
+
+    <div *ngIf="order.payment_method == 0"> 
+        <div class="receipt">
+            <div class="add-image">
+                <div><ion-icon name="ios-cash"></ion-icon></div>
+                <span class="text">Buyer chose to pay by cash</span>
+            </div>
+        </div>
     </div>
 
     <div class="button_session"  *ngIf="order.status == 1">
@@ -80,7 +92,7 @@
     </div>
     
     <div class="confirm-button end" *ngIf="order.status == 3">
-        <div class="button-text" tappable (click)="onSubmit()">Ship Order</div>
+        <div class="button-text" tappable (click)="onSubmit()">Product have been delivered</div>
     </div>
 
     <div class="confirm-button end" *ngIf="order.status == 4">

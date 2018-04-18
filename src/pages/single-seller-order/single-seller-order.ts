@@ -34,8 +34,8 @@ export class SingleSellerOrderPage {
     let str = "" + this.order.id
     let pad = "00000"
     this.order_id = pad.substring(0, pad.length - str.length) + str
-    this.time = this.order.date.getHours() + ':' + this.order.date.getMinutes()
-    this.date = moment(this.order.date).format( "D MMM, YYYY")
+    this.time = moment(this.order.date).format("HH:mm");
+    this.date = moment(this.order.date).format("D MMM, YYYY")
   }
 
   reload(){
@@ -50,9 +50,10 @@ export class SingleSellerOrderPage {
   }
 
   editOrder(){
-    let profileModal = this.modalCtrl.create(EditOrder, { order: this.order});
+    let temp_order = Object.assign({}, this.order);
+    let profileModal = this.modalCtrl.create(EditOrder, { order: temp_order});
     profileModal.onWillDismiss(data =>{
-      this.reload();
+      // this.reload();
     })
     profileModal.present();
   }

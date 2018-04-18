@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../providers/api-service/api-service';
 import { SignupPage } from '../signup/signup';
 import { ContactusPage } from '../contactus/contactus';
+import { HomePage } from '../home/home'
 
 @Component({
   selector: 'page-login',
@@ -72,7 +73,7 @@ export class LoginPage {
   
             this.storage.set('user_info', user_info).then((val)=>{
               this.ev.publish('user_info', val);
-              this.navCtrl.pop();
+              this.navCtrl.setRoot(HomePage);
             })
           })
         })

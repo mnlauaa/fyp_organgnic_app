@@ -1,8 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, ViewChild  } from '@angular/core';
-import { NavController, NavParams, Slides, MenuController, AlertController  } from 'ionic-angular';
+import { NavController, NavParams, Slides, MenuController, AlertController, ToastController } from 'ionic-angular';
 import { TheMarketPage } from '../the-market/the-market';
 import { CheckOutPage } from '../check-out/check-out';
+import { BuyerOrderPage } from '../buyer-order/buyer-order'
 import { ApiService } from '../../providers/api-service/api-service'
 
 @Component({
@@ -22,7 +23,8 @@ export class ShoppingCartPage {
     public navParams: NavParams,
     protected api: ApiService,
     private menu: MenuController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
   ) {
     this.now = new Date();
     this.user_info = navParams.get('user_info');
@@ -167,11 +169,30 @@ export class ShoppingCartPage {
   }
 
   checkOutOpenPage(order, list_num){
-    this.navCtrl.push(CheckOutPage, {
-      order: order,
-      list_num: list_num + 1,
-      user_info: this.user_info
-    });
+    this.api.startQueue([
+      this.api.getMyDebt()
+    ]).then(data=>{
+      console.log('data',data)
+      if(data[0].length > 0){
+        let toast = this.toastCtrl.create({
+          message: 'You still have outstanding debts',
+          duration: 2000,
+          position: 'bottom'
+        });
+        toast.present();
+        this.navCtrl.push(BuyerOrderPage, {
+          enable_back: true
+        });
+      } else {
+        this.navCtrl.push(CheckOutPage, {
+          order: order,
+          list_num: list_num + 1,
+          user_info: this.user_info
+        });
+      }
+    }),err=>{
+      console.log(err)
+    }
   }
 
   ionViewDidEnter() {
