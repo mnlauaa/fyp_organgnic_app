@@ -5,7 +5,6 @@ import { ApiService } from '../../providers/api-service/api-service'
 import * as moment from 'moment';
 import { AddNewsComponent } from '../../components/add-news/add-news';
 import { NewsChangeComponent } from '../../components/news-change/news-change';
-import * as moment from 'moment';
 
 @Component({
   selector: 'page-seller-personalise-news',
