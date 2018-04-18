@@ -3,6 +3,7 @@ import { MenuController, Nav, Events, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { ApiService } from '../providers/api-service/api-service'
 
 // pages
 import { HomePage } from '../pages/home/home';
@@ -34,6 +35,7 @@ export class MyApp {
 	user_info = {};
 
   constructor(
+	  	public api: ApiService,
 		private ev: Events,
 		private storage: Storage,
 		protected menu: MenuController,
@@ -61,6 +63,7 @@ export class MyApp {
 			{ title: 'Setting', component: HomePage, icon: 'fa fa-cog fa-fw fa-lg'},
 			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
 			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-handshake-o fa-fw fa-lg'},
+			{ title: 'Logout', component: null, icon: 'fa fa-sign-out fa-fw fa-lg'}
 		]
 
 		let guset_pages = [
@@ -69,28 +72,41 @@ export class MyApp {
 			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
 			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-handshake-o fa-fw fa-lg'},
 		]
+
+		this.login = {component: LoginPage};
 		
 		this.ev.subscribe('user_info', (user_info) => {
-			console.log("app", user_info);
-			this.user_info = user_info;
-			switch(Number(user_info.identity)){
-				case 0:
-					this.guest = false;
-					this.upper_page = buyer_pages;
-					this.bottom_pages = user_bottom_pages;
-					break;
+			if(user_info){
+				console.log("app", user_info);
+				this.user_info = user_info;
+				switch(Number(user_info.identity)){
+					case 0:
+						this.guest = false;
+						this.upper_page = buyer_pages;
+						this.bottom_pages = user_bottom_pages;
+						break;
 
-				case 1:
-					this.guest = false;
-					this.upper_page = seller_pages;
-					this.bottom_pages = user_bottom_pages;
-					break;
-				
-				default:
-					this.guest = true;
-					this.upper_page = null
-					this.bottom_pages = guset_pages;	
-					break;
+					case 1:
+						this.guest = false;
+						this.upper_page = seller_pages;
+						this.bottom_pages = user_bottom_pages;
+						break;
+					
+					default:
+						this.guest = true;
+						this.upper_page = null
+						this.bottom_pages = guset_pages;	
+						break;
+				}
+			} else {
+				let guest_info = {
+					identity: -1,
+					display_name: 'Visitor',
+					profile_pic_url: null,
+					address: null,
+					phone_number: null,
+				}
+				this.ev.publish('user_info', guest_info);
 			}
 		});
 		
@@ -110,16 +126,19 @@ export class MyApp {
 				this.ev.publish('user_info', guest_info);
 			}
 		})
-
-		//login button test
-		this.login = { title: 'Login', component: LoginPage, icon: 'fa fa-shopping-cart fa-fw fa-lg'}
 	}
 
   	openPage(page) {
-		// Reset the content nav to have just this page
-		// we wouldn't want the back button to show in this scenario
-		this.nav.setRoot(page.component, {user_info: this.user_info});
-		this.menu.close();
+		if(page.component){
+			this.nav.setRoot(page.component, {user_info: this.user_info});
+			this.menu.close();
+		} else {
+			this.storage.clear();
+			this.ev.publish('user_info', null);
+			this.ev.publish('user:token', null);
+			this.nav.setRoot(HomePage);
+			this.menu.close();
+		}
 	}
 
 	pushPage(page) {

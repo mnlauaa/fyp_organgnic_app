@@ -122,6 +122,12 @@ export class ApiService extends BaseService{
     return this.post('/me/login', body, type, this.token);
   }
 
+  public postMeLogout(){
+    let type = 'application/x-www-form-urlencoded';
+    const body = new HttpParams()
+    return this.post('/me/logout', body, type, this.token);
+  }
+
   public postProducts(data){
     return this.post_file('/products', data, this.token)
   }

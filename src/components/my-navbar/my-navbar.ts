@@ -23,13 +23,20 @@ export class MyNavbar {
     private view: ViewController
   ) {
     this.ev.subscribe('user_info', (user_info) => {
-			this.user_info = user_info;
+      if(user_info){
+        this.user_info = user_info;
+        if(user_info.identity == 1)
+          this.enable_shopping_button = false;
+      }
     });
 
     this.storage.get('user_info').then((user_info)=>{
 			//push info to ionic event
-			if(user_info)
+			if(user_info){
         this.user_info = user_info;
+        if(user_info.identity == 1)
+        this.enable_shopping_button = false;
+      }
 		})
     
   }

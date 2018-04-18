@@ -6,7 +6,8 @@
 <ion-content>
   <div class="changeIcon">
     <div class="buyerIcon">
-      <img *ngIf="!edit_mode" [src]="user_info.profile_pic_url">
+      <img *ngIf="!edit_mode && user_info.profile_pic_url" [src]="user_info.profile_pic_url">
+      <i *ngIf="!user_info.profile_pic_url" class="fa fa-user-circle fa-7x icon"></i>
       <img *ngIf="edit_mode" [src]="imgURL">
     </div>
 
