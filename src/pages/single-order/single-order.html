@@ -76,10 +76,21 @@
         </div>
     </div>
 
-    <div class="confirm-button cancel" *ngIf="order.status == 1">
-        <div class="button-text" tappable (click)="presentConfirm()">Remove Order</div>
+    <div *ngIf="order.payment_method == 0"> 
+        <div class="receipt">
+            <div class="add-image">
+                <div><ion-icon name="ios-cash"></ion-icon></div>
+                <span class="text">You chose to pay by cash</span>
+            </div>
+        </div>
     </div>
-    <div class="button_session"  *ngIf="order.status == 2">
+
+    <div class="confirm-button cancel" *ngIf="order.status == 1">
+        <div class="button-text" tappable (click)="presentConfirm()">Abolish Order</div>
+    </div>
+
+
+    <div class="button_session" *ngIf="order.status == 2">
         <div class="button submit" tappable (click)="accept()" tappable>
             Accept
         </div>
@@ -87,4 +98,5 @@
             Decline
         </div>
     </div>
+    
 </ion-content>

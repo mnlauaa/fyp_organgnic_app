@@ -50,9 +50,10 @@ export class SingleSellerOrderPage {
   }
 
   editOrder(){
-    let profileModal = this.modalCtrl.create(EditOrder, { order: this.order});
+    let temp_order = Object.assign({}, this.order);
+    let profileModal = this.modalCtrl.create(EditOrder, { order: temp_order});
     profileModal.onWillDismiss(data =>{
-      this.reload();
+      // this.reload();
     })
     profileModal.present();
   }

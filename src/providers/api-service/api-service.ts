@@ -63,6 +63,10 @@ export class ApiService extends BaseService{
     return this.get('/me/favourite', this.token);
   }
 
+  public getMyDebt(){
+    return this.get('/me/debt', this.token);
+  }
+
   public getProducts(sorting, keyword=null, filter=null){
     let params = {sorting: sorting}
     if(keyword)

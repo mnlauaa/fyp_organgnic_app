@@ -1,8 +1,41 @@
 <ion-header>
-  <my-navbar [title]="title"></my-navbar>
+  <my-navbar [title]="title" [enable_back]="enable_back"></my-navbar>
 </ion-header>
 
 <ion-content >
+	<div class="list debt" *ngIf="OutstandingList.length >= 1">
+		<div class="list_title">
+			<ion-icon name="ios-bulb-outline"></ion-icon>
+			Outstanding Debts
+		</div>
+		<div class="debt-description">
+			You are not allowed to shop in the market with outstanding debts.
+		</div>
+		<div *ngFor="let o of OutstandingList">
+			<div class="order-area" (click)="openSingleOrder(o)" tappable>
+				<i id="line"></i>
+				<div class="order-block">
+					<div class="image">
+						<img [src]="o.profile_pic_url">
+					</div>
+					<div class="order-info">
+						<div class="farm-name">{{o.display_name}}</div>
+						<div class="row"><span class="title">Item:</span>{{o.transaction.length}}</div>
+						<div class="row"><span class="title">Amount:</span>${{o.amount}}</div>
+						<div class="row">
+							<span class="title">Payment mrthod:</span>
+							<span *ngIf="o.payment_method == 1">Direct Deposit</span>
+							<span *ngIf="o.payment_method == 0">Cash on Delivery</span>
+						</div>
+						<div class="row">
+							<span class="status out">Outstanding payment</span>
+						</div>
+					</div>
+					<div class="detail-tab">Update status<ion-icon name="ios-arrow-forward"></ion-icon></div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div *ngFor="let l of AllList" >
 		<div class="list" (click)="l.control = !l.control" *ngIf="l.list.length > 0">
 			<div class="list_title">
@@ -29,9 +62,15 @@
 								<span *ngIf="o.payment_method == 1">Direct Deposit</span>
 								<span *ngIf="o.payment_method == 0">Cash on Delivery</span>
 							</div>
-							<div class="row"><span class="title">Satatus:</span>Pending for farmer to comfirm</div>
+							<div class="row"><span class="title">Satatus:</span>
+								<span *ngIf="o.status == 1">Pending for farmer to comfirm</span>
+								<span *ngIf="o.status == 2">Pending for you to comfirm</span>
+								<span *ngIf="o.status == 3">Pending for product delivery</span>
+								<span *ngIf="o.status == 4">Products are being delivered</span>
+							</div>
 							<div class="row">
-								<span class="status out">Outstanding payment</span>
+								<span class="status out" *ngIf="o.status < 3 || !o.receipt_url">Outstanding payment</span>
+								<span class="status setted" *ngIf="o.status >= 3 && o.receipt_url">Settled payment</span>
 							</div>
 						</div>
 						<div class="detail-tab">Check details <ion-icon name="ios-arrow-forward"></ion-icon></div>

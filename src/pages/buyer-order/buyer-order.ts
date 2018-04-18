@@ -9,21 +9,28 @@ import { SingleOrderPage } from '../single-order/single-order'
 })
 export class BuyerOrderPage {
   title = 'Your Order'
-  
+  enable_back = false;
+
   AllList:any = [];
-
-  wishList: any = [];
   wish_list_open: any = false;
+  reconfirmListOpen: any = true
+  confirmedListOpen: any = false
 
-  reconfirmList: any = [];
-  reconfirmListOpen: any = false
+  OutstandingList: any = [];
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public api: ApiService
   ) {
-    // this.update()
+    let enable_back= this.navParams.get('enable_back')
+    if(enable_back)
+      this.enable_back = enable_back;
+      this.AllList = [
+        { name: "Amendede Orders List", discretion: 'List of orders that have been amendede by seller', list: [], control: this.reconfirmListOpen},
+        { name: "Wish List", discretion: 'List of items with outstanding payment', list: [], control: this.wish_list_open},
+        { name: "Confirmed Orders", discretion: 'List of confirmed items with or without outstanding payment', list: [], control: this.confirmedListOpen}
+      ]
   }
 
   ionViewWillEnter(){
@@ -31,22 +38,27 @@ export class BuyerOrderPage {
   }
 
   update(){
-    this.wishList = [];
-    this.reconfirmList = [];
+    this.AllList[0].list = [];
+    this.AllList[1].list = [];
+    this.AllList[2].list = [];
+    this.OutstandingList = [];
+
+
     this.api.startQueue([
       this.api.getBuyerOrdwes()
     ]).then(data=>{
       data[0].map((o)=>{
         if(o.status == 1)
-          this.wishList.push(o);
+          this.AllList[1].list.push(o);
         if(o.status == 2)
-          this.reconfirmList.push(o);
+          this.AllList[0].list.push(o);
+        if(o.status == 3 || o.status == 4)
+          this.AllList[2].list.push(o);
+        if(o.status == 5)
+          this.OutstandingList.push(o);
       })
-      this.AllList = [
-        { name: "ReconfirmList", discretion: 'List', list: this.reconfirmList, control: this.reconfirmListOpen},
-        { name: "Wish List", discretion: 'List of items with outstanding payment', list: this.wishList, control: this.wish_list_open},
-      ]
-      console.log(this.wishList)
+      // AllList[0].list = 
+      console.log(data[0])
     }), err=>{
       console.log(err)
     }
