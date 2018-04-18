@@ -31,8 +31,8 @@ export class ConfirmOrderPage {
     let str = "" + this.order.productList[0].order_id
     let pad = "00000"
     this.order_id = pad.substring(0, pad.length - str.length) + str
-    this.time = time.getHours() + ':' + time.getMinutes()
-    this.date = moment(time).format( "D MMM, YYYY")
+    this.time = moment(this.order.date).format("HH:mm");
+    this.date = moment(this.order.date).format("D MMM, YYYY")
     
 
     console.log(this.date)

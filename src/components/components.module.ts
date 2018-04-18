@@ -8,6 +8,7 @@ import { AddNewsComponent } from './add-news/add-news';
 import { PhotoPopup } from './photo-popup/photo-popup';
 import { NewsChangeComponent } from './news-change/news-change';
 import { EditOrder } from './edit-order/edit-order';
+import { FarmHouse } from './farm-house/farm-house';
 @NgModule({
 	declarations: [MyNavbar,
     FilterBox,
@@ -17,7 +18,8 @@ import { EditOrder } from './edit-order/edit-order';
     AddNewsComponent,
     PhotoPopup,
     NewsChangeComponent,
-    EditOrder],
+    EditOrder,
+    FarmHouse],
     
 	imports: [],
 	exports: [MyNavbar,
@@ -28,6 +30,7 @@ import { EditOrder } from './edit-order/edit-order';
     AddNewsComponent,
     PhotoPopup,
     NewsChangeComponent,
-    EditOrder]
+    EditOrder,
+    FarmHouse]
 })
 export class ComponentsModule {}

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController} from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service';
 import { TheMarketPage } from '../the-market/the-market'
+import { FarmHouse } from '../../components/farm-house/farm-house'
 
 @Component({
   selector: 'page-partners',
@@ -13,7 +14,8 @@ export class PartnersPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public api: ApiService
+    public api: ApiService,
+    private modalCtrl: ModalController,
   ) {
     this.api.startQueue([
       this.api.getFarms()
@@ -23,6 +25,14 @@ export class PartnersPage {
     }),err=>{
       console.log(err)
     }
+  }
+
+  openProductModal(f){
+    let profileModal = this.modalCtrl.create(FarmHouse, { 
+      id: f.farm_id,
+    });
+    profileModal.onDidDismiss(()=>{})
+    profileModal.present();
   }
 
   onShop(id){

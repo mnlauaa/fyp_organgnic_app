@@ -1,0 +1,106 @@
+<ion-header no-border>
+    <my-navbar [enable_shopping_button]="false" [enable_close]="true" [enable_menu]="false" [logo_url]="'assets/imgs/app-logo.png'"></my-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="top">
+        <div class="banner">
+            <img [src]="user_info.banner_pic_url">
+        </div>
+        <div class="farmIcon">
+            <img [src]="user_info.profile_pic_url">
+        </div>
+        <div class="info">
+            <div class="container">
+                <div class="farmName">{{user_info.display_name}}</div>
+                <i class="fa fa-comments fa-fw  icon"></i>
+                <i class="fa fa-heart fa-fw  icon" *ngIf="favourite" (click)="disFavourite()" tappable></i>
+                <i class="fa fa-heart-o fa-fw icon" *ngIf="!favourite" (click)="onFavourite()" tappable></i>
+            </div>
+            <div class="identity">Farmer</div>
+            <div class="farmInfo">
+                <div class="line">
+                    <ion-icon name="md-pin"></ion-icon>
+                    <span class="text">{{user_info.address}}</span>
+                </div>
+                <div class="line">
+                    <ion-icon name="md-call"></ion-icon>
+                    <span class="text">{{user_info.phone_number}}</span>
+                </div>
+                <div class="line">
+                    <ion-icon name="md-card"></ion-icon>
+                    <span class="text" *ngIf="user_info.coupon_on">Shipping coupon supported</span> 
+                    <span class="text" *ngIf="!user_info.coupon_on">Shipping coupon not supported</span> 
+                </div>
+            </div>
+            <div class="shopNow" (click)="onShop(f.farm_id)" tappable><b>Shop in this farm now</b></div>
+        </div>
+        <div class="cs-tab">
+            <div class="cs-tab-button" [class.active]="tab_select == 1" (click)="tab_select = 1" tappable>About</div>
+            <div class="cs-tab-button" [class.active]="tab_select == 2" (click)="tab_select = 2" tappable>What's New</div>
+            <div class="cs-tab-button" [class.active]="tab_select == 3" (click)="tab_select = 3" tappable>Reviews</div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <!-- about info -->
+        <div class="about_info" *ngIf="tab_select == 1">
+            <div>{{user_info.about_intro}}</div>
+        </div>
+
+        <!-- News info -->
+        <div *ngIf="tab_select == 2">
+            <div *ngFor="let n of news_list" class="news-block" >
+                <div class="title">{{n.title}}</div>
+                <div class="info">
+                    <div class="info-item">by {{n.display_name}}</div>
+                    <div class="info-item">{{n.datetime}}</div>
+                </div>
+                <div class="img-box">
+                    <img [src]="n.image_url">
+                </div>
+                <div class="bottom-part" >
+                    <div class="description">{{n.description}}</div>
+                    <div class="line-padding"><i id="line"></i></div>
+                    <div class="detail-block">
+                        <span>More detail</span>
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews -->
+        <div *ngIf="tab_select == 3">
+            <div class="my-comment">
+                <div class="user-icon">
+                    <img [src]="my_info.profile_pic_url">
+                </div>
+                <!-- not leave comment -->
+                <div *ngIf="!my_review">
+                    <div class="label">Please share your comment on this farm</div>
+                    <input type="text" [(ngModel)]="comment_input">
+                    <div class="submit-button" (click)="submitReviews()" tappable>Submit</div>
+                </div>
+                <!-- have comment -->
+                <div *ngIf="my_review">
+                    <div class="name">{{my_review.display_name}}</div>
+                    <div class="date">{{my_review.date}}</div>
+                    <div class="comment">{{my_review.comment}}</div>
+                </div>
+            </div>
+
+            <div class="other-comment" *ngFor="let r of reviews_list">
+                <div class="user-icon">
+                    <img [src]="r.profile_pic_url">
+                </div>
+                <div class="user-info">
+                    <div class="name">{{r.display_name}}</div>
+                    <div class="date">{{r.date}}</div>
+                    <div class="comment">{{r.comment}}</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</ion-content>

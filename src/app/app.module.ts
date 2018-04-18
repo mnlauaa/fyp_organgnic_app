@@ -18,6 +18,7 @@ import { AddNewsComponent } from '../components/add-news/add-news'
 import { PhotoPopup } from '../components/photo-popup/photo-popup'
 import { NewsChangeComponent } from '../components/news-change/news-change';
 import { EditOrder } from '../components/edit-order/edit-order';
+import { FarmHouse } from '../components/farm-house/farm-house';
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -91,7 +92,8 @@ export const myComponets = [
   AddNewsComponent,
   PhotoPopup,
   NewsChangeComponent,
-  EditOrder
+  EditOrder,
+  FarmHouse
 ];
 
 export const myProviders = [

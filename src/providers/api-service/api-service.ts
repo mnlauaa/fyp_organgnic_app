@@ -55,6 +55,15 @@ export class ApiService extends BaseService{
     return this.get('/users/farms');
   }
 
+  public getFarmisFavorite(id){
+    return this.get('/users/' + id + '/farms/isFavourite', this.token);
+  }
+
+
+  public getFarmsNews(id){
+    return this.get('/news/farm/' + id);
+  }
+
   public getFarmsById(id){
     return this.get('/users/' + id + '/farms');
   }
@@ -114,12 +123,22 @@ export class ApiService extends BaseService{
     return this.get('/orders/' + id, this.token);
   }
 
+  public getFarmReviews(id){
+    return this.get('/users/' + id + '/farms/reviews');
+  }
+
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';
     const body = new HttpParams().set('username', data.username)
                                  .set('password', data.password);
 
     return this.post('/me/login', body, type, this.token);
+  }
+
+  public postMyFavourite(id){
+    let type = 'application/x-www-form-urlencoded';
+    const body = new HttpParams()
+    return this.post('/me/favourite/' + id, body, type, this.token);
   }
 
   public postMeLogout(){
@@ -158,8 +177,6 @@ export class ApiService extends BaseService{
                                  .set('phone_number', data.phone)
                                  .set('address', data.address)
     return this.post('/me', body, type, this.token)
-    // console.log(data);
-    // return this.post_file('/me', data, this.token)
   }
 
   public postTransition(data, id){
@@ -176,6 +193,12 @@ export class ApiService extends BaseService{
     formData.append('phone_number', data.phone_number)
     
     return this.put('/me', formData, this.token)
+  }
+
+  public postFarmReviews(farm_id, comment){
+    let type = 'application/x-www-form-urlencoded';
+    const body = new HttpParams().set('comment', comment)
+    return this.post('/users/' + farm_id + '/farms/reviews', body, type, this.token)
   }
 
   public putMeFarm(data, icon, banner){
