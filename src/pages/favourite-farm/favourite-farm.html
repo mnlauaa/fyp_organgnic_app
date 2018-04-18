@@ -9,7 +9,11 @@
         <img [src]="f.profile_pic_url">
       </div>
       <div class="farmDetail">
-        <div class="name">{{f.display_name}}</div>
+        <div class="container">
+            <div class="name">{{f.display_name}}</div>
+            <i class="fa fa-home icon"></i>
+            <i class="fa fa-comments icon"></i>
+        </div>
         <div class="info">
             <div class="line">
                 <ion-icon name="md-pin"></ion-icon>
@@ -21,7 +25,8 @@
             </div>
             <div class="line">
                 <ion-icon name="md-card"></ion-icon>
-                <span class="text">Shipping coupon supported</span> 
+                <span class="text" *ngIf="f.coupon_on">Shipping coupon supported</span> 
+                <span class="text" *ngIf="!f.coupon_on">Shipping coupon not supported</span> 
             </div>
         </div>
       </div>
@@ -31,6 +36,4 @@
     </div>
     <div class="shopNow" (click)="onShop(f.farm_id)" tappable><b>Shop in this farm now</b></div>
   </div>
-
-
 </ion-content>

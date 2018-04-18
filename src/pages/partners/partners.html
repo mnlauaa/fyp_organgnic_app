@@ -1,19 +1,36 @@
 <ion-header>
     <my-navbar [title]="title"></my-navbar>
-  </ion-header>
-  
-  <ion-content >    
-      hello
-    <ion-slides>
-        <ion-slide>
-          <h1>Slide 1</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 2</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 3</h1>
-        </ion-slide>
-      </ion-slides>
-  </ion-content>
+</ion-header>
+<ion-content> 
+  <div *ngFor="let f of farm_list" class="farmBlock">
+    <div class="farmInfo">
+      <div class="farmIcon">
+        <img [src]="f.profile_pic_url">
+      </div>
+      <div class="farmDetail">
+        <div class="container">
+            <div class="name">{{f.display_name}}</div>
+            <i class="fa fa-home icon"></i>
+            <i class="fa fa-comments icon"></i>
+        </div>
+        <div class="info">
+            <div class="line">
+                <ion-icon name="md-pin"></ion-icon>
+                <span class="text">{{f.address}}</span>
+            </div>
+            <div class="line">
+                <ion-icon name="md-call"></ion-icon>
+                <span class="text">{{f.phone_number}}</span>
+            </div>
+            <div class="line">
+                <ion-icon name="md-card"></ion-icon>
+                <span class="text" *ngIf="f.coupon_on">Shipping coupon supported</span> 
+                <span class="text" *ngIf="!f.coupon_on">Shipping coupon not supported</span> 
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="shopNow" (click)="onShop(f.farm_id)" tappable><b>Shop in this farm now</b></div>
+  </div>   
+</ion-content>
   

@@ -1,3 +1,103 @@
 page-partners {
+    .farmBlock{
+        margin: 13px;
+        height: 180px;
+        border-radius: 2%;     
+        background: white;
+        margin: 7px;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: flex-start;
 
+        .farmInfo{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+
+            .farmIcon{
+                width: 83px;
+                height: 83px;
+                border-radius: 50%;     
+                border: 1px solid #707070;
+
+                img{
+                    border-radius: 50%;
+                    object-fit: cover;
+                    height: 83px;
+                    width: 83px;
+                }
+            }
+
+            .farmDetail{
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                position: relative;
+                
+                .container{
+                    display: flex;
+                    align-items: center;
+                    padding-left: 10px;
+                    padding-bottom: 7px;
+                    padding-top: 13px;
+
+                    .name{
+                        font-size: 17px;
+                        display: block;
+                        padding-right: 3px;
+                    }
+
+                    .icon{
+                        color: #027B73;
+                        padding: 0 2px;
+                        font-size: 17px;
+                    }
+                }
+
+
+                .info{
+                    font-size: 14px;
+                    color: rgb(51, 51, 51);
+                    padding-left: 10px;
+
+                    .line{
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+                        margin: 5px 0;
+                        color: #7E7E7E;
+
+                        .icon{
+                            position: absolute;
+                        }
+
+                        .text{
+                            padding-left: 20px; 
+                        }
+                    }
+                }
+            }
+        }
+
+        .del{
+            display: block;
+            position: absolute;
+            padding: 10px;
+            right: 0px;
+            top: 0px;
+        }
+
+        .shopNow{
+            margin: 20px;
+            height: 40px;
+            background-color: #027B73;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            padding-top: 6px;
+        }
+    }
 }

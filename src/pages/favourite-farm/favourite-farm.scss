@@ -37,14 +37,26 @@ page-favourite-farm {
                 justify-content: flex-start;
                 position: relative;
                 
-
-                .name{
-                    font-size: 17px;
-                    display: block;
+                .container{
+                    display: flex;
+                    align-items: center;
                     padding-left: 10px;
                     padding-bottom: 7px;
                     padding-top: 13px;
+
+                    .name{
+                        font-size: 17px;
+                        display: block;
+                        padding-right: 3px;
+                    }
+
+                    .icon{
+                        color: #027B73;
+                        padding: 0 2px;
+                        font-size: 17px;
+                    }
                 }
+
 
                 .info{
                     font-size: 14px;
