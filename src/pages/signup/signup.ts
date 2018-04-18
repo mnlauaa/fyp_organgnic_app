@@ -46,10 +46,6 @@ export class SignupPage {
         position: 'bottom'
       });
     
-      toast.onDidDismiss(() => {
-        console.log('Dismissed toast');
-      });
-    
       toast.present();
       return
     }
