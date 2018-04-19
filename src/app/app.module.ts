@@ -91,7 +91,7 @@ export const myComponets = [
   ImageCropper,
   ProductChange,
   AddNewsComponent,
-  PhotoPopup,
+  PhotoPopup, 
   NewsChangeComponent,
   EditOrder
 ];
