@@ -24,7 +24,8 @@
                     </div>
                     <div class="line">
                         <ion-icon name="md-card"></ion-icon>
-                        <span class="text">Shipping coupon supported</span> 
+                        <span class="text" *ngIf="user_info.coupon_on">Shipping coupon supported</span> 
+                        <span class="text" *ngIf="!user_info.coupon_on">Shipping coupon not supported</span> 
                     </div>
                 </div>
             </div>

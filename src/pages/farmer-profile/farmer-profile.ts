@@ -45,6 +45,7 @@ export class FarmerProfilePage {
       this.api.getMeFarm()
     ]).then(data=>{
       this.user_info = data[0]
+      console.log(data[0]);
     }), err=>{
 
     }
