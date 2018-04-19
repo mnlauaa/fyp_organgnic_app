@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
-
+import { FarmHouse } from '../../components/farm-house/farm-house'
 import { TheMarketPage } from '../the-market/the-market'
 @Component({
   selector: 'page-favourite-farm',
@@ -14,7 +14,8 @@ export class FavouriteFarmPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private api: ApiService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController,
   ) {
     this.api.startQueue([
       this.api.getMyFavourite()
@@ -24,6 +25,14 @@ export class FavouriteFarmPage {
     }), err=>{
       console.log(err)
     }
+  }
+
+  openProductModal(f){
+    let profileModal = this.modalCtrl.create(FarmHouse, { 
+      id: f.farm_id,
+    });
+    profileModal.onDidDismiss(()=>{})
+    profileModal.present();
   }
 
   presentConfirm(farm) {
@@ -66,11 +75,6 @@ export class FavouriteFarmPage {
       special: null
     }
     this.navCtrl.setRoot(TheMarketPage, {filter_list: filter_list});
-  }
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavouriteFarmPage');
   }
 
 }

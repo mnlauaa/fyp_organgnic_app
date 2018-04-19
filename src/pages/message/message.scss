@@ -1,99 +1,80 @@
 page-message {
-    .top{
+    .message-block{
         position: relative;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        background: #fff;
+        margin: 2px 0px;
+        border-radius: 1px;
 
-        .banner{
-            height: 107px;
-            background-color: grey;
-        }
-    
-        .farmIcon{
-            width: 71px;
-            height: 71px;
+        img{
+            display: inline-block;
+            object-fit: cover;
+            height: 70px;
+            width: 70px;
             border-radius: 50%;
-            border: 1px solid #707070;
-            background-color: white;
-            position: absolute;
-            left: 15px;
-            top: 80px;
-            z-index: 2;
+            margin: 10px;
         }
-    
+
         .info{
-            height: 170px;
-            padding-top: 50px;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            position: relative;
-            padding-left: 15px;
-
-            .farmName{
-                font-family: "Lantinghei SC";
+            display: inline-block;
+            width: calc(100% - 100px);
+            padding: 10px;
+            padding-right: 20px;
+            .upper-session{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
                 font-size: 17px;
-                font-weight: "Extralight";
+
+                .name{
+                    font-weight: bold;
+                }
+
+                .datetime{
+                    color: rgb(158, 158, 158);  
+                }
             }
 
-            .identity{
-                font-size: 14px;
-                font-family: "Arial";
-                padding-bottom: 5px;
-            }
+            .last-message{
+                padding-top: 5px;
+                height: 40px;            
+                // line-height: 40px;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
-            .farmInfo{
-                color: rgb(119, 118, 118);
-                font-size: 14px;
-                font-family: "Arial";
-                padding: 3px;
+                .text{
+                    font-size: 15px;
+                    color: rgb(158, 158, 158);               
+                    vertical-align: middle;
+                    line-height: 1.3em;
+                }
             }
         }
-    }
-    
-    .button{
-        display: block;
-        width: 95%;
-        height: 54px;
-        background: white;
-        margin: auto;
-        padding: 9px;
-    }
 
-    .container{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .icon{
+            position: absolute;
+            color: rgb(199, 199, 199);   
+            font-size: 18px;
+            right: 10px;
+            bottom: calc(50% - 5px);
+        }
 
-    .button-text{
-        font-size: 16px;
-        font-family: "Arial";
-        color: #212121; 
-        padding-right: 10%;
-    }
+        .un-read-message{
+            position: absolute;
+            background-color: #00A69C;
+            height: 18px;
+            min-width: 18px;
+            border-radius: 9px;
+            text-align: center;
+            line-height: 18px;
+            font-size: 15px;
+            color: #fff;
+            right: 30px;
+            top: 35px;
 
-    .iconCircle{
-        padding: 6px;
-        width: 36px;
-        height: 36px;
-        border-radius: 18px;     
-        background: #00A69C;
-    }
-
-    .buttonIcon{
-        font-size: 20px;
-        color: white;
-    }
-
-    .button-arrow{
-        font-size: 18px;
-    }
-
-    .bottom{
-        padding-bottom: 15px;
+            .num{
+                padding: 0 5px;
+            }
+        }
     }
 }

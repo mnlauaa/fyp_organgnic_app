@@ -1,0 +1,36 @@
+<ion-header>
+    <my-navbar [logo_url]="'assets/imgs/app-logo.png'" [enable_back]="true" [enable_shopping_button]="false"></my-navbar>
+</ion-header>
+
+<ion-content scrollDownOnLoad="true">
+    <div class="message-wrap">
+        <div *ngFor="let msg of msgList"
+             class="message"
+             [class.left]=" msg.sender_id == other_id"
+             [class.right]=" msg.sender_id != other_id ">
+          <img class="user-img" [src]="msg.sender_image" alt="" src="">
+          <div class="msg-detail">
+            <div class="msg-info">
+              <p>
+                {{msg.sender_name}}&nbsp;&nbsp;&nbsp;{{msg.datetime}}</p>
+            </div>
+            <div class="msg-content">
+              <span class="triangle"></span>
+              <p class="line-breaker ">{{msg.message}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</ion-content>
+ 
+<ion-footer no-border [style.height]="'55px'">
+  <div class="input-wrap">
+      <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+        <ion-icon name="ios-more"></ion-icon>
+      </button>
+      <ion-input type="text" placeholder="Type a message" [(ngModel)]="editorMsg" name="message"></ion-input>
+      <button ion-button clear icon-only item-right (click)="sendMsg()">
+        <ion-icon name="md-send"></ion-icon>
+      </button>
+    </div>
+</ion-footer>

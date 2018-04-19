@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { Config } from '../config'
 
 // Custom dependencies
 import { MyApp } from './app.component';
@@ -47,11 +48,14 @@ import { SellerOperationalSettingPage } from '../pages/seller-operational-settin
 import { SingleOrderPage } from '../pages/single-order/single-order'
 import { SellerOrderPage } from '../pages/seller-order/seller-order'
 import { SingleSellerOrderPage } from '../pages/single-seller-order/single-seller-order'
+import { ChatRoomPage } from '../pages/chat-room/chat-room'
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+const config: SocketIoConfig = { url: Config.SERVER, options: {} };
 
 
 export const myComponets = [
@@ -82,6 +86,7 @@ export const myComponets = [
   SingleOrderPage,
   SellerOrderPage,
   SingleSellerOrderPage,
+  ChatRoomPage,
   
 	// components
   MyNavbar,
@@ -114,6 +119,7 @@ export const myImports = [
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    SocketIoModule.forRoot(config),
     ...myImports
   ],
   bootstrap: [IonicApp],

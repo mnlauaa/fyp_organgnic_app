@@ -59,6 +59,9 @@ export class ApiService extends BaseService{
     return this.get('/users/' + id + '/farms/isFavourite', this.token);
   }
 
+  public getMeUnRead(){
+    return this.get('/chats/unRead', this.token);
+  }
 
   public getFarmsNews(id){
     return this.get('/news/farm/' + id);
@@ -80,6 +83,9 @@ export class ApiService extends BaseService{
     return this.get('/me/order', this.token);
   }
 
+  public getMyChat(){
+    return this.get('/me/chat', this.token);
+  }
 
   public getProducts(sorting, keyword=null, filter=null){
     let params = {sorting: sorting}
@@ -104,6 +110,10 @@ export class ApiService extends BaseService{
 
   public getProductById(id){
     return this.get('/products/' + id);
+  }
+
+  public getChatById(id){
+    return this.get('/chats/' + id, this.token);
   }
 
   public getRelatedProduct(product_class, id){

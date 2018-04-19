@@ -64,6 +64,7 @@ export class LoginPage {
           this.api.getMe().then(user =>{
             console.log(user);
             let user_info = {
+              id: user.id,
               identity: user.identity,
               display_name: user.display_name,
               profile_pic_url: user.profile_pic_url,
