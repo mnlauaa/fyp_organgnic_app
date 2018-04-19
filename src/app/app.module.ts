@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { Config } from '../config'
 
 // Custom dependencies
 import { MyApp } from './app.component';
@@ -18,6 +19,7 @@ import { AddNewsComponent } from '../components/add-news/add-news'
 import { PhotoPopup } from '../components/photo-popup/photo-popup'
 import { NewsChangeComponent } from '../components/news-change/news-change';
 import { EditOrder } from '../components/edit-order/edit-order';
+import { FarmHouse } from '../components/farm-house/farm-house';
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -46,12 +48,16 @@ import { SellerOperationalSettingPage } from '../pages/seller-operational-settin
 import { SingleOrderPage } from '../pages/single-order/single-order'
 import { SellerOrderPage } from '../pages/seller-order/seller-order'
 import { SingleSellerOrderPage } from '../pages/single-seller-order/single-seller-order'
+import { ChatRoomPage } from '../pages/chat-room/chat-room'
+import { BuyerCouponPage } from '../pages/buyer-coupon/buyer-coupon'
 import { SellerStatPage } from '../pages/seller-stat/seller-stat';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Camera } from '@ionic-native/camera';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+const config: SocketIoConfig = { url: Config.SERVER, options: {} };
 
 
 export const myComponets = [
@@ -82,6 +88,8 @@ export const myComponets = [
   SingleOrderPage,
   SellerOrderPage,
   SingleSellerOrderPage,
+  ChatRoomPage,
+  BuyerCouponPage,
   SellerStatPage,
   
 	// components
@@ -93,7 +101,8 @@ export const myComponets = [
   AddNewsComponent,
   PhotoPopup, 
   NewsChangeComponent,
-  EditOrder
+  EditOrder,
+  FarmHouse
 ];
 
 export const myProviders = [
@@ -114,6 +123,7 @@ export const myImports = [
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    SocketIoModule.forRoot(config),
     ...myImports
   ],
   bootstrap: [IonicApp],

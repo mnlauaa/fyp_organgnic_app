@@ -11,8 +11,8 @@
       <div class="farmDetail">
         <div class="container">
             <div class="name">{{f.display_name}}</div>
-            <i class="fa fa-home icon"></i>
-            <i class="fa fa-comments icon"></i>
+            <i class="fa fa-home icon" (click)="openProductModal(f)" tappable></i>
+            <i class="fa fa-comments icon" (click)="openChat(f)" tappable></i>
         </div>
         <div class="info">
             <div class="line">

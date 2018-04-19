@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { ApiService } from '../../providers/api-service/api-service'
+import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service/api-service';
+import { FarmHouse } from '../../components/farm-house/farm-house';
+import { TheMarketPage } from '../the-market/the-market';
+import { ChatRoomPage } from '../chat-room/chat-room';
 
-import { TheMarketPage } from '../the-market/the-market'
 @Component({
   selector: 'page-favourite-farm',
   templateUrl: 'favourite-farm.html',
@@ -10,12 +12,15 @@ import { TheMarketPage } from '../the-market/the-market'
 export class FavouriteFarmPage {
   title = 'Favourite Farms';
   farmList = null;
+  user_info: any;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private api: ApiService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController,
   ) {
+    this.user_info = navParams.get('user_info');
     this.api.startQueue([
       this.api.getMyFavourite()
     ]).then(data =>{
@@ -24,6 +29,22 @@ export class FavouriteFarmPage {
     }), err=>{
       console.log(err)
     }
+  }
+  
+  openChat(f){
+    this.navCtrl.push(ChatRoomPage, {
+      user_info: this.user_info,
+      other_id: f.seller_id,
+      my_id: this.user_info.id
+    });
+  }
+
+  openProductModal(f){
+    let profileModal = this.modalCtrl.create(FarmHouse, { 
+      id: f.farm_id,
+    });
+    profileModal.onDidDismiss(()=>{})
+    profileModal.present();
   }
 
   presentConfirm(farm) {
@@ -66,11 +87,6 @@ export class FavouriteFarmPage {
       special: null
     }
     this.navCtrl.setRoot(TheMarketPage, {filter_list: filter_list});
-  }
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavouriteFarmPage');
   }
 
 }

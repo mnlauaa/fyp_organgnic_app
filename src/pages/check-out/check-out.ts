@@ -72,6 +72,7 @@ export class CheckOutPage {
         this.api.putOrder(formData, this.order.productList[0].order_id)
       ]).then(()=>{
         this.navCtrl.push(ConfirmOrderPage, {
+          user_info: this.user_info,
           order: this.order,
           payment_way: this.payment_way,
           deposite_way: this.deposite_way,

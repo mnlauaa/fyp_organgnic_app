@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 import { ApiService } from '../providers/api-service/api-service'
+import { Observable } from 'rxjs/Observable';
+import { Socket } from 'ng-socket-io';
 
 // pages
 import { HomePage } from '../pages/home/home';
@@ -32,10 +34,11 @@ export class MyApp {
 	bottom_pages: any;
 	login: any;
 	guest: boolean = true;
-	user_info = {};
+	user_info = {id: null};
 
   constructor(
-	  	public api: ApiService,
+		public api: ApiService,
+		private socket: Socket, 
 		private ev: Events,
 		private storage: Storage,
 		protected menu: MenuController,
@@ -100,6 +103,7 @@ export class MyApp {
 				}
 			} else {
 				let guest_info = {
+					id: -1,
 					identity: -1,
 					display_name: 'Visitor',
 					profile_pic_url: null,
@@ -117,6 +121,7 @@ export class MyApp {
 			//set deafult event
 			else{
 				let guest_info = {
+					id: -1,
 					identity: -1,
 					display_name: 'Visitor',
 					profile_pic_url: null,
@@ -145,8 +150,13 @@ export class MyApp {
 		this.nav.push(page.component);
 		this.menu.close();
 	}
-	
 
+	upDateUnRead(){
+		console.log("hi")
+		this.api.getMeUnRead().then(data=>{
+			console.log(data);
+		})
+	}
 }
 
 

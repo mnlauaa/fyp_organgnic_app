@@ -1,0 +1,60 @@
+page-buyer-coupon {
+    #line{
+        display: block;
+        height: 1px;
+        border: 0.5px solid #B5B5B5;
+    }
+    
+    .contentBlock{
+        padding: 18px;
+        min-height: calc(100% - 20px);
+        border-radius: 7px;     
+        background: white;
+        margin: 10px;
+
+        .title{
+            font-size: 17px;
+            font-weight: bold;
+            color: #212121;
+            padding-bottom: 12px;
+        }
+
+        .container{
+            position: relative;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .farmIcon{
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;     
+                border: 1px solid #707070;
+
+                img{
+                    object-fit: cover;
+                    border-radius: 50%;  
+                    height: 70px;
+                    width: 70px;
+                }
+            }
+
+            .farmName{
+                font-size: 17px;
+                display: inline-block;
+            }
+
+            .price{
+                padding-right: 10px;
+                text-align: right;
+                font-size: 19px;
+                font-weight: bold;
+                color: #212121;
+            }
+
+        }
+
+
+    }
+}
