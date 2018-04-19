@@ -1,0 +1,22 @@
+<ion-header>
+  <my-navbar [title]="title" [enable_back]="true" [enable_shopping_button]="false"></my-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="contentBlock">
+      <div class="title">Coupon List</div>
+      <i id="line"></i>
+      <div *ngFor="let c of couponList">
+        <div class="container">
+          <div class="farmIcon">
+            <img [src]="c.profile_pic_url">
+          </div>  
+
+          <div class="farmName">{{c.display_name}}</div><br>
+
+          <div class="price">${{c.amount}}</div>
+        </div>
+        <i id="line"></i>
+      </div>
+    </div>
+</ion-content>

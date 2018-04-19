@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ToastController, Content  } from 'ionic-angular';
+import { NavController, NavParams, ToastController, Content, AlertController  } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service';
 import { Socket } from 'ng-socket-io';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +15,7 @@ export class ChatRoomPage {
   msgList = [];
   editorMsg = '';
   showEmojiPicker = false;
+  user_info: any;
   other_id: any;
   my_id: any;
  
@@ -24,8 +25,10 @@ export class ChatRoomPage {
     private navParams: NavParams, 
     private socket: Socket, 
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
     public api: ApiService
   ) {
+    this.user_info = navParams.get('user_info');
     this.other_id = navParams.get('other_id');
     this.my_id = navParams.get('my_id');
 
@@ -86,4 +89,39 @@ export class ChatRoomPage {
     this.socket.emit('leave', this.my_id);
   }
   
+  openMenu(){
+    let alert = this.alertCtrl.create({
+      title: 'Send a Coupon',
+      message: 'You can send a coupon for your client',
+      inputs: [
+        {
+          name: 'coupon',
+          placeholder: 'Input the cupon amount',
+          type: 'number'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Send',
+          handler: data => {
+            this.api.startQueue([
+              this.api.postCoupon(this.other_id, data.coupon)
+            ]).then(data=>{
+              console.log(data)
+            }), err=>{
+              console.log(err)
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 }

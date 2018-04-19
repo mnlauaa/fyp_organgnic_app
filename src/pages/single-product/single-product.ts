@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, NavParams, ToastController  } from 'ionic-angular';
+import { NavController, MenuController, NavParams, ToastController, ModalController  } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
+import { Storage } from '@ionic/storage';
+import { FarmHouse } from '../../components/farm-house/farm-house'
+import { ChatRoomPage } from '../chat-room/chat-room'
 
 import * as moment from 'moment';
 
@@ -13,6 +16,7 @@ export class SingleProductPage {
   now: Date;
   related_product: any = [];
   buyyer_qty: any;
+  user_info: any;
 
   //postition
   maxPosition: any;
@@ -24,9 +28,14 @@ export class SingleProductPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public api: ApiService,
+    private storage: Storage,
+    private modalCtrl: ModalController,
     private menu: MenuController,
     private toastCtrl: ToastController
   ) {
+    this.storage.get('user_info').then((user_info)=>{
+			this.user_info = user_info;
+		})
     let product_id = navParams.get('id');
     let classification =  navParams.get('classification');
     this.now = new Date();
@@ -51,6 +60,23 @@ export class SingleProductPage {
       console.log(err);
     }
   }
+
+  openChat(){
+    this.navCtrl.push(ChatRoomPage, {
+      user_info: this.user_info,
+      other_id: this.product.seller_id,
+      my_id: this.user_info.id
+    });
+  }
+
+  openProductModal(){
+    let profileModal = this.modalCtrl.create(FarmHouse, { 
+      id: this.product.farm_id,
+    });
+    profileModal.onDidDismiss(()=>{})
+    profileModal.present();
+  }
+
 
   controlQty(add){
     if(add){

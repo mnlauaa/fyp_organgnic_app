@@ -137,6 +137,10 @@ export class ApiService extends BaseService{
     return this.get('/users/' + id + '/farms/reviews');
   }
 
+  public getAllCoupon(){
+    return this.get('/users/coupon', this.token);
+  }
+
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';
     const body = new HttpParams().set('username', data.username)
@@ -210,6 +214,14 @@ export class ApiService extends BaseService{
     const body = new HttpParams().set('comment', comment)
     return this.post('/users/' + farm_id + '/farms/reviews', body, type, this.token)
   }
+
+  public postCoupon(buyer_id, amount){
+    let type = 'application/x-www-form-urlencoded';
+    const body = new HttpParams().set('buyer_id', buyer_id)
+                                 .set('amount', amount)
+    return this.post('/users/coupon', body, type, this.token)
+  }
+
 
   public putMeFarm(data, icon, banner){
     var formData: FormData = new FormData();

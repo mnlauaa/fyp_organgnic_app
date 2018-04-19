@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController} from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service';
 import { TheMarketPage } from '../the-market/the-market'
 import { FarmHouse } from '../../components/farm-house/farm-house'
+import { ChatRoomPage } from '../chat-room/chat-room'
 
 @Component({
   selector: 'page-partners',
@@ -11,12 +12,15 @@ import { FarmHouse } from '../../components/farm-house/farm-house'
 export class PartnersPage {
   title = 'Our Partners'
   farm_list: any;
+  user_info: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public api: ApiService,
     private modalCtrl: ModalController,
   ) {
+    this.user_info = navParams.get('user_info');
+    console.log(this.user_info )
     this.api.startQueue([
       this.api.getFarms()
     ]).then(data=>{
@@ -25,6 +29,14 @@ export class PartnersPage {
     }),err=>{
       console.log(err)
     }
+  }
+  
+  openChat(f){
+    this.navCtrl.push(ChatRoomPage, {
+      user_info: this.user_info,
+      other_id: f.id,
+      my_id: this.user_info.id
+    });
   }
 
   openProductModal(f){

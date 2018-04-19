@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController, ActionSheetController, Alert
 import { ApiService } from '../../providers/api-service/api-service'
 import { ImageCropper } from '../../components/image-cropper/image-cropper'
 import { PhotoPopup } from '../../components/photo-popup/photo-popup'
+import { ChatRoomPage } from '../chat-room/chat-room';
 import * as moment from 'moment';
 
 @Component({
@@ -32,6 +33,14 @@ export class SingleOrderPage {
     this.order_id = pad.substring(0, pad.length - str.length) + str
     this.time = moment(this.order.date).format("HH:mm");
     this.date = moment(this.order.date).format("D MMM, YYYY")
+  }
+
+  openChat(){
+    this.navCtrl.push(ChatRoomPage, {
+      user_info: this.order.buyer_id,
+      other_id: this.order.seller_id,
+      my_id: this.order.buyer_id
+    });
   }
 
   onSubmit(){

@@ -21,6 +21,7 @@ export class TransactionHistoryPage {
       this.order.map(o=>{
         o.date = moment(o.date).calendar(null, {
           lastDay: '[Yesterday]',
+          lastWeek: 'HH:mm',
           sameDay: 'HH:mm',
           sameElse: 'DD MMM, YYYY'
         })

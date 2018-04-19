@@ -1,3 +1,7 @@
+.alert-input{
+  text-align: center;
+}
+
 page-chat-room {
 
     $userBackgroundColor: #00A69C;
@@ -17,7 +21,6 @@ page-chat-room {
         }
     }
 
-
   
     .line-breaker {
       white-space: pre-line;
@@ -31,6 +34,10 @@ page-chat-room {
         border: 0;
         border-bottom: 1px $userBackgroundColor;
         border-style: solid;
+      }
+      
+      .text-input{
+        padding-left: 10px;
       }
     }
   

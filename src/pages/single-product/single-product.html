@@ -8,8 +8,8 @@
         <div class="container">
             <div class="sub-container">
                 <div class="farm-name">by {{product.display_name}}</div>
-                <i class="fa fa-home icon"></i>
-                <i class="fa fa-comments icon"></i>
+                <i class="fa fa-home icon" (click)="openProductModal()" tappable></i>
+                <i class="fa fa-comments icon" (click)="openChat()"></i>
             </div>
             <div class="rating">
                 <span *ngFor="let i of getFullStarNumber(product.rating)">

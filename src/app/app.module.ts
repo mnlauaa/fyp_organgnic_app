@@ -49,6 +49,7 @@ import { SingleOrderPage } from '../pages/single-order/single-order'
 import { SellerOrderPage } from '../pages/seller-order/seller-order'
 import { SingleSellerOrderPage } from '../pages/single-seller-order/single-seller-order'
 import { ChatRoomPage } from '../pages/chat-room/chat-room'
+import { BuyerCouponPage } from '../pages/buyer-coupon/buyer-coupon'
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -87,6 +88,7 @@ export const myComponets = [
   SellerOrderPage,
   SingleSellerOrderPage,
   ChatRoomPage,
+  BuyerCouponPage,
   
 	// components
   MyNavbar,

@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController, ActionSheetController, Alert
 import { ApiService } from '../../providers/api-service/api-service'
 import { EditOrder } from '../../components/edit-order/edit-order'
 import { PhotoPopup } from '../../components/photo-popup/photo-popup'
+import { ChatRoomPage } from '../chat-room/chat-room';
 
 import { SellerOrderPage } from '../seller-order/seller-order'
 import * as moment from 'moment';
@@ -47,6 +48,14 @@ export class SingleSellerOrderPage {
     }), err=>{
       console.log(err);
     }
+  }
+
+  openChat(){
+    this.navCtrl.push(ChatRoomPage, {
+      user_info: this.order.buyer_id,
+      other_id: this.order.seller_id,
+      my_id: this.order.buyer_id
+    });
   }
 
   editOrder(){

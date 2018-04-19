@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { BuyerPersonaliseProfilePage } from '../buyer-personalise-profile/buyer-personalise-profile'
 import { TransactionHistoryPage } from '../transaction-history/transaction-history'
 import { FavouriteFarmPage } from '../favourite-farm/favourite-farm'
+import { BuyerCouponPage } from '../buyer-coupon/buyer-coupon'
 
 @Component({
   selector: 'page-profile',
@@ -20,6 +21,7 @@ export class ProfilePage {
   personaliseProfile = BuyerPersonaliseProfilePage;
   tranHistory = TransactionHistoryPage;
   favouriteFarmPage = FavouriteFarmPage;
+  coupon = BuyerCouponPage
 
   constructor(
     private ev: Events,
