@@ -86,6 +86,10 @@ export class ApiService extends BaseService{
   public getMyChat(){
     return this.get('/me/chat', this.token);
   }
+  
+  public getTopSaleById(id){
+    return this.get('/products/stat/' +id ,this.token);
+  }
 
   public getProducts(sorting, keyword=null, filter=null){
     let params = {sorting: sorting}
@@ -139,6 +143,10 @@ export class ApiService extends BaseService{
 
   public getAllCoupon(){
     return this.get('/users/coupon', this.token);
+  }
+  
+  public getOrderPerDayById(id){
+    return this.get('/orders/stat/' + id, this.token);
   }
 
   public postMeLogin(data){

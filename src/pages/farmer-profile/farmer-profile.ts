@@ -8,7 +8,7 @@ import { SellerPersonaliseProfilePage } from '../seller-personalise-profile/sell
 import { SellerPersonaliseProductsPage } from '../seller-personalise-products/seller-personalise-products'
 import { SellerPersonaliseNewsPage } from '../seller-personalise-news/seller-personalise-news'
 import { SellerOperationalSettingPage } from '../seller-operational-setting/seller-operational-setting'
-
+import { SellerStatPage} from '../seller-stat/seller-stat'
 
 @Component({
   selector: 'page-farmer-profile',
@@ -22,6 +22,7 @@ export class FarmerProfilePage {
   sellerProducts = null;
   sellerNews = null;
   sellerSetting = null;
+  busi_stat = null ;
 
   constructor(
     private api: ApiService,
@@ -34,7 +35,8 @@ export class FarmerProfilePage {
     this.sellerProducts = { component: SellerPersonaliseProductsPage};
     this.sellerNews = { component: SellerPersonaliseNewsPage};
     this.sellerSetting = { component: SellerOperationalSettingPage};
-
+    this.busi_stat = { component: SellerStatPage};
+    
     this.ev.subscribe('farm_info', user_info => {
       this.user_info = user_info
     });
