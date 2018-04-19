@@ -71,6 +71,9 @@ export class ApiService extends BaseService{
     return this.get('/me/order', this.token);
   }
 
+  public getTopSaleById(id){
+    return this.get('/products/stat/' +id ,this.token);
+  }
 
   public getProducts(sorting, keyword=null, filter=null){
     let params = {sorting: sorting}

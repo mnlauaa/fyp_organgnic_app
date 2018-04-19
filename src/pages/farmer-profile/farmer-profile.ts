@@ -22,7 +22,7 @@ export class FarmerProfilePage {
   sellerProducts = null;
   sellerNews = null;
   sellerSetting = null;
-  busi_stat = null;
+  busi_stat = null ;
 
   constructor(
     private api: ApiService,
