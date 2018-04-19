@@ -114,6 +114,10 @@ export class ApiService extends BaseService{
     return this.get('/orders/' + id, this.token);
   }
 
+  public getOrderPerDayById(id){
+    return this.get('/orders/stat/' + id, this.token);
+  }
+
   public postMeLogin(data){
     let type = 'application/x-www-form-urlencoded';
     const body = new HttpParams().set('username', data.username)

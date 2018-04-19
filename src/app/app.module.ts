@@ -46,6 +46,7 @@ import { SellerOperationalSettingPage } from '../pages/seller-operational-settin
 import { SingleOrderPage } from '../pages/single-order/single-order'
 import { SellerOrderPage } from '../pages/seller-order/seller-order'
 import { SingleSellerOrderPage } from '../pages/single-seller-order/single-seller-order'
+import { SellerStatPage } from '../pages/seller-stat/seller-stat';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -81,6 +82,7 @@ export const myComponets = [
   SingleOrderPage,
   SellerOrderPage,
   SingleSellerOrderPage,
+  SellerStatPage,
   
 	// components
   MyNavbar,
