@@ -1,0 +1,23 @@
+<ion-header>
+    <my-navbar [logo_url]="'assets/imgs/app-logo.png'" [enable_back]="true"></my-navbar>
+</ion-header>
+
+
+<ion-content >
+    <div class="news-block">
+        <div class="title">{{news.title}}</div>
+        <div class="info">
+          <div class="info-item">by {{news.display_name}}</div>
+          <div class="info-item">{{news.datetime}}</div>
+        </div>
+        <div class="img-box">
+          <img [src]="this.news.image_url">
+        </div>
+        <div class="bottom-part" >
+          <div class="line-padding"><i id="line"></i></div>
+          <div class="description">{{news.description}}</div>
+          <div class="detail-block">
+          </div>
+        </div>
+      </div>
+</ion-content>

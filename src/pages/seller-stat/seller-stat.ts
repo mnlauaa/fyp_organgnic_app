@@ -41,15 +41,33 @@ export class SellerStatPage {
     this.user_info = navParams.get('user_info');
     //Day Line Chart
     this.api.startQueue([
-      this.api.getOrderPerDayById(this.user_info.id)
+      this.api.getOrderPerDayById(this.user_info.id),
+      this.api.getOrderPerWeekById(this.user_info.id),
+      this.api.getOrderPerMonthById(this.user_info.id),
+      this.api.getTopSaleById(this.user_info.id)
     ]).then(data =>{
       let tmpData =data[0];
       for(var i=0; i<tmpData.length; i++){
         this.orderPerDayX[i]=tmpData[i].date_of_order;
         this.orderPerDayY[i]=tmpData[i].number_of_order;
       }
-      console.log(this.orderPerDayX)
-      console.log(this.orderPerDayY)
+      let tmpData2 =data[1];
+      for(var j=0; j<tmpData2.length; j++){
+        this.orderPerWeekX[j]=tmpData2[j].week_of_this_month;
+        this.orderPerWeekY[j]=tmpData2[j].number_of_orders;
+      }
+      let tmpData3 =data[2];
+        for(var l=0; l<tmpData3.length; l++){
+          this.orderPerMonthX[l]=tmpData3[l].month_of_this_year;
+          this.orderPerMonthY[l]=tmpData3[l].number_of_orders;
+      }
+      let tmpData4 =data[3];
+        for(var k=0; k<tmpData4.length; k++){
+          if(k<5){
+          this.topSaleX[k]=tmpData4[k].product_name;
+          this.topSaleY[k]=tmpData4[k].numbers_of_sold;
+          }
+      }
       this.dayLineChart = new Chart(document.getElementById("dayLine"), {
  
         type: 'line',
@@ -81,106 +99,68 @@ export class SellerStatPage {
             }
         }
       });
-    }), err =>{}
-      //week Line Chart
-      this.api.startQueue([
-        this.api.getOrderPerWeekById(this.user_info.id)
-      ]).then(data =>{
-        let tmpData =data[0];
-        for(var i=0; i<tmpData.length; i++){
-          this.orderPerWeekX[i]=tmpData[i].week_of_this_month;
-          this.orderPerWeekY[i]=tmpData[i].number_of_orders;
-        }
-        console.log(this.orderPerWeekX)
-        console.log(this.orderPerWeekY)
-        this.weekLineChart = new Chart(document.getElementById("weekLine"), {
+      this.weekLineChart = new Chart(document.getElementById("weekLine"), {
     
-          type: 'line',
-          data: {
-              labels: this.orderPerWeekX,
-              datasets: [{
-                  label:'Number of orders',
-                  data: this.orderPerWeekY,
-                  backgroundColor: [
-                    'rgba(153, 102, 255, 0.2)',
-                  ],
-                  borderColor: [
-                    'rgba(153, 102, 255, 1)',
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero:true
-                      }
-                  }]
-              },
-              title: {
-                display: true,
-                text: 'Orders per week in this month'
-              }
-          }
-        });
-      }), err =>{}
-      //month Line Chart
-      this.api.startQueue([
-        this.api.getOrderPerMonthById(this.user_info.id)
-      ]).then(data =>{
-        let tmpData =data[0];
-        for(var i=0; i<tmpData.length; i++){
-          this.orderPerMonthX[i]=tmpData[i].month_of_this_year;
-          this.orderPerMonthY[i]=tmpData[i].number_of_orders;
+        type: 'line',
+        data: {
+            labels: this.orderPerWeekX,
+            datasets: [{
+                label:'Number of orders',
+                data: this.orderPerWeekY,
+                backgroundColor: [
+                  'rgba(153, 102, 255, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(153, 102, 255, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            },
+            title: {
+              display: true,
+              text: 'Orders per week in this month'
+            }
         }
-        console.log(this.orderPerMonthX)
-        console.log(this.orderPerMonthY)
-        this.monthLineChart = new Chart(document.getElementById("monthLine"), {
+      });
+      this.monthLineChart = new Chart(document.getElementById("monthLine"), {
     
-          type: 'line',
-          data: {
-              labels: this.orderPerMonthX,
-              datasets: [{
-                  label:'Number of orders',
-                  data: this.orderPerMonthY,
-                  backgroundColor: [
-                    'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                    'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero:true
-                      }
-                  }]
-              },
-              title: {
-                display: true,
-                text: 'Orders per month in this year'
-              }
-          }
-        });
-      }), err =>{}
-      //top sale bar
-      this.api.startQueue([
-        this.api.getTopSaleById(this.user_info.id)
-      ]).then(data =>{
-        let tmpData =data[0];
-        for(var k=0; k<tmpData.length; k++){
-          if(k<5){
-          this.topSaleX[k]=tmpData[k].product_name;
-          this.topSaleY[k]=tmpData[k].numbers_of_sold;
-          }
+        type: 'line',
+        data: {
+            labels: this.orderPerMonthX,
+            datasets: [{
+                label:'Number of orders',
+                data: this.orderPerMonthY,
+                backgroundColor: [
+                  'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                  'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            },
+            title: {
+              display: true,
+              text: 'Orders per month in this year'
+            }
         }
-        console.log(this.topSaleX)
-        console.log(this.topSaleY)
+      });
       this.barChart = new Chart(document.getElementById("productPie"), {
     
         type: 'bar',
@@ -235,7 +215,7 @@ export class SellerStatPage {
     }), err =>{}
   }
   
-  createPdf() {
+  downloadPdf() {
     var docDefinition = {
       content: [
         { text: 'Business Statistics', style: 'header' },
@@ -267,9 +247,6 @@ export class SellerStatPage {
       }
     }
     this.pdfObj = pdfMake.createPdf(docDefinition);
-  }
-
-  downloadPdf() {
     if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
         var utf8 = new Uint8Array(buffer);
@@ -284,7 +261,6 @@ export class SellerStatPage {
       });
     } else {
       // On a browser simply use download!
-      console.log('yes')
       this.pdfObj.download();
     }
   }
