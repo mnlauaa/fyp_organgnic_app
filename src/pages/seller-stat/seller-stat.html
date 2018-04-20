@@ -13,5 +13,8 @@
   <div class ="bus-stat">
       <div class ="title">Products</div>
       <canvas id="productPie" width="400" height="400" ></canvas>
-    </div>
+  </div>
+  
+  <button  ion-button full (click)="createPdf()">Create PDF</button>
+  <button  ion-button full (click)="downloadPdf()" color="secondary" [disabled]="!pdfObj">Download PDF</button>
 </ion-content>

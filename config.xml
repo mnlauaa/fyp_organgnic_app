@@ -86,4 +86,6 @@
     <allow-navigation href="http://192.168.1.205:8100" />
     <engine name="browser" spec="~5.0.3" />
     <engine name="android" spec="~7.0.0" />
+    <plugin name="cordova-plugin-file-opener2" spec="^2.0.19" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
 </widget>

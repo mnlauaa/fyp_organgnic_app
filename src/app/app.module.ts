@@ -8,6 +8,8 @@ import { Config } from '../config'
 // Custom dependencies
 import { MyApp } from './app.component';
 import { ApiService } from '../providers/api-service/api-service';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 // components
 import { MyNavbar } from '../components/my-navbar/my-navbar';
@@ -136,7 +138,9 @@ export const myImports = [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Camera
+    Camera,
+    File,
+    FileOpener
   ]
 })
 export class AppModule {}
