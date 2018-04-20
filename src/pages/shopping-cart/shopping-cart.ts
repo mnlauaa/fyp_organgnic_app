@@ -34,9 +34,9 @@ export class ShoppingCartPage {
 
   update(){
     this.api.startQueue([
-      this.api.getShopingCart()
+      this.api.getShopingCart(),
+      this.api.getAllCoupon()
     ]).then(data => {
-      console.log("shop", data[0])
       this.allOrder = data[0];
       if(this.allOrder[0])
         this.calculateSubTotal();
@@ -45,21 +45,25 @@ export class ShoppingCartPage {
           o.farm.pickup_way = "point"
         else
           o.farm.pickup_way = "home"
-        o.farm.shipping = 0;
-        this.calculateShipping(o)
-
+        data[1].map((c)=>{
+          if(c.farm_id = o.farm.farm_id)
+            o.coupon = c;
+            o.coupon.use = false;
+        })
         o.productList.map((p)=>{
           if(p.special_expiry)
             p.special_expiry = new Date(p.special_expiry)
         });
+        o.farm.shipping = 0;
+        this.calculateShipping(o)
         this.calculateSubTotal();
       })
+      console.log("shop", data[0])
+      console.log("couopon", data[1])
     }, err => {
       console.log(err)
     });
   }
-
-
 
   deleteTransition(id){
     this.api.startQueue([
@@ -103,11 +107,18 @@ export class ShoppingCartPage {
   calculateShipping(o){
     if(o.farm){
       o.farm.shipping = 0
-      if( !o.farm.margin_on || (o.farm.margin_on && o.farm.shipping_margin > o.sum) ){
+      if(!o.farm.margin_on || (o.farm.margin_on && o.farm.shipping_margin > o.sum) ){
         o.farm.shipping += o.farm.shipping_cost
       }
-      if( o.farm.home_on && o.farm.pickup_way == "home")
+      if(o.farm.home_on && o.farm.pickup_way == "home")
         o.farm.shipping +=  o.farm.home_additional_cost
+      if(o.coupon && o.coupon.use){
+        let temp =  o.farm.shipping;
+        o.farm.shipping = o.farm.shipping - o.coupon.amount >= 0 ? o.farm.shipping - o.coupon.amount : 0;
+        o.coupon.amount = o.coupon.amount - temp >= 0 ? o.coupon.amount - temp : 0;
+        console.log(o)
+        console.log(o.coupon.amount)
+      }
     }
   }
 
@@ -143,11 +154,6 @@ export class ShoppingCartPage {
     });
     alert.present();
   }
-
-
-
-
-  // 
 
   hiddenCheck(button){
     if(button){

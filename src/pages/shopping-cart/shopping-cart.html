@@ -94,6 +94,16 @@
 
         </div>
 
+        <div class="coupon-block" *ngIf="o.coupon && o.coupon.amount > 0">
+          <div class="container">
+              <ion-icon name="ios-bulb-outline"></ion-icon>
+              <div class="coupon-text">You still have ${{o.coupon.amount}} shipping coupon for this farm, use it for this bill?</div>
+          </div>
+          <div class="switch">
+              <ion-toggle color="fyp" [(ngModel)]="o.coupon.use" (ionChange)="calculateShipping(o)"></ion-toggle>
+          </div>
+        </div>
+
         <div class="counting-block">
           <table class="counting-table">
             <tr><td class="text">Subtotal</td><td class="price text">${{o.sum}}</td></tr>
