@@ -55,7 +55,7 @@
         <div class="listRow">
             <div class="listItem">Shipping Coupon </div>
             <div class="help" tappable>
-                <i class="fa fa-question-circle-o"></i>
+                <i class="fa fa-question-circle-o" (click)="presentToast('This is a discount given to your customers for their purchase.')" tappable></i>
             </div>
             <div class="switch" *ngIf="!shipping_edit">
                 <ion-toggle color="fyp" [(ngModel)]="user_info.coupon_on" (ionChange)="submitFarmSetting('coupon_on', user_info.coupon_on)"></ion-toggle>
@@ -67,7 +67,7 @@
         <div class="titleLine">
             <div class="title">Delivery Pick-up Points</div>
             <div class="help" tappable>
-                <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                <i class="fa fa-question-circle-o" aria-hidden="true" (click)="presentToast('You can set locations that you can deliver products to.')" tappable></i>
             </div>
             <div class="edit" (click)="delivery_edit = true" *ngIf="!delivery_edit"tappable>
                 <ion-icon name="md-create"></ion-icon>

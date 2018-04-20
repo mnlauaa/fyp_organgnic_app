@@ -68,7 +68,7 @@ export class CheckOutPage {
           formData.append('receipt', this.imgFile, 'receipt-' + Date.now() + '.png')
       }
       formData.append('status', this.order.productList[0].status)
-      if(this.order.coupon.use){
+      if(this.order.coupon && this.order.coupon.use){
         formData.append('reduce', this.order.coupon.reduce)
         formData.append('coupon_id', this.order.coupon.id)
       }
