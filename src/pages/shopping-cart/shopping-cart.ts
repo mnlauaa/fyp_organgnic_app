@@ -46,9 +46,10 @@ export class ShoppingCartPage {
         else
           o.farm.pickup_way = "home"
         data[1].map((c)=>{
-          if(c.farm_id = o.farm.farm_id)
+          if(c.farm_id == o.farm.farm_id){
             o.coupon = c;
             o.coupon.use = false;
+          }
         })
         o.productList.map((p)=>{
           if(p.special_expiry)
@@ -114,10 +115,14 @@ export class ShoppingCartPage {
         o.farm.shipping +=  o.farm.home_additional_cost
       if(o.coupon && o.coupon.use){
         let temp =  o.farm.shipping;
-        o.farm.shipping = o.farm.shipping - o.coupon.amount >= 0 ? o.farm.shipping - o.coupon.amount : 0;
-        o.coupon.amount = o.coupon.amount - temp >= 0 ? o.coupon.amount - temp : 0;
-        console.log(o)
-        console.log(o.coupon.amount)
+        if(o.farm.shipping > o.coupon.amount){
+          o.coupon.reduce = o.coupon.amount;
+          o.farm.shipping = o.farm.shipping - o.coupon.amount
+        } else {
+          o.coupon.reduce = o.farm.shipping;
+          o.farm.shipping = 0;
+        }
+        // o.coupon.amount = o.coupon.amount - temp >= 0 ? o.coupon.amount - temp : 0;
       }
     }
   }
