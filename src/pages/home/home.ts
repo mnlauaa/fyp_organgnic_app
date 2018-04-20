@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform} from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
 import { TheMarketPage } from '../the-market/the-market';
+import { SingleNewsPage } from '../single-news/single-news';
 import * as moment from 'moment';
 // import { Storage } from '@ionic/storage';
 
@@ -35,5 +36,9 @@ export class HomePage {
     this.navCtrl.setRoot(TheMarketPage, {
       keyword: this.search_bar
     });
+  }
+
+  openSignleNews(n){
+    this.navCtrl.push(SingleNewsPage, {news: n});
   }
 }

@@ -53,7 +53,7 @@ import { SingleSellerOrderPage } from '../pages/single-seller-order/single-selle
 import { ChatRoomPage } from '../pages/chat-room/chat-room'
 import { BuyerCouponPage } from '../pages/buyer-coupon/buyer-coupon'
 import { SellerStatPage } from '../pages/seller-stat/seller-stat';
-
+import { SingleNewsPage } from '../pages/single-news/single-news';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -93,6 +93,7 @@ export const myComponets = [
   ChatRoomPage,
   BuyerCouponPage,
   SellerStatPage,
+  SingleNewsPage,
   
 	// components
   MyNavbar,

@@ -4,7 +4,7 @@ page-seller-stat {
         display: flex;
         flex-direction: column;
         flex: space-between;
-        border-radius: 2%;
+        border-radius: 5px;
         margin: 7px; 
         padding: 10px;
         background-color: white;
@@ -15,6 +15,12 @@ page-seller-stat {
             padding-left: 10px;
             display: inline-block;
         }
+    }
+
+    .button{
+        width: calc(100% - 15px);
+        margin: 0 auto;
+        margin-bottom: 5px;
     }
 
 }

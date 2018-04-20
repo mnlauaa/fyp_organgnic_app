@@ -51,6 +51,10 @@ export class ApiService extends BaseService{
     return this.get('/news/', null, params);
   }
 
+  public getNewsById(id){
+    return this.get('news/' + id, this.token);
+  }
+
   public getFarms(){
     return this.get('/users/farms');
   }

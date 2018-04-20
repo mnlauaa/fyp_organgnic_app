@@ -10,13 +10,13 @@
 </ion-header>
 
 <ion-content>
-	<div *ngFor="let n of newsList" class="news-block">
+	<div *ngFor="let n of newsList" class="news-block" >
 		<div class="title">{{n.title}}</div>
 		<div class="info">
 			<div class="info-item">by {{n.display_name}}</div>
 			<div class="info-item">{{n.datetime}}</div>
 		</div>
-		<div class="img-box">
+		<div class="img-box" tappable (click)="openSignleNews(n)">
 			<img [src]="n.image_url">
 		</div>
 		<div class="bottom-part" >
