@@ -7,7 +7,7 @@ import { ApiService } from '../../providers/api-service/api-service'
   templateUrl: 'buyer-coupon.html',
 })
 export class BuyerCouponPage {
-  title = "Coupon"
+  title = "Shipping Coupon"
   couponList: any
   constructor(
     public navCtrl: NavController, 

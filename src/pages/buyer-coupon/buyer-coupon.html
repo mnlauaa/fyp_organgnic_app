@@ -5,6 +5,7 @@
 <ion-content >
   <div class="contentBlock">
       <div class="title">Coupon List</div>
+      <div class="sub-title">The following is a list of shipping coupons you can use for your next purchase.</div>
       <i id="line"></i>
       <div *ngFor="let c of couponList">
         <div class="container">
@@ -16,7 +17,6 @@
 
           <div class="price">${{c.amount}}</div>
         </div>
-        <i id="line"></i>
       </div>
     </div>
 </ion-content>
