@@ -217,6 +217,45 @@ page-shopping-cart {
         }
     }
 
+    .coupon-block{
+        border-radius: 5px;
+        min-height: 85px;
+        margin: 5px; 
+        padding: 10px;
+        background-color: #FFFFFF;
+        position: relative;
+
+        .container{
+            display: flex;
+            // align-items: baseline;
+            .icon{
+                display: inline-block;
+                font-size: 25px;
+                font-weight: bold;
+                color: #FCA706;
+                height: 100%;
+                padding: 5px;
+            }
+    
+            .coupon-text{
+                padding: 5px;
+                text-align: justify;
+                display: inline-block;
+                width: calc(100% - 30px);
+            }
+        }
+        
+        .switch{
+            position: absolute;
+            right: 15px;
+            bottom: 10px;
+            display: inline-block;
+            margin-right: 10px;
+            zoom: 0.8;
+        }
+
+    }
+
     .counting-block{
         border-radius: 5px;
         // height: 150px;
