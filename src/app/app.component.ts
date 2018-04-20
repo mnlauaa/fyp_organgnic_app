@@ -57,7 +57,7 @@ export class MyApp {
 
 		let seller_pages = [
 			{ title: 'Home', component: HomePage, icon: 'fa fa-home fa-fw fa-lg'},
-			{ title: 'Manage Business', component: FarmerProfilePage, icon: 'fa fa-briefcase fa-fw fa-lg'},
+			{ title: 'Business Profile', component: FarmerProfilePage, icon: 'fa fa-briefcase fa-fw fa-lg'},
 			{ title: 'Orders Received', component: SellerOrderPage, icon: 'fa fa-clipboard fa-fw fa-lg'},
 			{ title: 'Message', component: MessagePage, icon: 'fa fa-comments fa-fw fa-lg'}
 		]
