@@ -1,8 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service'
 import Chart from 'chart.js';
-
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @IonicPage()
 @Component({
@@ -25,7 +29,15 @@ export class SellerStatPage {
   topSaleX =[];
   topSaleY =[];
   user_info: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiService,) {
+  pdfObj = null;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private api: ApiService,
+    private plt: Platform,
+    private file: File, 
+    private fileOpener: FileOpener,
+  ) {
     this.user_info = navParams.get('user_info');
     //Day Line Chart
     this.api.startQueue([
@@ -222,7 +234,60 @@ export class SellerStatPage {
       });
     }), err =>{}
   }
+  
+  createPdf() {
+    var docDefinition = {
+      content: [
+        { text: 'Business Statistics', style: 'header' },
+        { text: new Date().toTimeString(), alignment: 'right' },
+ 
+        {image:this.dayLineChart.toBase64Image(), width: 400, height: 400,},
+ 
+        {image:this.weekLineChart.toBase64Image(), width: 400, height: 400,},
 
+        {image:this.monthLineChart.toBase64Image(), width: 400, height: 400,},
+
+        {image:this.barChart.toBase64Image(), width: 400, height: 400,},
+      ],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+        },
+        subheader: {
+          fontSize: 14,
+          bold: true,
+          margin: [0, 15, 0, 0]
+        },
+        story: {
+          italic: true,
+          alignment: 'center',
+          width: '50%',
+        }
+      }
+    }
+    this.pdfObj = pdfMake.createPdf(docDefinition);
+  }
+
+  downloadPdf() {
+    if (this.plt.is('cordova')) {
+      this.pdfObj.getBuffer((buffer) => {
+        var utf8 = new Uint8Array(buffer);
+        var binaryArray = utf8.buffer;
+        var blob = new Blob([binaryArray], { type: 'application/pdf' });
+ 
+        // Save the PDF to the data Directory of our App
+        this.file.writeFile(this.file.dataDirectory, 'mystat.pdf', blob, { replace: true }).then(fileEntry => {
+          // Open the PDf with the correct OS tools
+          this.fileOpener.open(this.file.dataDirectory + 'mystat.pdf', 'application/pdf');
+        })
+      });
+    } else {
+      // On a browser simply use download!
+      console.log('yes')
+      this.pdfObj.download();
+    }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SellerStatPage');
