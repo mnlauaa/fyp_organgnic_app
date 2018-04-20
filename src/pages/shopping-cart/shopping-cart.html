@@ -7,15 +7,8 @@
 </ion-header>
 
 <ion-content >
-  <!--Shopping cart title</!-->
-  <!-- <div class="shopping-cart">
-      <ion-icon class="icon" name="md-cart" ></ion-icon>
-      <span>Shopping Cart</span>
-  </div> -->
-
-
-  <!-->main body(empty)
-  <div id="empty-cart" ng-hide="empty-hidden">
+  <!-- main body(empty) -->
+  <!-- <div id="empty-cart" ng-hide="empty-hidden" *ngIf="!allOrder[0]">
     <div class="cart-block">
       <div class="empty-cart-notice">
           <span>Your shopping cart is empty!</span>
@@ -25,7 +18,7 @@
     <div class="shopping-button" (click)="MarketOpenPage()" tappable>
         <div class="button-text">Continue Shopping</div>
     </div>
-  </div></!-->
+  </div> -->
 
 
   <!-->main body(has products)</!-->
@@ -100,7 +93,7 @@
               <div class="coupon-text">You still have ${{o.coupon.amount}} shipping coupon for this farm, use it for this bill?</div>
           </div>
           <div class="switch">
-              <ion-toggle color="fyp" [(ngModel)]="o.coupon.use" (ionChange)="calculateShipping(o)"></ion-toggle>
+              <ion-toggle color="fyp" [name]="i" [(ngModel)]="o.coupon.use" (ionChange)="calculateShipping(o)"></ion-toggle>
           </div>
         </div>
 

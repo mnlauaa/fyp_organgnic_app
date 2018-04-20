@@ -63,7 +63,6 @@ export class MyApp {
 		]
 
 		let user_bottom_pages = [
-			{ title: 'Setting', component: HomePage, icon: 'fa fa-cog fa-fw fa-lg'},
 			{ title: 'About Us', component: AboutUsPage, icon: 'fa fa-info-circle fa-fw fa-lg'},
 			{ title: 'Our Partners', component: PartnersPage, icon: 'fa fa-handshake-o fa-fw fa-lg'},
 			{ title: 'Logout', component: null, icon: 'fa fa-sign-out fa-fw fa-lg'}

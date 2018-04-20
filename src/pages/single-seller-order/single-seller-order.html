@@ -27,6 +27,10 @@
             <div class="items">
                 <div *ngFor="let t of order.transaction">{{t.name}} X {{t.qty*t.weight}}g</div>
             </div>
+            <div *ngIf="order.coupon_reduce" class="info-title">Shipping Coupons used:</div>
+            <div *ngIf="order.coupon_reduce" class="amount">
+              <span>${{order.coupon_reduce}}</span>
+            </div>
             <div class="info-title">Amount:</div>
             <div class="amount">
                 <span>${{order.amount}}</span>
