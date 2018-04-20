@@ -51,6 +51,17 @@ export class FarmerProfilePage {
     }
   }
 
+  ionViewWillEnter(){
+    this.api.startQueue([
+      this.api.getMeFarm()
+    ]).then(data=>{
+      this.user_info = data[0]
+      console.log(data[0]);
+    }), err=>{
+
+    }
+  }
+
   pushPage(page) {
     this.navCtrl.push(page.component, {user_info: this.user_info});
   }

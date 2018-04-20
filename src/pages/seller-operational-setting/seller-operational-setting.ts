@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Events, AlertController, ToastController } from 'ionic-angular';
 import { ApiService } from '../../providers/api-service/api-service';
 import { Storage } from '@ionic/storage';
 
@@ -28,7 +28,8 @@ export class SellerOperationalSettingPage {
     private ev: Events,
     private storage: Storage,
     private alertCtrl: AlertController,
-    protected api: ApiService
+    protected api: ApiService,
+    private toastCtrl: ToastController
   ) {
       this.user_info = navParams.get('user_info');
       this.ev.subscribe('farm_info', user_info => {
@@ -116,6 +117,17 @@ export class SellerOperationalSettingPage {
         console.log(err)
       }
     }
+  }
+
+  presentToast(str) {
+    let toast = this.toastCtrl.create({
+      message: str,
+      duration: 2000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {});
+    toast.present();
   }
 
   onSubmitDelivery(){
