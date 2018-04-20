@@ -146,7 +146,15 @@ export class ApiService extends BaseService{
   }
   
   public getOrderPerDayById(id){
-    return this.get('/orders/stat/' + id, this.token);
+    return this.get('/orders/stat/day/' + id, this.token);
+  }
+
+  public getOrderPerWeekById(id){
+    return this.get('/orders/stat/week/' + id, this.token);
+  }
+
+  public getOrderPerMonthById(id){
+    return this.get('/orders/stat/monnth/' + id, this.token);
   }
 
   public postMeLogin(data){
